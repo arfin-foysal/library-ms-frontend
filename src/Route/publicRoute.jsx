@@ -5,7 +5,7 @@ import Home from "../components/client/Home";
 import NotAccess from "../components/client/NotAccess";
 import Login from "../components/pages/login/Login";
 import Signup from "../components/pages/signup/Signup";
-import { authUser } from "../utils/Auth";
+import { authUser, authUserToken } from "../utils/Auth";
 import { Navigate } from "react-router-dom";
 
 export const publicRoute = [
@@ -26,11 +26,12 @@ export const publicRoute = [
   {
     path: "/login",
     element:
-    authUser !== "" ?<Navigate to={"/dashboard"} replace /> :<Login />  ,
+      authUser !== "" && authUserToken !== "" ? <Navigate to={"/dashboard"} replace /> : <Login />,
   },
   {
     path: "/signup",
-    element:authUser !== "" ? <Navigate to={"/dashboard"} replace />:  <Signup />,
+    element:
+    authUser !== "" && authUserToken !== "" ? <Navigate to={"/dashboard"} replace /> : <Signup />,
   },
 
   {
