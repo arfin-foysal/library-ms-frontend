@@ -8,6 +8,7 @@ import Signup from "../components/pages/signup/Signup";
 import { authUser, authUserToken } from "../utils/Auth";
 import { Navigate } from "react-router-dom";
 
+
 export const publicRoute = [
   {
     path: "",
@@ -20,6 +21,10 @@ export const publicRoute = [
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/loginss",
+        element: <Login />,
       },
     ],
   },

@@ -10,6 +10,8 @@ import SidebarMenu from "./SidebarMenu";
 import { navItem } from "../../../Nav/NavItem";
 import { user } from "../../../Route/utils";
 import avatar from "../../../../src/assets/images/profile-picture.png";
+import logo from "../../../../src/assets/logo/sm_logo.png";
+import w_logo from "../../../../src/assets/logo/logo_white.png";
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -53,22 +55,25 @@ const Layout = () => {
             }}
             className={`sidebar `}
           >
-            <div className="top_section">
+            <div className="top_section ">
               <AnimatePresence>
                 {isOpen && (
-                  <motion.h1
-                    variants={showAnimation}
+                  <motion.image
+                    // variants={showAnimation}
                     initial="hidden"
                     animate="show"
                     exit="hidden"
                     className="logo pt-2"
                   >
-                    Logo
-                  </motion.h1>
+                
+                   <img src={logo} width={30} alt="" className="me-2" />
+                    <img src={w_logo} width={70} alt="" />
+  
+                  </motion.image>
                 )}
               </AnimatePresence>
 
-              <div className="bars pointer">
+              <div className="bars pointer ">
                 <FaBars onClick={toggle} />
               </div>
             </div>
@@ -122,6 +127,8 @@ const Layout = () => {
                 color: "white",
               }}
               autoHide
+           renderTrackHorizontal={props => <div {...props} className="track-horizontal" style={{display: 'none'}}/>}
+              
             >
               <section className="routes">
                 {navItem.map((route, index) => {
@@ -185,8 +192,8 @@ const Layout = () => {
           </motion.div>
         </div>
         <div className="contain-wrapper">
+        
           <Header />
-
           <main className="w-100">
             <Outlet />
           </main>
