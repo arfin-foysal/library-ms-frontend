@@ -1,8 +1,9 @@
-import { authUser } from "../utils/Auth";
+import { authUser, authUserToken } from "../utils/Auth";
 
 export const user = {
-    name: 'Arfin Foysal',
-    role: authUser?authUser: 'all'
+    name: "Arfin Foysal",
+    role: authUser ? authUser : "all",
+    token: authUserToken ? authUserToken : "",
 }
 
 const routes = [
@@ -11,8 +12,8 @@ const routes = [
         role: 'admin'
     },
     {
-        path: '/dashboard/maneger',
-        role: 'maneger'
+        path: '/dashboard/developer',
+        role: 'developer'
     },
     {
         path: '/dashboard/seller',

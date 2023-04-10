@@ -1,8 +1,9 @@
 
 import { FaHome } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
-import { FaSuperpowers } from 'react-icons/fa';
-import { BsPaypal } from 'react-icons/bs';
+import { RiUserSettingsLine } from 'react-icons/ri';
+import { RiUserReceived2Line } from 'react-icons/ri';
+
 export const navItem = [
    
   {
@@ -13,20 +14,17 @@ export const navItem = [
   },
   {
     // UID:"super_admin",
-    title: "Super Admin",
+    title: "Master Settings",
     role: "admin",
-    icon: <FaSuperpowers/>,
+    icon: <RiUserSettingsLine />,
     
     children: [
 
-
-      
-
       {
-        title: "Payment",
-        link: "payment",
+        title: "Author",
+        link: "author-list",
         role: "admin",
-        icon: <BsPaypal/>,
+        icon: <RiUserReceived2Line />,
       },
    
 

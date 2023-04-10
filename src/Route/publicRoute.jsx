@@ -22,10 +22,7 @@ export const publicRoute = [
         path: "/contact",
         element: <Contact />,
       },
-      {
-        path: "/loginss",
-        element: <Login />,
-      },
+     
     ],
   },
   {

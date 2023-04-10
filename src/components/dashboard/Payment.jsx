@@ -1,8 +1,12 @@
 import React from "react";
+import PageTopHeader from './common/PageTopHeader';
 
 const Payment = () => {
   return (
     <div>
+
+      <PageTopHeader title="Payment" />
+
       <div class="card border-0 shadow-lg ">
         <div class="card-header">Quote</div>
         <div class="card-body">

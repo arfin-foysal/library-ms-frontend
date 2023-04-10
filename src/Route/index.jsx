@@ -6,6 +6,12 @@ import { Navigate } from "react-router-dom";
 import Layout from './../components/layout/dashboardLayout/Layout';
 
 const ProtectRoute = ({ r, children }) => {
+  if (user.token === "" || user.role === "") {
+    // return <Navigate to={"/login"} replace />;
+    // return window.location.replace(`${process.env.REACT_APP_FONTEND_URL}login`);
+    return window.location.replace(`${window.location.origin}/login`);
+  }
+
   if (user) {
     if (r.role === user.role || r.role === "all") {
       return children;
@@ -16,6 +22,7 @@ const ProtectRoute = ({ r, children }) => {
     return <Navigate to={"/login"} replace />;
   }
 };
+
 
 export const getRoute = () => {
   const filterRoute = [];

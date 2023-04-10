@@ -1,10 +1,11 @@
 import {Navigate} from 'react-router-dom'
 import {getPath} from './utils'
-import AdminPage from '../components/dashboard/AdminPage'
+import DashboardHomePage from '../components/dashboard/views/dashboardHomePage/DashboardHomePage'
 import Maneger from '../components/dashboard/Maneger'
 import Worker from '../components/dashboard/Worker'
 import Seller from '../components/dashboard/Seller'
 import Payment from '../components/dashboard/Payment'
+import AuthorList from './../components/dashboard/views/author/AuthorList';
 
 
 
@@ -19,14 +20,14 @@ export const privateRoute = [
   
     {
         path: 'admin',
-        element: <AdminPage />,
+        element: <DashboardHomePage />,
         role: 'admin',
 
     },
 
     {
-        path: 'payment',
-        element: <Payment />,
+        path: 'author-list',
+        element: <AuthorList />,
         role: 'admin'
     },
     {

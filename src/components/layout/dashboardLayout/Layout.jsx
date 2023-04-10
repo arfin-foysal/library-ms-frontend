@@ -14,8 +14,16 @@ import logo from "../../../../src/assets/logo/sm_logo.png";
 import w_logo from "../../../../src/assets/logo/logo_white.png";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
+  const authUser = useSelector((state) => state.auth.user);
+
+
+
+
+
+
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -58,7 +66,7 @@ const Layout = () => {
             <div className="top_section ">
               <AnimatePresence>
                 {isOpen && (
-                  <motion.image
+                  <motion.div
                     // variants={showAnimation}
                     initial="hidden"
                     animate="show"
@@ -69,7 +77,7 @@ const Layout = () => {
                    <img src={logo} width={30} alt="" className="me-2" />
                     <img src={w_logo} width={70} alt="" />
   
-                  </motion.image>
+                  </motion.div>
                 )}
               </AnimatePresence>
 
@@ -96,7 +104,7 @@ const Layout = () => {
                     exit="hidden"
                     className="link_text mt-1 ms-2 fw-lighter"
                   >
-                    <p className="m-0 p-0">UserName</p>
+                    <p className="m-0 p-0 text-capitalize">{authUser?.name}</p>
                   </motion.h6>
                 )}
               </div>
