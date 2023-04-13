@@ -1,0 +1,86 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { headers } from "../utils/ApiHeaders";
+
+export const commonApi = createApi({
+  reducerPath: "commonApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: import.meta.env.VITE_API_URL,
+  }),
+  tagTypes: ["Common"],
+  endpoints: (builder) => ({
+
+    getLanguageList: builder.query({
+      query: () => ({
+        url: "admin/all-language-list",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Common"],
+    }),
+
+    
+    languageCreateOrUpdate: builder.mutation({
+      query: (body) => {
+        return {
+          url: `admin/create-or-update-language`,
+          method: "POST",
+          body: body,
+          headers,
+        };
+      },
+      invalidatesTags: ["Common"],
+    }),
+    deleteLanguage: builder.mutation({
+      query: (id) => ({
+        url: `admin/delete-language/${id}`,
+        method: 'DELETE',
+        headers
+      }),
+      invalidatesTags: ['Common']
+    }),
+
+    //<-------------------- all country api ------------------------>
+
+    getCounteryList: builder.query({
+      query: () => ({
+        url: "admin/all-countery-list",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Common"],
+    }),
+
+    
+    counteryCreateOrUpdate: builder.mutation({
+      query: (body) => {
+        return {
+          url: `admin/create-or-update-countery`,
+          method: "POST",
+          body: body,
+          headers,
+        };
+      },
+      invalidatesTags: ["Common"],
+    }),
+    deleteCountery: builder.mutation({
+      query: (id) => ({
+        url: `admin/delete-countery/${id}`,
+        method: 'DELETE',
+        headers
+      }),
+      invalidatesTags: ['Common']
+    }),
+
+  }),
+});
+
+export const { 
+  useGetLanguageListQuery,
+  useLanguageCreateOrUpdateMutation,
+  useDeleteLanguageMutation,
+  // <------------------- country api ------------------------>
+  useGetCounteryListQuery,
+  useCounteryCreateOrUpdateMutation
+
+ } =
+commonApi;

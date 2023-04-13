@@ -19,27 +19,28 @@ export const authorApi = createApi({
     }),
 
     
-    branchSaveOrUpdate: builder.mutation({
-      query: (branch) => {
+    authorCreateOrUpdate: builder.mutation({
+      query: (body) => {
         return {
-          url: `admin/branch-save-or-update`,
+          url: `admin/create-or-update-author`,
           method: "POST",
-          body: branch,
+          body: body,
           headers,
         };
       },
       invalidatesTags: ["Author"],
     }),
-    getBranchListByCompanyId: builder.query({
-      query: (comId) => ({
-        url: `admin/branch-list-by-company-id/${comId}`,
-        method: 'GET',
+    deleteAuthor: builder.mutation({
+      query: (id) => ({
+        url: `admin/delete-author/${id}`,
+        method: 'DELETE',
         headers
       }),
-      providesTags: ['Author']
+      invalidatesTags: ['Author']
     }),
+
   }),
 });
 
-export const { useGetAuthorListQuery } =
+export const { useGetAuthorListQuery,useAuthorCreateOrUpdateMutation,useDeleteAuthorMutation } =
 authorApi;

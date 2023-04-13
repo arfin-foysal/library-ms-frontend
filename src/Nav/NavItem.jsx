@@ -3,6 +3,10 @@ import { FaHome } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
 import { RiUserSettingsLine } from 'react-icons/ri';
 import { RiUserReceived2Line } from 'react-icons/ri';
+import { BiCategory } from 'react-icons/bi';
+import { IoLanguage } from 'react-icons/io5';
+import { BiLandscape } from 'react-icons/bi';
+import { MdOutlinePublishedWithChanges } from 'react-icons/md';
 
 export const navItem = [
    
@@ -26,12 +30,102 @@ export const navItem = [
         role: "admin",
         icon: <RiUserReceived2Line />,
       },
+      {
+        title: "Category",
+        link: "category-list",
+        role: "admin",
+        icon: <BiCategory />,
+      },
+      {
+        title: "Sub Category",
+        link: "sub-category-list",
+        role: "admin",
+        icon: <BiCategory />,
+      },
+      {
+        title: "Third Sub Category",
+        link: "third-sub-category-list",
+        role: "admin",
+        icon: <BiCategory />,
+      },
+      {
+        title: "Language",
+        link: "language-list",
+        role: "admin",
+        icon: <IoLanguage />,
+      },
+      {
+        title: "Country",
+        link: "country-list",
+        role: "admin",
+        icon: <BiLandscape />,
+      },
+      {
+        title: "Publisher",
+        link: "publisher-list",
+        role: "admin",
+        icon: <MdOutlinePublishedWithChanges />,
+      },
    
 
 
       
     ],
   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
