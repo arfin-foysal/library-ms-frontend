@@ -1,7 +1,7 @@
 
 import { FaHome } from 'react-icons/fa';
-import { AiOutlineUser } from 'react-icons/ai';
-import { RiUserSettingsLine } from 'react-icons/ri';
+import { AiOutlineUser, AiOutlineUserAdd } from 'react-icons/ai';
+import { RiUserSettingsLine, RiUserStarLine } from 'react-icons/ri';
 import { RiUserReceived2Line } from 'react-icons/ri';
 import { BiCategory } from 'react-icons/bi';
 import { IoLanguage } from 'react-icons/io5';
@@ -65,6 +65,18 @@ export const navItem = [
         link: "publisher-list",
         role: "admin",
         icon: <MdOutlinePublishedWithChanges />,
+      },
+      {
+        title: "Vendor",
+        link: "vendor-list",
+        role: "admin",
+        icon: <RiUserStarLine />,
+      },
+      {
+        title: "User List",
+        link: "user-list",
+        role: "admin",
+        icon: <AiOutlineUserAdd />,
       },
    
 

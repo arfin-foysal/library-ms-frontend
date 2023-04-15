@@ -2,17 +2,19 @@ import { useDispatch as useReduxDispatch, useSelector as useReduxSelector } from
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
-
+// Import the generated reducer as `authReducer`
 import authReducer from '../features/authSlice'
 import { authApi } from '../services/authApi';
 import { authorApi } from '../services/authorApi';
 import { categoryApi } from './../services/categoryApi';
 import { commonApi } from '../services/commonApi';
 import { publisherApi } from '../services/publisherApi';
+import { vendorApi } from '../services/vendorApi';
+import { userApi } from '../services/userApi';
 
 
 
-
+// Combine the generated reducer with the other reducers
 const store = configureStore({
   reducer: {
 
@@ -22,6 +24,8 @@ const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [commonApi.reducerPath]: commonApi.reducer,
     [publisherApi.reducerPath]: publisherApi.reducer,
+    [vendorApi.reducerPath]: vendorApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
 
 
 
@@ -29,6 +33,8 @@ const store = configureStore({
 
     devTools: true
   },
+
+  // Add the generated middleware to the store
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       authApi.middleware,
@@ -36,6 +42,9 @@ const store = configureStore({
       categoryApi.middleware,
       commonApi.middleware,
       publisherApi.middleware,
+      vendorApi.middleware,
+      userApi.middleware,
+
  
 
 

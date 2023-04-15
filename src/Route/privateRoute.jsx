@@ -11,6 +11,8 @@ import ThirdSubCategoryList from '../components/dashboard/views/Mastersettings/t
 import LanguageList from '../components/dashboard/views/Mastersettings/language/LanguageList'
 import CounteryList from '../components/dashboard/views/Mastersettings/country/CountryList'
 import PublisherList from '../components/dashboard/views/Mastersettings/publisher/PublisherList'
+import VendorList from '../components/dashboard/views/Mastersettings/vendor/VendorList'
+import UserList from '../components/dashboard/views/Mastersettings/user/UserList'
 
 
 
@@ -65,6 +67,16 @@ export const privateRoute = [
     {
         path: 'publisher-list',
         element: <PublisherList/>,
+        role: 'admin'
+    },
+    {
+        path: 'vendor-list',
+        element: <VendorList/>,
+        role: 'admin'
+    },
+    {
+        path: 'user-list',
+        element: <UserList/>,
         role: 'admin'
     },
 
