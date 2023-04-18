@@ -50,6 +50,15 @@ export const categoryApi = createApi({
       providesTags: ["Category"],
     }),
 
+    getSubCategoryListByCategory: builder.query({
+      query: (categoryId) => ({
+        url: `admin/sub-category-by-category-id/${categoryId}`,
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Category"],
+    }),
+
     
     subCategoryCreateOrUpdate: builder.mutation({
       query: (body) => {
@@ -75,6 +84,14 @@ export const categoryApi = createApi({
     getThirdSubCategoryList: builder.query({
       query: () => ({
         url: "admin/all-third-sub-category-list",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Category"],
+    }),
+    getThirdSubCategoryListbySubcategotyId: builder.query({
+      query: (subcategoryId) => ({
+        url: `admin/third-sub-category-by-sub-category-id/${subcategoryId}`,
         method: "GET",
         headers,
       }),
@@ -110,6 +127,7 @@ export const {
   useDeleteCategoryMutation,
   //<-----------------All Sub Category API Request Start------------------>
   useGetSubCategoryListQuery,
+  useGetSubCategoryListByCategoryQuery,
   useSubCategoryCreateOrUpdateMutation,
   useDeleteSubCategoryMutation,
   //<-----------------All Third Sub Category API Request Strat------------------>
@@ -117,6 +135,7 @@ export const {
   useGetThirdSubCategoryListQuery,
   useThirdsubCategoryCreateOrUpdateMutation,
   useDeleteThirdSubCategoryMutation,
+  useGetThirdSubCategoryListbySubcategotyIdQuery,
 
   
 

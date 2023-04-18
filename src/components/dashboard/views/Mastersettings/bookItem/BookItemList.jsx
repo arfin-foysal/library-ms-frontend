@@ -1,26 +1,25 @@
 import React, { useCallback, useMemo, useState } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
-import AuthorModal from "./AuthorModal";
+import AuthorModal from "./BookItemModal";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { confirmHandel } from '../../../../../utils/Alert';
 import avatar from "../../../../../assets/images/profile-picture.png";
 import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
-import { useDeleteAuthorMutation, useGetAuthorListQuery } from "../../../../../services/authorApi";
+
+import { useDeleteBookItemMutation, useGetBookItemListQuery } from "../../../../../services/bookItemApi";
+
+const BookItemList = () => {
+  const res = useGetBookItemListQuery();
 
 
 
-const AuthorList = () => {
-  const res = useGetAuthorListQuery();
-  const [deleteAuthor] = useDeleteAuthorMutation();
-  const { data, isSuccess, isFetching, isError,  } = res;
+  const [deleteBookItem] = useDeleteBookItemMutation();
+  const { data, isSuccess, isFetching, isError, error } = res;
   const [clickValue, setClickValue] = useState(null);
   const [paramId, setParamId] = useState(null);
   const [show, setShow] = useState(false);
-
-
-
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,7 +29,7 @@ const AuthorList = () => {
   }, []);
 
   const handelDelete = async (id) => {
-    const result = await deleteAuthor(id).unwrap();
+    const result = await deleteBookItem(id).unwrap();
     toast.success(result.message);
   };
 
@@ -63,32 +62,42 @@ const AuthorList = () => {
       },
 
       {
-        accessorKey: "name", //access nested data with dot notation
-        header: "Name",
+        accessorKey: "title", //access nested data with dot notation
+        header: "Title",
         size: 10,
       },
 
       {
-        accessorKey: "email", //normal accessorKey
-        header: "Email",
+        accessorKey: "isbn", //normal accessorKey
+        header: "Isbn",
         size: 10,
       },
       {
-        accessorKey: "mobile", //normal accessorKey
-        header: "Mobile",
+        accessorKey: "edition", //normal accessorKey
+        header: "Edition",
         size: 10,
       },
       {
-        accessorKey: "bio", //normal accessorKey
-        header: "Bio",
-        size: 10,
-      },
-      {
-        accessorKey: "address1",
-        header: "Address",
+        accessorKey: "number_of_page", //normal accessorKey
+        header: "Number Of Page",
         size: 10,
       },
 
+
+      {
+        //accessorFn function that combines multiple data together
+        accessorFn: (row) =>
+          row?.publish_status === 'published' ? (
+            <>
+              <span className="badge bg-info">Publish</span>
+            </>
+          ) : (
+            <span className="badge bg-danger">Unpublished</span>
+          ),
+
+        id: "Publish Status",
+        header: "Publish Status",
+      },
       {
         //accessorFn function that combines multiple data together
         accessorFn: (row) =>
@@ -116,21 +125,19 @@ const AuthorList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Author" />
-
-     
+      <PageTopHeader title="Book Item" />
       <div class="card border shadow-lg ">
         <div class="card-header d-flex justify-content-between ">
-          <div> Author List</div>
+          <div> Book Item List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Add New Author");
+                handelClickValue("Add New Book Item");
               }}
             >
-              Add New Author
+              Add New Book Item
             </button>
           </div>
         </div>
@@ -175,7 +182,7 @@ const AuthorList = () => {
                       className="px-2 d-flex align-items-center btn btn-primary btn-sm"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Edit Author");
+                        handelClickValue("Edit Book Item");
                         setParamId(row?.row?.original);
                       }}
                     >
@@ -214,4 +221,4 @@ const AuthorList = () => {
   );
 };
 
-export default AuthorList;
+export default BookItemList;

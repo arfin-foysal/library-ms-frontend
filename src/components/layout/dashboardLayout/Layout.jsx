@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { BiHomeAlt } from "react-icons/bi";
 import { RiLogoutCircleRFill } from "react-icons/ri";
@@ -14,11 +14,21 @@ import logo from "../../../../src/assets/logo/sm_logo.png";
 import w_logo from "../../../../src/assets/logo/logo_white.png";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { logout } from "../../../features/authSlice";
 
 const Layout = () => {
   const authUser = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const handelLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+    toast.success("Logout Successfully");
+    window.location.reload(false);
+  };
 
 
 
@@ -179,11 +189,12 @@ const Layout = () => {
             </Scrollbars>
             <div>
               <div className="d-flex pointer ">
-                <div className="mt-1 ms-2">
+                <div className="mt-1 ms-2" >
                   <RiLogoutCircleRFill size={20} />
                 </div>
                 <div className="mt-1 ms-2  ">
                   {isOpen && (
+                    <span onClick={()=>handelLogout()}>
                     <motion.h6
                       variants={showAnimation}
                       initial="hidden"
@@ -192,7 +203,8 @@ const Layout = () => {
                       className="link_text mt-1 ms-2 fw-lighter"
                     >
                       <p>LogOut</p>
-                    </motion.h6>
+                      </motion.h6>
+                    </span>
                   )}
                 </div>
               </div>
@@ -202,8 +214,8 @@ const Layout = () => {
         <div className="contain-wrapper">
         
           <Header />
-          <main className="w-100">
-            <Outlet />
+          <main>
+            <Outlet  />
           </main>
           <Footer />
         </div>

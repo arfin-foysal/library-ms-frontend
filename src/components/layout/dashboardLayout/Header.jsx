@@ -13,6 +13,7 @@ const Header = () => {
   const authUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const handelLogout = () => {
     dispatch(logout());
     navigate("/login");

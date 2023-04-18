@@ -17,6 +17,8 @@
 
 main {
   padding: 25px;
+  min-height: 675px;
+  width: 100%;
 }
 
 .title {

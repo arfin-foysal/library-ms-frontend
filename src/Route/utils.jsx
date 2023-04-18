@@ -15,19 +15,13 @@ const routes = [
         path: '/dashboard/developer',
         role: 'developer'
     },
-    {
-        path: '/dashboard/seller',
-        role: 'seller'
-    },
-    {
-        path: '/dashboard/worker',
-        role: 'worker'
-    },
+  
+ // this is default route
     {
         path: '/login',
         role: 'all'
     }
-
+    // this is default route
 ]
 
 export const getPath = () => {
