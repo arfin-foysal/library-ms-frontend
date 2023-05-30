@@ -6,15 +6,16 @@ import { useGetAuthorListQuery } from "../../../../../services/authorApi";
 import Select from "react-select";
 import { useGetPublisharListQuery } from "../../../../../services/publisherApi";
 import { useGetLanguageListQuery } from "../../../../../services/commonApi";
+import avater from "../../../../../assets/images/image_preview.png";
 import {
   useGetCategoryListQuery,
   useGetSubCategoryListByCategoryQuery,
   useGetThirdSubCategoryListbySubcategotyIdQuery,
 } from "../../../../../services/categoryApi";
 import { useBookItemCreateOrUpdateMutation } from "../../../../../services/bookItemApi";
-const CreateBookItem = ({ handleClose }) => {
-  const [categoryId, setCategoryId] = useState();
-  const [subCategoryId, setSubCategoryId] = useState();
+const EditOrderItem = ({ handleClose, param }) => {
+  const [categoryId, setCategoryId] = useState(param?.category_id);
+  const [subCategoryId, setSubCategoryId] = useState(param?.sub_category_id);
   const [authorId, setAuthorId] = useState([]);
 
   const [bookItemCreateOrUpdate, res] = useBookItemCreateOrUpdateMutation();
@@ -24,52 +25,58 @@ const CreateBookItem = ({ handleClose }) => {
   const categoryRes = useGetCategoryListQuery();
   const subcategoryRes = useGetSubCategoryListByCategoryQuery(categoryId);
   const thirdSubCateRes =
-  useGetThirdSubCategoryListbySubcategotyIdQuery(subCategoryId);
+    useGetThirdSubCategoryListbySubcategotyIdQuery(subCategoryId);
   const authorRes = useGetAuthorListQuery();
-  const focusOne = (id, name) => {
-    setCategoryId(id);
-    if (name === "category_id") {
-      setSubCategoryId(null);
-    }
-  };
 
   const [previewImage, setPreviewImage] = useState();
-
   function handelImage(e) {
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
   }
 
+  const focusOne = (id, name) => {
+    setCategoryId(id);
+    if (name === "category_id") {
+      setSubCategoryId(null);
+      formik.setFieldValue("sub_category_id", null);
+      formik.setFieldValue("third_category_id", null);
+    }
+  };
+
+  const focusTwo = (id, name) => {
+    setSubCategoryId(id);
+    if (name === "sub_category_id") {
+      formik.setFieldValue("third_category_id", null);
+    }
+  };
+
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      title: "",
-      isbn: "",
-      photo: "",
-      edition: "",
-      number_of_page: "",
-      summary: "",
-      video_url: "",
-      brochure: "",
-      publish_status: "",
-      publisher_id: "",
-      language_id: "",
-      country_id: "",
-      category_id: "",
-      sub_category_id: "",
-      third_category_id: "",
-      created_by: "",
-      author_id: [],
-      item_type: "",
-      is_free:"no",
-      is_show: false,
-      is_active: false,
+      title: param?.title,
+      isbn: param?.isbn,
+      photo: param?.photo && param?.photo,
+      edition: param?.edition,
+      number_of_page: param?.number_of_page,
+      summary: param?.summary,
+      video_url: param?.video_url,
+      brochure: param?.brochure,
+      publish_status: param?.publish_status,
+      publisher_id: param?.publisher_id,
+      language_id: param?.language_id,
+      country_id: param?.country_id,
+      category_id: param?.category_id,
+      sub_category_id: param?.sub_category_id,
+      third_category_id: param?.third_category_id,
+      is_show: param?.is_show,
+      is_active: param?.is_active,
     },
 
     onSubmit: async (values, { resetForm }) => {
       let formData = new FormData();
+      formData.append("id", param?.id);
       formData.append("title", values.title);
       formData.append("isbn", values.isbn);
       formData.append("photo", values.photo);
-      formData.append("item_type", values.item_type);
       formData.append("edition", values.edition);
       formData.append("number_of_page", values.number_of_page);
       formData.append("summary", values.summary);
@@ -85,13 +92,15 @@ const CreateBookItem = ({ handleClose }) => {
       formData.append("created_by", values.created_by);
       formData.append("is_show", values.is_show);
       formData.append("is_active", values.is_active);
-      formData.append("is_free", values.is_free);
 
       if (authorId.length <= 0) {
-        toast.error("Please select Author");
-      }
-
-      if (authorId.length > 0) {
+        const arr = [];
+        param?.authors.map((item) => {
+          arr.push(item.id);
+        });
+        const authorArr = JSON.stringify(arr);
+        formData.append("author_id", authorArr);
+      } else {
         const arr = [];
         authorId.map((item) => {
           arr.push(item.id);
@@ -99,10 +108,6 @@ const CreateBookItem = ({ handleClose }) => {
         const authorArr = JSON.stringify(arr);
         formData.append("author_id", authorArr);
       }
-
-
-
-
 
       resetForm();
 
@@ -157,24 +162,6 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Item Type </label>
-                <div className="col-12">
-                  <select
-                    className="form-control"
-                    name="item_type"
-                    onChange={formik.handleChange}
-                    value={formik.values.item_type}
-                    required
-                  >
-                    <option >--Select--</option>
-                    <option value="physical">Physical</option>
-                    <option value="virtual">Virtual</option>
-             
-                  </select>
-
-                </div>
-              </div>
-              <div className="col-6">
                 <label className="col-12 col-form-label">Edition</label>
                 <div className="col-12">
                   <input
@@ -189,28 +176,11 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Is Free</label>
-                <div className="col-12">
-                  <select
-                    className="form-control"
-                    name="is_free"
-                    onChange={formik.handleChange}
-                    value={formik.values.is_free}
-                    required
-                  >
-                    <option >--Select--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-
-                  </select>
-                </div>
-              </div>
-              <div className="col-6">
                 <label className="col-12 col-form-label">No of page</label>
                 <div className="col-12">
                   <input
-                    placeholder="Enter No of page"
-                    type="number"
+                    placeholder="Enter Edition"
+                    type="number_of_page"
                     className="form-control"
                     name="number_of_page"
                     onChange={formik.handleChange}
@@ -219,7 +189,7 @@ const CreateBookItem = ({ handleClose }) => {
                   />
                 </div>
               </div>
-          
+
               <div className="col-6">
                 <label className="col-12 col-form-label">Video Url</label>
                 <div className="col-12">
@@ -230,6 +200,20 @@ const CreateBookItem = ({ handleClose }) => {
                     name="video_url"
                     onChange={formik.handleChange}
                     value={formik.values.video_url}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-12">
+                <label className="col-12 col-form-label">summary</label>
+                <div className="col-12">
+                  <textarea
+                    placeholder="Enter Summary"
+                    type="text"
+                    className="form-control"
+                    name="summary"
+                    onChange={formik.handleChange}
+                    value={formik.values.summary}
                     required
                   />
                 </div>
@@ -247,7 +231,6 @@ const CreateBookItem = ({ handleClose }) => {
                         "brochure",
                         e.currentTarget.files[0]
                       );
-                    
                     }}
                   />
                 </div>
@@ -264,20 +247,6 @@ const CreateBookItem = ({ handleClose }) => {
                       formik.setFieldValue("photo", e.currentTarget.files[0]);
                       handelImage(e);
                     }}
-                  />
-                </div>
-              </div>
-              <div className="col-12">
-                <label className="col-12 col-form-label">summary</label>
-                <div className="col-12">
-                  <textarea
-                    placeholder="Enter Summary"
-                    type="text"
-                    className="form-control"
-                    name="summary"
-                    onChange={formik.handleChange}
-                    value={formik.values.summary}
-                    required
                   />
                 </div>
               </div>
@@ -319,16 +288,31 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
 
-              
-        <div className="pt-2">
-          <img
-            className="py-2"
-            src={previewImage}
-            width="80px"
-            height="80px"
-            alt=""
-          />
-        </div>
+              <div className="pt-4">
+                {previewImage ? (
+                  <img
+                    className="py-2"
+                    src={previewImage}
+                    width="80px"
+                    height="80px"
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    className="py-2"
+                    src={
+                      formik.values.photo === null
+                        ? avater
+                        : `${import.meta.env.VITE_FILE_URL}${
+                            formik.values.photo
+                          }`
+                    }
+                    width="80px"
+                    height="80px"
+                    alt=""
+                  />
+                )}
+              </div>
             </div>
           </div>
           <div className="col-4 border border-2 p-2">
@@ -336,6 +320,7 @@ const CreateBookItem = ({ handleClose }) => {
               <div className="col-12">
                 <label className="col-12 col-form-label">Author</label>
                 <Select
+                  defaultValue={param?.authors}
                   isMulti
                   placeholder="Select Author"
                   classNamePrefix="select"
@@ -443,7 +428,7 @@ const CreateBookItem = ({ handleClose }) => {
                   name="sub_category_id"
                   onChange={(e) => {
                     formik.handleChange(e);
-                    setSubCategoryId(e.target.value);
+                    focusTwo(e.target.value, e.target.name);
                   }}
                   value={formik.values.sub_category_id}
                   required
@@ -509,14 +494,19 @@ const CreateBookItem = ({ handleClose }) => {
 
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
-                Close
-              </button>
-            </div>
             <div className="mx-5">
               <button type="submit" className="btn btn-success">
                 Submit
+              </button>
+            </div>
+
+            <div className="mx-5">
+              <button
+                type="button"
+                className="btn btn-dark"
+                onClick={handleClose}
+              >
+                Close
               </button>
             </div>
           </div>
@@ -526,4 +516,4 @@ const CreateBookItem = ({ handleClose }) => {
   );
 };
 
-export default CreateBookItem;
+export default EditOrderItem;

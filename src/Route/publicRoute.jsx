@@ -7,12 +7,13 @@ import Login from "../components/pages/login/Login";
 import Signup from "../components/pages/signup/Signup";
 import { authUser, authUserToken } from "../utils/Auth";
 import { Navigate } from "react-router-dom";
+import Layout from "../components/layout/clientLayout/Layout";
 
 
 export const publicRoute = [
   {
     path: "",
-    element: <Home />,
+    element: <Layout/>,
     children: [
       {
         path: "/service",

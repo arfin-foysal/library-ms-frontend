@@ -36,6 +36,16 @@ export const bookItemApi = createApi({
       }),
       invalidatesTags: ["BookItem"],
     }),
+
+
+    getDateExpiredList: builder.query({
+      query: () => ({
+        url: "admin/date-expired-item",
+        method: "GET",
+        headers,
+      }),
+      invalidatesTags: ["BookItem"],
+    }),
   }),
 });
 
@@ -43,4 +53,5 @@ export const {
   useGetBookItemListQuery,
   useBookItemCreateOrUpdateMutation,
   useDeleteBookItemMutation,
+  useGetDateExpiredListQuery,
 } = bookItemApi;

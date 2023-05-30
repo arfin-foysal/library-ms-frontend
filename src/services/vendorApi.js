@@ -28,12 +28,34 @@ export const vendorApi = createApi({
       },
       invalidatesTags: ["Vendor"],
     }),
+   
+
     deleteVendor: builder.mutation({
       query: (id) => ({
         url: `admin/delete-vendor/${id}`,
         method: "DELETE",
         headers,
       }),
+      invalidatesTags: ["Vendor"],
+    }),
+    getVendorPaymentList: builder.query({
+      query: () => ({
+        url: "admin/vendore-payment-list",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Vendor"],
+    }),
+
+     vendorPaymentUpdate: builder.mutation({
+      query: (body) => {
+        return {
+          url: `admin/vendor-payment-update`,
+          method: "POST",
+          body: body,
+          headers,
+        };
+      },
       invalidatesTags: ["Vendor"],
     }),
   }),
@@ -43,4 +65,6 @@ export const {
   useGetVendorListQuery,
   useVendorCreateOrUpdateMutation,
   useDeleteVendorMutation,
+  useGetVendorPaymentListQuery,
+  useVendorPaymentUpdateMutation
 } = vendorApi;

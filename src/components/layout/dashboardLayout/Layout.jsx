@@ -62,7 +62,6 @@ const Layout = () => {
             animate={{
               width: isOpen ? "230px" : "55px",
               padding: isOpen ? "17px 17px" : "17px 7px",
-
               height: "100vh",
 
               transition: {

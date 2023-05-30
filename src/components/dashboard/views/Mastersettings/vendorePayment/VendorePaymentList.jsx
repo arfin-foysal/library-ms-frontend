@@ -1,21 +1,24 @@
 import React, { useCallback, useMemo, useState } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
-import AuthorModal from "./AuthorModal";
+import AuthorModal from "./VendorePaymentModal";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { confirmHandel } from "../../../../../utils/Alert";
 import avatar from "../../../../../assets/images/profile-picture.png";
 import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
-import {
-  useDeleteAuthorMutation,
-  useGetAuthorListQuery,
-} from "../../../../../services/authorApi";
 
-const AuthorList = () => {
-  const res = useGetAuthorListQuery();
-  const [deleteAuthor] = useDeleteAuthorMutation();
-  const { data, isSuccess, isFetching, isError } = res;
+import {
+  useDeleteBookItemMutation,
+  useGetBookItemListQuery,
+} from "../../../../../services/bookItemApi";
+import { useGetVendorPaymentListQuery } from "../../../../../services/vendorApi";
+
+const VendorePaymentList = () => {
+  const res = useGetVendorPaymentListQuery();
+
+  const [deleteBookItem] = useDeleteBookItemMutation();
+  const { data, isSuccess, isFetching, isError, error } = res;
   const [clickValue, setClickValue] = useState(null);
   const [paramId, setParamId] = useState(null);
   const [show, setShow] = useState(false);
@@ -28,78 +31,95 @@ const AuthorList = () => {
   }, []);
 
   const handelDelete = async (id) => {
-    const result = await deleteAuthor(id).unwrap();
+    const result = await deleteBookItem(id).unwrap();
     toast.success(result.message);
   };
 
   const columns = useMemo(
     () => [
-      {
-        accessorFn: (row) =>
-          row?.photo ? (
-            <>
-              <img
-                className="img-fluid rounded-circle shadow"
-                style={{ width: "40px", height: "40px" }}
-                src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
-                alt=""
-              ></img>
-            </>
-          ) : (
-            <img
-              className="img-fluid rounded-circle shadow"
-              style={{ width: "40px", height: "40px" }}
-              src={avatar}
-              alt=""
-            ></img>
-          ),
+      // {
+      //   accessorFn: (row) =>
+      //     row?.photo ? (
+      //       <>
+      //         <img
+      //           className="img-fluid rounded-circle shadow"
+      //           style={{ width: "40px", height: "40px" }}
+      //           src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
+      //           alt=""
 
-        id: "Photo",
-        header: "Photo",
-        size: 10,
-      },
+      //         ></img>
+      //       </>
+      //     ) : (
+      //       <img
+      //         className="img-fluid rounded-circle shadow"
+      //         style={{ width: "40px", height: "40px" }}
+      //         src={avatar}
+      //         alt=""
+      //       ></img>
+      //     ),
 
-      {
-        accessorKey: "name", //access nested data with dot notation
-        header: "Name",
-        size: 10,
-      },
+      //   id: "Photo",
+      //   header: "Photo",
+      //   size: 10,
+      // },
 
       {
-        accessorKey: "email", //normal accessorKey
-        header: "Email",
+        accessorKey: "vendor_payment_no", //access nested data with dot notation
+        header: "Vendor Payment No",
+        size: 10,
+      },
+
+      {
+        accessorKey: "vendor_name", //normal accessorKey
+        header: "Vendor Name",
         size: 10,
       },
       {
-        accessorKey: "mobile", //normal accessorKey
-        header: "Mobile",
+        accessorKey: "invoice_no", //normal accessorKey
+        header: "Invoice No",
         size: 10,
       },
       {
-        accessorKey: "bio", //normal accessorKey
-        header: "Bio",
+        accessorKey: "payable_amount", //normal accessorKey
+        header: "Payable Amount",
         size: 10,
       },
       {
-        accessorKey: "address1",
-        header: "Address",
+        accessorKey: "paid_amount", //normal accessorKey
+        header: "Paid Amount",
         size: 10,
       },
+      {
+        accessorKey: "due_amount", //normal accessorKey
+        header: "Due Amount",
+        size: 10,
+      },
+      
+      {
+        accessorKey: "comments", //normal accessorKey
+        header: "Comments",
+        size: 10,
+      },
+      
+  
 
       {
         //accessorFn function that combines multiple data together
         accessorFn: (row) =>
-          row?.is_active === true ? (
-            <>
-              <span className="badge bg-info">Active</span>
-            </>
-          ) : (
-            <span className="badge bg-danger">Inactive</span>
-          ),
+          (row?.payment_status === "unpaid" && (
+            <span className="badge bg-danger">Unpaid</span>
+          )) ||
+          (row?.payment_status === "paid" && (
+            <span className="badge bg-success">Paid</span>
+          )) ||
+          (row?.payment_status === "due" && (
+            <span className="badge bg-secondary">Due</span>
+          )),
 
-        id: "Status",
-        header: "Status",
+        id: "Publish Status",
+        header: "Publish Status",
       },
+
     ],
     []
   );
@@ -113,22 +133,11 @@ const AuthorList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Author" />
-
+      <PageTopHeader title="Book Item" />
       <div class="card border shadow-lg ">
         <div class="card-header d-flex justify-content-between ">
-          <div> Author List</div>
-          <div>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => {
-                handleShow();
-                handelClickValue("Add New Author");
-              }}
-            >
-              Add New Author
-            </button>
-          </div>
+          <div> Book Item List</div>
+
         </div>
 
         <div class="card-body p-0">
@@ -164,42 +173,28 @@ const AuthorList = () => {
                   
                 </Link> */}
                   </div>
-
-                  <div className="mx-2">
+                  {row?.row?.original?.payment_status !== "paid" ? (
+                    <div className="mx-2">
                     <button
                       title=""
                       className="px-2 d-flex align-items-center btn btn-primary btn-sm"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Edit Author");
+                        handelClickValue("Edit Book Item");
                         setParamId(row?.row?.original);
                       }}
                     >
                       <div>
                         <FaEdit size={16} />
                       </div>
-                      <div> Edit</div>
+                      <div> Pay</div>
                     </button>
                   </div>
-                  <div>
-                    <button
-                      onClick={() =>
-                        confirmHandel(
-                          "error",
-                          "Delete",
-                          "#FF0000",
-                          row?.row?.original?.id,
-                          handelDelete
-                        )
-                      }
-                      className="px-2 d-flex align-items-center btn btn-danger btn-sm"
-                    >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
-                    </button>
-                  </div>
+                  ) : (
+                    <span className="badge bg-success">Payment <br/>Completed</span>
+                
+                  )}
+                  
                 </div>
               </>
             )}
@@ -210,4 +205,4 @@ const AuthorList = () => {
   );
 };
 
-export default AuthorList;
+export default VendorePaymentList;

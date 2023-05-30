@@ -110,6 +110,7 @@ export const categoryApi = createApi({
       },
       invalidatesTags: ["Category"],
     }),
+    
     deleteThirdSubCategory: builder.mutation({
       query: (id) => ({
         url: `admin/delete-third-sub-category/${id}`,

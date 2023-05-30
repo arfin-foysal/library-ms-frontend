@@ -1,12 +1,15 @@
 
 import {  AiOutlineUserAdd } from "react-icons/ai";
 import { RiUserSettingsLine, RiUserStarLine } from "react-icons/ri";
-import { RiUserReceived2Line } from "react-icons/ri";
+import { RiUserReceived2Line,RiFileListLine } from "react-icons/ri";
 import { BiCategory } from "react-icons/bi";
 import { IoLanguage } from "react-icons/io5";
-import { BiLandscape,BiBookAlt } from "react-icons/bi";
+import { BiLandscape,BiBookAlt ,BiBookAdd} from "react-icons/bi";
 import { GoBook } from "react-icons/go";
-import {MdCardMembership, MdOutlinePublishedWithChanges,} from "react-icons/md";
+import { MdOutlinePublishedWithChanges, } from "react-icons/md";
+import { AiOutlineBorderOuter } from "react-icons/ai";
+import { CiViewList } from "react-icons/ci";
+
 
 
 export const navItem = [
@@ -20,6 +23,69 @@ export const navItem = [
         link: "item-list",
         role: "admin",
         icon: <GoBook />,
+      },
+    ],
+  },
+  {
+    title: "Book Issue",
+    role: "admin",
+    icon: <AiOutlineBorderOuter />,
+    children: [
+      {
+        title: "Issue List",
+        link: "issue-list",
+        role: "admin",
+        icon: <BiBookAdd />,
+      },
+      {
+        title: "Return Date Expired",
+        link: "return-date-expired-list",
+        role: "admin",
+        icon: <BiBookAdd />,
+      },
+      {
+        title: "Damage Book",
+        link: "book-damage-list",
+        role: "admin",
+        icon: <BiBookAdd />,
+      },
+    ],
+  },
+  {
+    title: "Item Order",
+    role: "admin",
+    icon: <CiViewList />,
+    children: [
+      {
+        title: "Order List",
+        link: "order-list",
+        role: "admin",
+        icon: <RiFileListLine />,
+      },
+      {
+        title: "Item Quantity List",
+        link: "Item-qty-list",
+        role: "admin",
+        icon: <RiFileListLine />,
+      },
+      {
+        title: "Item Received List",
+        link: "item-receved-list",
+        role: "admin",
+        icon: <RiFileListLine />,
+      },
+    ],
+  },
+  {
+    title: "Vendor Payment",
+    role: "admin",
+    icon: <CiViewList />,
+    children: [
+      {
+        title: "Vendor Payment",
+        link: "vandor-payment",
+        role: "admin",
+        icon: <RiFileListLine />,
       },
     ],
   },
@@ -83,12 +149,12 @@ export const navItem = [
         role: "admin",
         icon: <AiOutlineUserAdd />,
       },
-      {
-        title: "Membership Plan",
-        link: "membership-plan-list",
-        role: "admin",
-        icon: <MdCardMembership />,
-      },
+      // {
+      //   title: "Membership Plan",
+      //   link: "membership-plan-list",
+      //   role: "admin",
+      //   icon: <MdCardMembership />,
+      // },
     ],
   },
 ];

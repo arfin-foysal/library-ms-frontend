@@ -13,6 +13,16 @@ import VendorList from "../components/dashboard/views/Mastersettings/vendor/Vend
 import UserList from "../components/dashboard/views/Mastersettings/user/UserList";
 import BookItemList from "../components/dashboard/views/Mastersettings/bookItem/BookItemList";
 import MembershipList from "../components/dashboard/views/Mastersettings/membershipPlan/MembershipList";
+import OrderItemList from "../components/dashboard/views/Mastersettings/OrderItem/OrderItemList";
+
+import RecevedOrderItem from "../components/dashboard/views/Mastersettings/OrderItem/RecevedOrderItem";
+import VendorePaymentList from "../components/dashboard/views/Mastersettings/vendorePayment/VendorePaymentList";
+import BookRentsList from "../components/dashboard/views/Mastersettings/BookRents/BookRentsList";
+import ItemQtyList from "../components/dashboard/views/Mastersettings/OrderItem/ItemQtyList";
+import ItemRecevedList from "../components/dashboard/views/Mastersettings/OrderItem/ItemRecevedList";
+import BookReturnExpiredList from "../components/dashboard/views/Mastersettings/BookRents/BookReturnExpiredList";
+import BookDamageList from "../components/dashboard/views/Mastersettings/BookRents/BookDamageList";
+
 
 export const privateRoute = [
   {
@@ -77,14 +87,55 @@ export const privateRoute = [
     element: <UserList />,
     role: "admin",
   },
+    {
+    path: "membership-plan-list",
+    element: <MembershipList />,
+    role: "admin",
+  },
   {
     path: "item-list",
     element: <BookItemList />,
     role: "admin",
   },
   {
-    path: "membership-plan-list",
-    element: <MembershipList />,
+    path: "order-list",
+    element: <OrderItemList />,
     role: "admin",
   },
+  {
+    path: "receved-order-list/:id",
+    element: <RecevedOrderItem />,
+    role: "admin",
+  },
+  {
+    path: "item-receved-list",
+    element: <ItemRecevedList />,
+    role: "admin",
+  },
+  {
+    path: "issue-list",
+    element: <BookRentsList />,
+    role: "admin",
+  },
+  {
+    path: "return-date-expired-list",
+    element: <BookReturnExpiredList />,
+    role: "admin",
+  },
+  {
+    path: "book-damage-list",
+    element: <BookDamageList />,
+    role: "admin",
+  },
+  {
+    path: "vandor-payment",
+    element: <VendorePaymentList />,
+    role: "admin",
+  },
+  {
+    path: "Item-qty-list",
+    element: <ItemQtyList/>,
+    role: "admin",
+  },
+
 ];

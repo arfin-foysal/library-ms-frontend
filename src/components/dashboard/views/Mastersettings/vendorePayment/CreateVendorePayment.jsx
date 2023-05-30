@@ -12,7 +12,7 @@ import {
   useGetThirdSubCategoryListbySubcategotyIdQuery,
 } from "../../../../../services/categoryApi";
 import { useBookItemCreateOrUpdateMutation } from "../../../../../services/bookItemApi";
-const CreateBookItem = ({ handleClose }) => {
+const CreateVendorePayment = ({ handleClose }) => {
   const [categoryId, setCategoryId] = useState();
   const [subCategoryId, setSubCategoryId] = useState();
   const [authorId, setAuthorId] = useState([]);
@@ -58,8 +58,6 @@ const CreateBookItem = ({ handleClose }) => {
       third_category_id: "",
       created_by: "",
       author_id: [],
-      item_type: "",
-      is_free:"no",
       is_show: false,
       is_active: false,
     },
@@ -69,7 +67,6 @@ const CreateBookItem = ({ handleClose }) => {
       formData.append("title", values.title);
       formData.append("isbn", values.isbn);
       formData.append("photo", values.photo);
-      formData.append("item_type", values.item_type);
       formData.append("edition", values.edition);
       formData.append("number_of_page", values.number_of_page);
       formData.append("summary", values.summary);
@@ -85,7 +82,6 @@ const CreateBookItem = ({ handleClose }) => {
       formData.append("created_by", values.created_by);
       formData.append("is_show", values.is_show);
       formData.append("is_active", values.is_active);
-      formData.append("is_free", values.is_free);
 
       if (authorId.length <= 0) {
         toast.error("Please select Author");
@@ -157,24 +153,6 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Item Type </label>
-                <div className="col-12">
-                  <select
-                    className="form-control"
-                    name="item_type"
-                    onChange={formik.handleChange}
-                    value={formik.values.item_type}
-                    required
-                  >
-                    <option >--Select--</option>
-                    <option value="physical">Physical</option>
-                    <option value="virtual">Virtual</option>
-             
-                  </select>
-
-                </div>
-              </div>
-              <div className="col-6">
                 <label className="col-12 col-form-label">Edition</label>
                 <div className="col-12">
                   <input
@@ -189,28 +167,11 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Is Free</label>
-                <div className="col-12">
-                  <select
-                    className="form-control"
-                    name="is_free"
-                    onChange={formik.handleChange}
-                    value={formik.values.is_free}
-                    required
-                  >
-                    <option >--Select--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-
-                  </select>
-                </div>
-              </div>
-              <div className="col-6">
                 <label className="col-12 col-form-label">No of page</label>
                 <div className="col-12">
                   <input
-                    placeholder="Enter No of page"
-                    type="number"
+                    placeholder="Enter Edition"
+                    type="number_of_page"
                     className="form-control"
                     name="number_of_page"
                     onChange={formik.handleChange}
@@ -526,4 +487,4 @@ const CreateBookItem = ({ handleClose }) => {
   );
 };
 
-export default CreateBookItem;
+export default CreateVendorePayment;

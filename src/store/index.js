@@ -13,6 +13,9 @@ import { vendorApi } from '../services/vendorApi';
 import { userApi } from '../services/userApi';
 import { bookItemApi } from '../services/bookItemApi';
 import { membershipPlanApi } from '../services/membershipPlanApi';
+import { itemOrder } from '../services/itemOrder';
+import { itemRentApi } from '../services/itemRentApi';
+
 
 
 
@@ -30,10 +33,8 @@ const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [bookItemApi.reducerPath]: bookItemApi.reducer,
     [membershipPlanApi.reducerPath]: membershipPlanApi.reducer,
-
-
-
-   
+    [itemOrder.reducerPath]: itemOrder.reducer,
+    [itemRentApi.reducerPath]: itemRentApi.reducer,
 
     devTools: true
   },
@@ -50,9 +51,8 @@ const store = configureStore({
       userApi.middleware,
       bookItemApi.middleware,
       membershipPlanApi.middleware,
-
- 
-
+      itemOrder.middleware,
+      itemRentApi.middleware,
 
     ])
 });

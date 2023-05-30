@@ -12,9 +12,6 @@ import { useDeleteBookItemMutation, useGetBookItemListQuery } from "../../../../
 
 const BookItemList = () => {
   const res = useGetBookItemListQuery();
-
-
-
   const [deleteBookItem] = useDeleteBookItemMutation();
   const { data, isSuccess, isFetching, isError, error } = res;
   const [clickValue, setClickValue] = useState(null);
@@ -72,6 +69,22 @@ const BookItemList = () => {
         header: "Isbn",
         size: 10,
       },
+      {
+        accessorKey: "item_type", //normal accessorKey
+        header: "Item Type",
+        size: 10,
+      },
+      {
+        accessorKey: "price", //normal accessorKey
+        header: "Price",
+        size: 10,
+
+      }, {
+        accessorKey: "is_free", //normal accessorKey
+        header: "Is Free",
+        
+      },
+
       {
         accessorKey: "edition", //normal accessorKey
         header: "Edition",
