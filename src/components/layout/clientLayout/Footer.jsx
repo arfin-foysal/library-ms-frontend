@@ -1,9 +1,10 @@
 import React from "react";
+import "./Client.css"
 
 const Footer = () => {
   return (
     <>
-      <div className="" style={{ backgroundColor: "#033D75" }}>
+      <div className="footer" style={{ backgroundColor: "#033D75" }}>
         <div className=" container">
           <div className="row  text-white mt-2 py-5 ">
             <div className="col-4">

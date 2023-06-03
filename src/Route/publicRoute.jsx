@@ -1,13 +1,19 @@
 import Error from "../components/client/Error";
-import Services from "../components/client/Services";
-import Contact from '../components/client/Contact';
-import Home from "../components/client/Home";
+
+
+
 import NotAccess from "../components/client/NotAccess";
 import Login from "../components/pages/login/Login";
 import Signup from "../components/pages/signup/Signup";
 import { authUser, authUserToken } from "../utils/Auth";
 import { Navigate } from "react-router-dom";
 import Layout from "../components/layout/clientLayout/Layout";
+import Home from "../components/client/views/Home";
+import AllBook from "../components/client/views/AllBook";
+import BookDetails from "../components/client/views/BookDetails";
+import AllAuthor from "../components/client/views/AllAuthor";
+
+
 
 
 export const publicRoute = [
@@ -16,14 +22,22 @@ export const publicRoute = [
     element: <Layout/>,
     children: [
       {
-        path: "/service",
-        element: <Services />,
+        path: "/",
+        element: <Home />,
       },
       {
-        path: "/contact",
-        element: <Contact />,
+        path: "/allbook",
+        element: <AllBook />,
       },
-     
+      {
+        path: "/bookdetails/:id",
+        element: <BookDetails />,
+      },
+      {
+        path: "/author",
+        element: <AllAuthor />,
+      },
+
     ],
   },
   {
