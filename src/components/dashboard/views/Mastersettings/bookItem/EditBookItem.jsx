@@ -73,7 +73,7 @@ const EditBookItem = ({ handleClose, param }) => {
       is_free: param?.is_free,
       is_show: param?.is_show,
       is_active: param?.is_active,
-
+      publish_date: param?.publish_date,
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -99,6 +99,7 @@ const EditBookItem = ({ handleClose, param }) => {
       formData.append("is_free", values.is_free);
       formData.append("item_type", values.item_type);
       formData.append("is_active", values.is_active);
+      formData.append("publish_date", values.publish_date);
 
       if (authorId.length <= 0) {
         const arr = [];
@@ -192,12 +193,10 @@ const EditBookItem = ({ handleClose, param }) => {
                     value={formik.values.item_type}
                     required
                   >
-                    <option >--Select--</option>
+                    <option>--Select--</option>
                     <option value="physical">Physical</option>
                     <option value="virtual">Virtual</option>
-             
                   </select>
-
                 </div>
               </div>
               <div className="col-6">
@@ -210,10 +209,9 @@ const EditBookItem = ({ handleClose, param }) => {
                     value={formik.values.is_free}
                     required
                   >
-                    <option >--Select--</option>
+                    <option>--Select--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
-
                   </select>
                 </div>
               </div>
@@ -359,6 +357,19 @@ const EditBookItem = ({ handleClose, param }) => {
           </div>
           <div className="col-4 border border-2 p-2">
             <div className="row">
+              <div className="col-12">
+                <label className="col-12 col-form-label">Publish Date</label>
+                <input
+                  type="date"
+                  name="publish_date"
+                  id=""
+                  className="form-control"
+                  onChange={formik.handleChange}
+                  value={formik.values.publish_date}
+                  required
+
+                />
+              </div>
               <div className="col-12">
                 <label className="col-12 col-form-label">Author</label>
                 <Select

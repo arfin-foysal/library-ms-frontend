@@ -24,7 +24,7 @@ const CreateBookItem = ({ handleClose }) => {
   const categoryRes = useGetCategoryListQuery();
   const subcategoryRes = useGetSubCategoryListByCategoryQuery(categoryId);
   const thirdSubCateRes =
-  useGetThirdSubCategoryListbySubcategotyIdQuery(subCategoryId);
+    useGetThirdSubCategoryListbySubcategotyIdQuery(subCategoryId);
   const authorRes = useGetAuthorListQuery();
   const focusOne = (id, name) => {
     setCategoryId(id);
@@ -59,9 +59,10 @@ const CreateBookItem = ({ handleClose }) => {
       created_by: "",
       author_id: [],
       item_type: "",
-      is_free:"no",
+      is_free: "no",
       is_show: false,
       is_active: false,
+      publish_date: "",
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -86,6 +87,7 @@ const CreateBookItem = ({ handleClose }) => {
       formData.append("is_show", values.is_show);
       formData.append("is_active", values.is_active);
       formData.append("is_free", values.is_free);
+      formData.append("publish_date", values.publish_date);
 
       if (authorId.length <= 0) {
         toast.error("Please select Author");
@@ -99,10 +101,6 @@ const CreateBookItem = ({ handleClose }) => {
         const authorArr = JSON.stringify(arr);
         formData.append("author_id", authorArr);
       }
-
-
-
-
 
       resetForm();
 
@@ -166,12 +164,10 @@ const CreateBookItem = ({ handleClose }) => {
                     value={formik.values.item_type}
                     required
                   >
-                    <option >--Select--</option>
+                    <option>--Select--</option>
                     <option value="physical">Physical</option>
                     <option value="virtual">Virtual</option>
-             
                   </select>
-
                 </div>
               </div>
               <div className="col-6">
@@ -198,10 +194,9 @@ const CreateBookItem = ({ handleClose }) => {
                     value={formik.values.is_free}
                     required
                   >
-                    <option >--Select--</option>
+                    <option>--Select--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
-
                   </select>
                 </div>
               </div>
@@ -219,7 +214,7 @@ const CreateBookItem = ({ handleClose }) => {
                   />
                 </div>
               </div>
-          
+
               <div className="col-6">
                 <label className="col-12 col-form-label">Video Url</label>
                 <div className="col-12">
@@ -247,7 +242,6 @@ const CreateBookItem = ({ handleClose }) => {
                         "brochure",
                         e.currentTarget.files[0]
                       );
-                    
                     }}
                   />
                 </div>
@@ -319,20 +313,32 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
 
-              
-        <div className="pt-2">
-          <img
-            className="py-2"
-            src={previewImage}
-            width="80px"
-            height="80px"
-            alt=""
-          />
-        </div>
+              <div className="pt-2">
+                <img
+                  className="py-2"
+                  src={previewImage}
+                  width="80px"
+                  height="80px"
+                  alt=""
+                />
+              </div>
             </div>
           </div>
           <div className="col-4 border border-2 p-2">
             <div className="row">
+              <div className="col-12">
+                <label className="col-12 col-form-label">Publish Date</label>
+                <input
+                  type="date"
+                  name="publish_date"
+                  id=""
+                  className="form-control"
+                  onChange={formik.handleChange}
+                  value={formik.values.publish_date}
+                  required
+                  
+                />
+              </div>
               <div className="col-12">
                 <label className="col-12 col-form-label">Author</label>
                 <Select

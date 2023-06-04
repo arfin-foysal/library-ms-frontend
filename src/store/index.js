@@ -15,6 +15,9 @@ import { bookItemApi } from '../services/bookItemApi';
 import { membershipPlanApi } from '../services/membershipPlanApi';
 import { itemOrder } from '../services/itemOrder';
 import { itemRentApi } from '../services/itemRentApi';
+import { ClientApi } from './../services/ClientApi';
+import borrowSlice from '../features/borrowSlice';
+
 
 
 
@@ -22,8 +25,8 @@ import { itemRentApi } from '../services/itemRentApi';
 // Combine the generated reducer with the other reducers
 const store = configureStore({
   reducer: {
-
     auth: authReducer,
+    borrow:borrowSlice,
     [authApi.reducerPath]: authApi.reducer,
     [authorApi.reducerPath]: authorApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
@@ -35,7 +38,7 @@ const store = configureStore({
     [membershipPlanApi.reducerPath]: membershipPlanApi.reducer,
     [itemOrder.reducerPath]: itemOrder.reducer,
     [itemRentApi.reducerPath]: itemRentApi.reducer,
-
+    [ClientApi.reducerPath]: ClientApi.reducer,
     devTools: true
   },
 
@@ -53,12 +56,11 @@ const store = configureStore({
       membershipPlanApi.middleware,
       itemOrder.middleware,
       itemRentApi.middleware,
+      ClientApi.middleware,
 
     ])
 });
 setupListeners(store.dispatch);
 export const useSelector = useReduxSelector;
-
 export const useDispatch = () => useReduxDispatch();
-
 export default store;

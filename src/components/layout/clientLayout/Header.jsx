@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import { logout } from "../../../features/authSlice";
 import { toast } from "react-toastify";
-import CartModal from "../../client/views/login/CartModal";
+import CartModal from "../../client/views/CartModal";
 function Header() {
   const authToken = useSelector((state) => state.auth.token);
   const authUser = useSelector((state) => state.auth.user);
@@ -30,6 +30,10 @@ function Header() {
   const [cartShow, setCartShow] = useState(false);
   const cartHandleClose = () => setCartShow(false);
   const cartHandleShow = () => setCartShow(true);
+
+  const borrow = useSelector((state) => state.borrow);
+
+
 
   return (
     <>
@@ -112,7 +116,12 @@ function Header() {
             )}
 
             <div className="mb-1 pointer " onClick={cartHandleShow}>
-              <BsCart3 color="white" size={20} />
+              <BsCart3 color="white" size={23} />
+              <span className="badge bg-danger rounded-circle">
+                {borrow?.borrow?.length}
+                </span>
+             
+             
             </div>
           </Navbar.Collapse>
         </Container>

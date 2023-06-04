@@ -6,7 +6,12 @@ import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import BookCard from "./common/BookCard";
+import { useGetAllBookItemQuery } from "../../../services/ClientApi";
 const Home = () => {
+  const bookRes = useGetAllBookItemQuery();
+
+
+
   return (
     <>
       <div className="container py-5">
@@ -19,7 +24,6 @@ const Home = () => {
               name=""
               id=""
               placeholder="Search by your preference"
-           
             />
           </div>
 
@@ -41,8 +45,8 @@ const Home = () => {
               }}
               pagination={{ clickable: true }}
               // scrollbar={{ draggable: true }}
-              onSwiper={(swiper) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
+              // onSwiper={(swiper) => console.log(swiper)}
+              // onSlideChange={() => console.log("slide change")}
               breakpoints={{
                 0: {
                   slidesPerView: 1,
@@ -67,24 +71,11 @@ const Home = () => {
                 },
               }}
             >
-              <SwiperSlide>
-                <BookCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <BookCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <BookCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <BookCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <BookCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <BookCard />
-              </SwiperSlide>
+              {bookRes?.data?.data?.map((book,i) => (
+                <SwiperSlide>
+                  <BookCard book={book} key={i}/>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
 
@@ -102,8 +93,7 @@ const Home = () => {
               }}
               pagination={{ clickable: true }}
               // scrollbar={{ draggable: true }}
-              onSwiper={(swiper) => console.log(swiper)}
-              onSlideChange={() => console.log("slide change")}
+           
               breakpoints={{
                 0: {
                   slidesPerView: 1,
