@@ -5,12 +5,13 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { BiLike } from "react-icons/bi";
+import { AiFillLike } from "react-icons/ai";
 import BookCard from "./common/BookCard";
 import { useGetAllBookItemQuery } from "../../../services/ClientApi";
+import Loader from './../../dashboard/common/Loader';
 const Home = () => {
   const bookRes = useGetAllBookItemQuery();
-
-
 
   return (
     <>
@@ -32,7 +33,7 @@ const Home = () => {
         <div>
           <div>
             <div className="mb-3">
-              <h3>All Books</h3>
+              <h3>New Product</h3>
             </div>
 
             <Swiper
@@ -71,9 +72,11 @@ const Home = () => {
                 },
               }}
             >
-              {bookRes?.data?.data?.map((book,i) => (
-                <SwiperSlide>
-                  <BookCard book={book} key={i}/>
+              {bookRes?.isLoading && <Loader />}
+
+              {bookRes?.data?.data?.map((book, i) => (
+                <SwiperSlide key={i}>
+                  <BookCard book={book} />
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -81,7 +84,7 @@ const Home = () => {
 
           <div className="mt-5 ">
             <div className="mb-3">
-              <h3>Most Read</h3>
+              <h3>Recent Book</h3>
             </div>
             <Swiper
               // install Swiper modules
@@ -93,7 +96,7 @@ const Home = () => {
               }}
               pagination={{ clickable: true }}
               // scrollbar={{ draggable: true }}
-           
+
               breakpoints={{
                 0: {
                   slidesPerView: 1,
@@ -128,15 +131,6 @@ const Home = () => {
                 <BookCard />
               </SwiperSlide>
             </Swiper>
-          </div>
-
-          <div className="mt-5 text-center">
-            <button
-              className="btn"
-              style={{ backgroundColor: "#033D75", color: "white" }}
-            >
-              View More
-            </button>
           </div>
         </div>
       </div>

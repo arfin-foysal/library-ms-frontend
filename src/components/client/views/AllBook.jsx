@@ -1,7 +1,10 @@
 import React from "react";
 import BookCard from "./common/BookCard";
+import { useGetAllBookItemQuery } from "../../../services/ClientApi";
+import Loader from "../../dashboard/common/Loader";
 
 const AllBook = () => {
+  const bookRes = useGetAllBookItemQuery();
   return (
     <div className=" container">
       <div class="row">
@@ -20,7 +23,23 @@ const AllBook = () => {
 
       <h3>All Books</h3>
       <div className="my-5">
-        <BookCard />
+        {bookRes?.isLoading && <Loader />}
+
+        <div className="d-flex flex-wrap justify-content-between">
+          {bookRes?.data?.data?.map((book, i) => (
+            <div className="m-2" >
+              <BookCard book={book} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-5 text-center">
+        <button
+          className="btn"
+          style={{ backgroundColor: "#033D75", color: "white" }}
+        >
+          View More
+        </button>
       </div>
     </div>
   );

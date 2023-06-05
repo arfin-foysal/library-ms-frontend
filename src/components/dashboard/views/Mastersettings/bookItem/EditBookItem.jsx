@@ -66,9 +66,9 @@ const EditBookItem = ({ handleClose, param }) => {
       publisher_id: param?.publisher_id,
       language_id: param?.language_id,
       country_id: param?.country_id,
-      category_id: param?.category_id,
-      sub_category_id: param?.sub_category_id,
-      third_category_id: param?.third_category_id,
+      // category_id: param?.category_id,
+      // sub_category_id: param?.sub_category_id,
+      // third_category_id: param?.third_category_id,
       item_type: param?.item_type,
       is_free: param?.is_free,
       is_show: param?.is_show,
@@ -91,9 +91,9 @@ const EditBookItem = ({ handleClose, param }) => {
       formData.append("publisher_id", values.publisher_id);
       formData.append("language_id", values.language_id);
       formData.append("country_id", values.country_id);
-      formData.append("category_id", values.category_id);
-      formData.append("sub_category_id", values.sub_category_id);
-      formData.append("third_category_id", values.third_category_id);
+      // formData.append("category_id", values.category_id);
+      // formData.append("sub_category_id", values.sub_category_id);
+      // formData.append("third_category_id", values.third_category_id);
       formData.append("created_by", values.created_by);
       formData.append("is_show", values.is_show);
       formData.append("is_free", values.is_free);
@@ -366,8 +366,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   className="form-control"
                   onChange={formik.handleChange}
                   value={formik.values.publish_date}
-                  required
-
+                  defaultValue={param?.publish_date}
                 />
               </div>
               <div className="col-12">
@@ -449,7 +448,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   })}
                 </select>
               </div>
-              <div className="col-12">
+              {/* <div className="col-12">
                 <label className="col-12 col-form-label">Category</label>
                 <select
                   className="form-select form-control"
@@ -472,8 +471,8 @@ const EditBookItem = ({ handleClose, param }) => {
                     );
                   })}
                 </select>
-              </div>
-              <div className="col-12">
+              </div> */}
+              {/* <div className="col-12">
                 <label className="col-12 col-form-label">Sub Category</label>
                 <select
                   className="form-select form-control"
@@ -496,9 +495,9 @@ const EditBookItem = ({ handleClose, param }) => {
                     );
                   })}
                 </select>
-              </div>
+              </div> */}
 
-              <div className="col-12">
+              {/* <div className="col-12">
                 <label className="col-12 col-form-label">
                   Third Sub Category
                 </label>
@@ -522,7 +521,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     );
                   })}
                 </select>
-              </div>
+              </div> */}
 
               <div className="col-12">
                 <label className="col-12 col-form-label">Publish Status</label>

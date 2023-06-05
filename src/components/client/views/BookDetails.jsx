@@ -28,7 +28,7 @@ const BookDetails = () => {
                     <button
                       className="btn btn-primary"
                       onClick={() => dispatch(addBorrow({
-                        id: book?.id,
+                        item_id: book?.id,
                         title: book?.title,
                         photo: book?.photo,
                         item_qty: 1,

@@ -63,6 +63,7 @@ const Layout = () => {
               width: isOpen ? "230px" : "55px",
               padding: isOpen ? "17px 17px" : "17px 7px",
               height: "100vh",
+              overflow: "hidden",
 
               transition: {
                 duration: 0.5,

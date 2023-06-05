@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="row  text-white mt-2 py-5 ">
             <div className="col-4">
               <h4>Library Management System</h4>
-              <p>
+              <p className="">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
                 vulputate libero et velit interdum, ac aliquet odio mattis.
               </p>

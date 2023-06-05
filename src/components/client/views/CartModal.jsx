@@ -7,24 +7,40 @@ import {
   updateReturnDate,
 } from "../../../features/borrowSlice";
 import { toast } from "react-toastify";
+import { useItemRentCreateMutation } from "../../../services/itemRentApi";
 
 function CartModal({ show, handleClose }) {
   const borrow = useSelector((state) => state.borrow);
+  const authUser = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+  const [itemRentCreate, res] = useItemRentCreateMutation();
+
+  console.log(res)
 
   const totalQty = borrow?.borrow?.reduce(
     (total, book) => total + book?.item_qty,
     0
   );
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     if (borrow?.borrow?.length === 0) {
       toast.error("Your borrow cart is empty");
     } else {
-      toast.success("Borrow request submitted successfully");
-      handleClose();
-      dispatch(clearBorrow());
+      if (!authUser) {
+        toast.error("Please login first");
+      } else {
+        const data = {
+          items: borrow?.borrow,
+          qty: totalQty,
+          user_id: authUser.id,
+        };
+
+        await itemRentCreate(data);
+        handleClose();
+        dispatch(clearBorrow());
+        toast.success("Borrow request submitted successfully");
+      }
     }
   };
 
