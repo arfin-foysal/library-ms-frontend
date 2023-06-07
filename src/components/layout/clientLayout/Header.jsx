@@ -2,28 +2,31 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BsCart3 } from "react-icons/bs";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo/LbrMS-logo-white.png";
 import avatar from "../../../assets/images/profile-picture.png";
 import { BiLogInCircle, BiLogOut } from "react-icons/bi";
 import { useState } from "react";
-import LoginModal from "../../client/views/login/LoginModal";
-import { useDispatch, useSelector } from "react-redux";
+
 import { Dropdown } from "react-bootstrap";
-import { logout } from "../../../features/authSlice";
 import { toast } from "react-toastify";
 import CartModal from "../../client/views/CartModal";
+import { clientLogout } from "../../../features/clientAuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 function Header() {
-  const authToken = useSelector((state) => state.auth.token);
-  const authUser = useSelector((state) => state.auth.user);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
+
+  const authToken = useSelector((state) => state.clientAuth.clientToken);
+  const authUser = useSelector((state) => state.clientAuth.clientUser);
+
   const dispatch = useDispatch();
 
   const handelLogout = () => {
-    dispatch(logout());
+    dispatch(clientLogout());
+
     toast.success("Logout Successfully");
+    navigate('/');
     window.location.reload(false);
   };
 
@@ -33,11 +36,9 @@ function Header() {
 
   const borrow = useSelector((state) => state.borrow);
 
-
-
   return (
     <>
-      <LoginModal show={show} handleClose={handleClose} />
+      {/* <LoginModal show={show} handleClose={handleClose} /> */}
       <CartModal show={cartShow} handleClose={cartHandleClose} />
       <Navbar
         collapseOnSelect
@@ -54,6 +55,7 @@ function Header() {
                 className="d-inline-block align-top w-50 "
               />
             </Link>
+            
 
             {/* <span className='text-white'>Book Store</span> */}
           </Navbar.Brand>
@@ -102,6 +104,7 @@ function Header() {
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item> {authUser?.name} </Dropdown.Item>
+                    <Dropdown.Item><Link to="/client-dashboard">Dashboard</Link>  </Dropdown.Item>
                     <Dropdown.Item onClick={() => handelLogout()}>
                       <BiLogOut /> Logout
                     </Dropdown.Item>
@@ -109,9 +112,11 @@ function Header() {
                 </Dropdown>
               </div>
             ) : (
-              <div className="text-white me-3" onClick={handleShow}>
-                Login
-                <BiLogInCircle />
+              <div className="text-white me-3">
+                <Link to="/login">
+                  Login
+                  <BiLogInCircle />
+                </Link>
               </div>
             )}
 
@@ -119,9 +124,7 @@ function Header() {
               <BsCart3 color="white" size={23} />
               <span className="badge bg-danger rounded-circle">
                 {borrow?.borrow?.length}
-                </span>
-             
-             
+              </span>
             </div>
           </Navbar.Collapse>
         </Container>

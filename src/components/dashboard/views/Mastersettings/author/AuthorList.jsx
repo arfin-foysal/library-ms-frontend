@@ -75,11 +75,7 @@ const AuthorList = () => {
         header: "Mobile",
         size: 10,
       },
-      {
-        accessorKey: "bio", //normal accessorKey
-        header: "Bio",
-        size: 10,
-      },
+
       {
         accessorKey: "address1",
         header: "Address",

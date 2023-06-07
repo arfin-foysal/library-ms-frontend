@@ -265,7 +265,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     className="form-control"
                     name="brochure"
                     type="file"
-                    accept="image/*"
+                    accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv"
                     onChange={(e) => {
                       formik.setFieldValue(
                         "brochure",

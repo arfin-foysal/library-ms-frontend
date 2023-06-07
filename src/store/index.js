@@ -4,6 +4,7 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
 // Import the generated reducer as `authReducer`
 import authReducer from '../features/authSlice'
+import clientAuthReducer from '../features/clientAuthSlice';
 import { authApi } from '../services/authApi';
 import { authorApi } from '../services/authorApi';
 import { categoryApi } from './../services/categoryApi';
@@ -22,10 +23,12 @@ import borrowSlice from '../features/borrowSlice';
 
 
 
+
 // Combine the generated reducer with the other reducers
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    clientAuth:clientAuthReducer,
     borrow:borrowSlice,
     [authApi.reducerPath]: authApi.reducer,
     [authorApi.reducerPath]: authorApi.reducer,

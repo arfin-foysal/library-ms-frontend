@@ -15,7 +15,16 @@ export const authApi = createApi({
         body,
         headers,
       }),
-      invalidatesTags: ["Auth"],
+      providesTags: ["Auth"],
+    }),
+    clientLogin: builder.mutation({
+      query: (body) => ({
+        url: "auth/client-login",
+        method: "POST",
+        body,
+        headers,
+      }),
+      providesTags: ["Auth"],
     }),
     register: builder.mutation({
       query: (body) => ({
@@ -65,6 +74,7 @@ export const {
   useLogoutMutation,
   useChangePasswordMutation,
   useUpdatePasswordMutation,
+  useClientLoginMutation
 
 
 } = authApi;

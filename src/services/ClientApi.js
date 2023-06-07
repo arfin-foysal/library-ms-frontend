@@ -16,6 +16,14 @@ export const ClientApi = createApi({
       }),
       providesTags: ["Client"],
     }),
+    getAuthorAndItem: builder.query({
+      query: () => ({
+        url: "client/get-author-and-item",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Client"],
+    }),
 
     // categoryCreateOrUpdate: builder.mutation({
     //   query: (body) => {
@@ -37,17 +45,20 @@ export const ClientApi = createApi({
     //   invalidatesTags: ['Client']
     // }),
 
-    // getSubCategoryListByCategory: builder.query({
-    //   query: (categoryId) => ({
-    //     url: `admin/sub-category-by-category-id/${categoryId}`,
-    //     method: "GET",
-    //     headers,
-    //   }),
-    //   providesTags: ["Client"],
-    // }),
+    getItemById: builder.query({
+      query: (Id) => ({
+        url: `client/get-item-by-id/${Id}`,
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Client"],
+    }),
   }),
 });
 
 export const { 
   useGetAllBookItemQuery,
+  useGetItemByIdQuery,
+  useGetAuthorAndItemQuery,
+  
  } = ClientApi;

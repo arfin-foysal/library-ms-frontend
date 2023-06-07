@@ -11,16 +11,12 @@ export const borrowSlice = createSlice({
   reducers: {
     // add borrow
 
-    addBorrow: (state, action) => {
-      const itemInBorrow = state.borrow.find(
-        (item) => item.id === action.payload.id
-      );
-      if (itemInBorrow) {
-        toast.error("Item already in borrow list");
-        // itemInBorrow.item_qty++;
+    addBorrow: (state, action) =>  {
+      const itemInCart = state.borrow.find((item) => item.id === action.payload.id);
+      if (itemInCart) {
+          toast.error("This book is already in your borrow list");
       } else {
         state.borrow.push({ ...action.payload, item_qty: 1 });
-        //localStorage.setItem("borrow", JSON.stringify(state.borrow));
       }
     },
     removeItem: (state, action) => {

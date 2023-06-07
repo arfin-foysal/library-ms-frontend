@@ -11,11 +11,14 @@ import { useItemRentCreateMutation } from "../../../services/itemRentApi";
 
 function CartModal({ show, handleClose }) {
   const borrow = useSelector((state) => state.borrow);
-  const authUser = useSelector((state) => state.auth.user);
+  const authUser = useSelector((state) => state.clientAuth.clientUser);
   const dispatch = useDispatch();
   const [itemRentCreate, res] = useItemRentCreateMutation();
 
-  console.log(res)
+
+
+
+
 
   const totalQty = borrow?.borrow?.reduce(
     (total, book) => total + book?.item_qty,
@@ -35,6 +38,7 @@ function CartModal({ show, handleClose }) {
           qty: totalQty,
           user_id: authUser.id,
         };
+
 
         await itemRentCreate(data);
         handleClose();
