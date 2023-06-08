@@ -18,6 +18,9 @@ import AllAuthor from "../components/client/views/AllAuthor";
 import AuthorDetails from "../components/client/views/AuthorDetails";
 import ClientLogin from "../components/client/views/login/ClientLogin";
 import ClientLayout from "../components/client/views/clientDashboard/ClientLayout";
+import PersonalInfo from "../components/client/views/clientDashboard/PersonalInfo";
+import ItemsBorrowed from "../components/client/views/clientDashboard/ItemsBorrowed";
+import PendingItems from "../components/client/views/clientDashboard/PendingItems";
 
 export const publicRoute = [
   {
@@ -53,6 +56,18 @@ export const publicRoute = [
             <ClientLayout />
           ),
         children: [
+          {
+            path: "/client-dashboard/",
+            element: <PersonalInfo />,
+          },
+          {
+            path: "/client-dashboard/items-borrowed",
+            element: <ItemsBorrowed />,
+          },
+          {
+            path: "/client-dashboard/pending-items",
+            element: <PendingItems />,
+          }
           
         ]
       },

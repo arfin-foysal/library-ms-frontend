@@ -26,7 +26,7 @@ function Header() {
     dispatch(clientLogout());
 
     toast.success("Logout Successfully");
-    navigate('/');
+    navigate("/");
     window.location.reload(false);
   };
 
@@ -55,7 +55,6 @@ function Header() {
                 className="d-inline-block align-top w-50 "
               />
             </Link>
-            
 
             {/* <span className='text-white'>Book Store</span> */}
           </Navbar.Brand>
@@ -104,7 +103,9 @@ function Header() {
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item> {authUser?.name} </Dropdown.Item>
-                    <Dropdown.Item><Link to="/client-dashboard">Dashboard</Link>  </Dropdown.Item>
+                    <Dropdown.Item > 
+                      <Link className="text-dark" to="/client-dashboard">Dashboard</Link>{" "}
+                    </Dropdown.Item>
                     <Dropdown.Item onClick={() => handelLogout()}>
                       <BiLogOut /> Logout
                     </Dropdown.Item>

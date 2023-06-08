@@ -2,33 +2,34 @@ import React from "react";
 import ebook from "./../../../../assets/images/dashboard-ebook.png";
 import { Link, Outlet } from "react-router-dom";
 import { HiInformationCircle } from "react-icons/hi";
-import { BsFillCaretDownSquareFill } from "react-icons/bs";
+
+import { RiBookFill } from "react-icons/ri";
 import { MdPending } from "react-icons/md";
 const ClientLayout = () => {
   return (
-    <div>
-      <div className="container">
-        <div className=" text-center">
+    <div>    <div className=" text-center " style={{backgroundColor:"#6682C81A"}}>
           <img src={ebook} alt="" />
         </div>
-        <div className="row">
+      <div className="container">
+    
+        <div className="row py-4">
           <div className="col-4">
             {/* //Navbar */}
 
             <nav>
               <ul className="nav flex-column">
                 <li class="nav-item">
-                  <Link className="nav-link text-dark" to="d">
+                  <Link className="nav-link " to="/client-dashboard/">
                     <HiInformationCircle /> Personal Information
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-dark" to="#">
-                    <BsFillCaretDownSquareFill /> Items Borrowed
+                  <Link className="nav-link " to="/client-dashboard/items-borrowed">
+                    <RiBookFill /> Items Borrowed
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-dark" to="#">
+                  <Link className="nav-link " to="/client-dashboard/pending-items">
                     <MdPending /> Pending Items
                   </Link>
                 </li>

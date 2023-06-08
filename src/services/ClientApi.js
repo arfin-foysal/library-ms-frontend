@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { headers } from "../utils/ApiHeaders";
+import { clientHeaders,  } from "../utils/ApiHeaders";
 
 export const ClientApi = createApi({
   reducerPath: "clientApi",
@@ -12,7 +12,7 @@ export const ClientApi = createApi({
       query: () => ({
         url: "client/get-all-item",
         method: "GET",
-        headers,
+        headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
@@ -20,7 +20,7 @@ export const ClientApi = createApi({
       query: () => ({
         url: "client/get-author-and-item",
         method: "GET",
-        headers,
+        headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
@@ -28,14 +28,15 @@ export const ClientApi = createApi({
     // categoryCreateOrUpdate: builder.mutation({
     //   query: (body) => {
     //     return {
-    //       url: `admin/create-or-update-category`,
+    //       url: `client/profile-update`,
     //       method: "POST",
     //       body: body,
-    //       headers,
+    //       headers:clientHeaders,
     //     };
     //   },
     //   invalidatesTags: ["Client"],
     // }),
+
     // deleteCategory: builder.mutation({
     //   query: (id) => ({
     //     url: `admin/delete-category/${id}`,
@@ -49,9 +50,39 @@ export const ClientApi = createApi({
       query: (Id) => ({
         url: `client/get-item-by-id/${Id}`,
         method: "GET",
-        headers,
+        headers:clientHeaders,
+      }),
+      invalidatesTags: ["Client"],
+    }),
+
+
+    profileUpdate: builder.mutation({
+      query: (body) => {
+        return {
+          url: `client/profile-update`,
+          method: "POST",
+          body: body,
+          headers:clientHeaders,
+        };
+      },
+      invalidatesTags: ["Client"],
+    }),
+
+    getSingleUser: builder.query({
+      query: () => ({
+        url: `client/single-user`,
+        method: "GET",
+        headers:clientHeaders,
       }),
       providesTags: ["Client"],
+    }),
+    boweredBookByUser: builder.query({
+      query: () => ({
+        url: `client/rent-item-by-user`,
+        method: "GET",
+        headers:clientHeaders,
+      }),
+      invalidatesTags: ["Client"],
     }),
   }),
 });
@@ -60,5 +91,8 @@ export const {
   useGetAllBookItemQuery,
   useGetItemByIdQuery,
   useGetAuthorAndItemQuery,
+  useGetSingleUserQuery,
+  useProfileUpdateMutation,
+  useBoweredBookByUserQuery
   
  } = ClientApi;
