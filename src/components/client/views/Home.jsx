@@ -8,56 +8,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { BiLike } from "react-icons/bi";
 import { AiFillLike } from "react-icons/ai";
 import BookCard from "./common/BookCard";
-import { useGetAllBookItemQuery } from "../../../services/ClientApi";
+import { useGetAllBookItemQuery, useGetHomePageBookQuery } from "../../../services/ClientApi";
 import Loader from "./../../dashboard/common/Loader";
 import { Link } from "react-router-dom";
 const Home = () => {
-  const bookRes = useGetAllBookItemQuery();
-  // search Functionality start
-  // const [search, setSearch] = useState("");
-  // const [filteredData, setFilteredData] = useState([]);
-
-  // const handelSearch = (e) => {
-  //   e.preventDefault();
-
-  //   const searchWord = e.target.value;
-  //   setSearch(searchWord);
-  //   if (searchWord !== "") {
-  //     const newBookList = bookRes?.data?.data?.filter((book) => {
-  //       return Object.values(book)
-  //         .join(" ")
-  //         .toLowerCase()
-  //         .includes(searchWord.toLowerCase());
-  //     });
-  //     setFilteredData(newBookList);
-  //   }
-  //   if (searchWord === "") {
-  //     setFilteredData(bookRes?.data?.data);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setFilteredData(bookRes?.data?.data);
-  // }, [bookRes?.data?.data]);
+  const bookRes = useGetHomePageBookQuery();
+ 
 
   return (
     <>
       <div className="container py-5">
         <div className="row">
           <div className="col"></div>
-          {/* <div className="col-md-4 co-12 my-4">
-            <input
-              type="search"
-              className=" form-control rounded-5"
-              id=""
-              placeholder="Search by your preference"
-              name="search"
-              onChange={(e) => handelSearch(e)}
-              value={search}
-
-            />
-          </div> */}
-
           <div className="col"></div>
         </div>
         <div>

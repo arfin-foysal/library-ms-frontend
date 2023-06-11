@@ -11,10 +11,12 @@ export const borrowSlice = createSlice({
   reducers: {
     // add borrow
 
-    addBorrow: (state, action) =>  {
-      const itemInCart = state.borrow.find((item) => item.id === action.payload.id);
+    addBorrow: (state, action) => {
+      const itemInCart = state.borrow.find(
+        (item) => item.id === action.payload.id
+      );
       if (itemInCart) {
-          toast.error("This book is already in your borrow list");
+        toast.error("This book is already in your borrow list");
       } else {
         state.borrow.push({ ...action.payload, item_qty: 1 });
       }
@@ -23,6 +25,7 @@ export const borrowSlice = createSlice({
       const removeBorrow = state.borrow.filter(
         (item) => item.id !== action.payload
       );
+
       state.borrow = removeBorrow;
     },
     // update return date
@@ -39,12 +42,10 @@ export const borrowSlice = createSlice({
     //clear borrow
     clearBorrow: (state) => {
       state.borrow = [];
-    }
+    },
   },
 });
 
-export const { addBorrow, removeItem,
-  updateReturnDate,
-  clearBorrow
-} = borrowSlice.actions;
+export const { addBorrow, removeItem, updateReturnDate, clearBorrow } =
+  borrowSlice.actions;
 export default borrowSlice.reducer;

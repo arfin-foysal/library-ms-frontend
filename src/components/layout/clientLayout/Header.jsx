@@ -38,6 +38,9 @@ function Header() {
 
   return (
     <>
+      <div className=" sticky-top">
+
+    
       {/* <LoginModal show={show} handleClose={handleClose} /> */}
       <CartModal show={cartShow} handleClose={cartHandleClose} />
       <Navbar
@@ -130,6 +133,7 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+        </div>
     </>
   );
 }

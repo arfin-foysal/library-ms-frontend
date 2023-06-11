@@ -39,7 +39,7 @@ function CartModal({ show, handleClose }) {
           user_id: authUser.id,
         };
 
-
+       
         await itemRentCreate(data);
         handleClose();
         dispatch(clearBorrow());

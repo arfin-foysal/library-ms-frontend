@@ -9,13 +9,22 @@ export const ClientApi = createApi({
   tagTypes: ["Client"],
   endpoints: (builder) => ({
     getAllBookItem: builder.query({
-      query: () => ({
-        url: "client/get-all-item",
+      query: ({limit}) => ({
+        url: `client/get-all-item?limit=${limit}`,
         method: "GET",
         headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
+    getHomePageBook: builder.query({
+      query: () => ({
+        url: "client/get-home-page-book",
+        method: "GET",
+        headers:clientHeaders,
+      }),
+      providesTags: ["Client"],
+    }),
+
     getAuthorAndItem: builder.query({
       query: () => ({
         url: "client/get-author-and-item",
@@ -84,6 +93,14 @@ export const ClientApi = createApi({
       }),
       invalidatesTags: ["Client"],
     }),
+    pendingBoweredList: builder.query({
+      query: () => ({
+        url: `client/pending-order-list`,
+        method: "GET",
+        headers:clientHeaders,
+      }),
+      invalidatesTags: ["Client"],
+    }),
   }),
 });
 
@@ -93,6 +110,8 @@ export const {
   useGetAuthorAndItemQuery,
   useGetSingleUserQuery,
   useProfileUpdateMutation,
-  useBoweredBookByUserQuery
+  useBoweredBookByUserQuery,
+  usePendingBoweredListQuery,
+  useGetHomePageBookQuery,
   
  } = ClientApi;

@@ -15,17 +15,31 @@ import ReactPlayer from "react-player";
 import Loader from "../../dashboard/common/Loader";
 import RelatedBookCard from "./common/RelatedBookCard";
 import BrochureView from "./common/BrochureView";
+import VirtualBookView from "./common/VirtualBookView";
 
 const BookDetails = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalVShow, setModalVShow] = React.useState(false);
+
   const { id } = useParams();
   const bookDetailsRes = useGetItemByIdQuery(id);
   const book = bookDetailsRes?.data?.data;
 
   const dispatch = useDispatch();
+
+  console.log(book?.virtual_book)
   return (
     <>
-      <BrochureView show={modalShow} onHide={() => setModalShow(false)} brochure={book?.brochure} />
+      <BrochureView
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        brochure={book?.brochure}
+      />
+      <VirtualBookView
+        show={modalVShow}
+        onHide={() => setModalVShow(false)}
+        virtual={book?.virtual_book}
+      />
       <div className="container py-5">
         <div className="row">
           <div className="col-md-8 col-12">
@@ -52,40 +66,42 @@ const BookDetails = () => {
 
                   <div className="text-md-center mt-2 ">
                     {book?.item_type === "physical" ? (
-                      <button
-                        className="btn btn-primary my-3 btn-sm"
-                        onClick={() =>
-                          dispatch(
-                            addBorrow({
-                              id: book?.id,
-                              item_id: book?.id,
-                              title: book?.title,
-                              photo: book?.photo,
-                              item_qty: 1,
-                              return_date: "",
-                            })
-                          )
-                        }
-                      >
-                        Add Borrow
-                      </button>
-                    ) : (
-                      // <a
-                      //   className="mt-2"
-                      //   href={`${import.meta.env.VITE_FILE_DOC_URL}${
-                      //     book?.brochure
-                      //   }`}
-                      //   target="_blank"
-                      //   rel="noreferrer"
-                      // >
+                      <div>
                         <button
-                          className="btn btn-primary btn-sm"
+                          className="btn btn-primary mx-1 btn-sm"
+                          onClick={() =>
+                            dispatch(
+                              addBorrow({
+                                id: book?.id,
+                                item_id: book?.id,
+                                title: book?.title,
+                                photo: book?.photo,
+                                item_qty: 1,
+                                return_date: "",
+                              })
+                            )
+                          }
+                        >
+                          Add Borrow
+                        </button>
+                        <button
+                          className="btn btn-info btn-sm mx-1"
                           variant="primary"
                           onClick={() => setModalShow(true)}
                         >
                           View
                         </button>
-                      // </a>
+                      </div>
+                    ) : (
+                      <div>
+                        <button
+                          className="btn btn-info btn-sm mx-1"
+                          variant="primary"
+                          onClick={() => setModalVShow(true)}
+                        >
+                          View
+                        </button>
+                      </div>
                     )}
                   </div>
 

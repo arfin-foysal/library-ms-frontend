@@ -63,6 +63,7 @@ const CreateBookItem = ({ handleClose }) => {
       is_show: false,
       is_active: false,
       publish_date: "",
+      virtual_book: "",
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -88,6 +89,7 @@ const CreateBookItem = ({ handleClose }) => {
       formData.append("is_active", values.is_active);
       formData.append("is_free", values.is_free);
       formData.append("publish_date", values.publish_date);
+      formData.append("virtual_book", values.virtual_book);
 
       if (authorId.length <= 0) {
         toast.error("Please select Author");
@@ -229,14 +231,20 @@ const CreateBookItem = ({ handleClose }) => {
                   />
                 </div>
               </div>
-              <div className="col-6">
+
+              <div className={
+                formik.values.item_type === "physical"
+                  ? "col-6"
+                  : "col-6 d-none"
+                
+              }>
                 <label className="col-12 col-form-label">Brochure</label>
                 <div className="col-12">
                   <input
                     className="form-control"
                     name="brochure"
                     type="file"
-                    accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv"
+                    accept="image/*,.pdf"
                     onChange={(e) => {
                       formik.setFieldValue(
                         "brochure",
@@ -246,6 +254,32 @@ const CreateBookItem = ({ handleClose }) => {
                   />
                 </div>
               </div>
+
+              <div
+                className={
+                  formik.values.item_type === "virtual"
+                    ? "col-6"
+                    : "col-6 d-none"
+                }
+              >
+                <label className="col-12 col-form-label">Virtual PDF File</label>
+                <div className="col-12">
+                  <input
+                    className="form-control"
+                    name="virtual_book"
+                    type="file"
+                    accept="image/*,.pdf"
+                    required
+                    onChange={(e) => {
+                      formik.setFieldValue(
+                        "virtual_book",
+                        e.currentTarget.files[0]
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+
               <div className="col-6">
                 <label className="col-12 col-form-label">Photo</label>
                 <div className="col-12">
@@ -336,7 +370,6 @@ const CreateBookItem = ({ handleClose }) => {
                   onChange={formik.handleChange}
                   value={formik.values.publish_date}
                   required
-                  
                 />
               </div>
               <div className="col-12">

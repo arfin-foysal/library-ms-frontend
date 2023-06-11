@@ -3,9 +3,10 @@ import BookCard from "./common/BookCard";
 import { useGetAllBookItemQuery } from "../../../services/ClientApi";
 import Loader from "../../dashboard/common/Loader";
 
-
 const AllBook = () => {
-  const bookRes = useGetAllBookItemQuery();
+  const [limit, setLimit] = useState(5);
+
+  const bookRes = useGetAllBookItemQuery({ limit: limit });
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
@@ -15,7 +16,7 @@ const AllBook = () => {
     const searchWord = e.target.value;
     setSearch(searchWord);
     if (searchWord !== "") {
-      const newBookList = bookRes?.data?.data?.filter((book) => {
+      const newBookList = bookRes?.data?.data?.data?.filter((book) => {
         return Object.values(book)
           .join(" ")
           .toLowerCase()
@@ -31,6 +32,7 @@ const AllBook = () => {
   useEffect(() => {
     setFilteredData(bookRes?.data?.data);
   }, [bookRes?.data?.data]);
+
   return (
     <div className=" container">
       <div class="row">
@@ -44,9 +46,7 @@ const AllBook = () => {
             name="search"
             onChange={(e) => handelSearch(e)}
             value={search}
-            
           />
-     
         </div>
       </div>
 
@@ -54,7 +54,7 @@ const AllBook = () => {
       <div className="my-5">
         {bookRes?.isLoading && <Loader />}
         <div className="d-flex flex-wrap justify-content-between">
-          {filteredData?.map((book, i) => (
+          {filteredData?.data?.map((book, i) => (
             <div className="m-2" key={i}>
               <BookCard book={book} />
             </div>
@@ -62,12 +62,22 @@ const AllBook = () => {
         </div>
       </div>
       <div className="mt-5 text-center">
-        <button
-          className="btn"
-          style={{ backgroundColor: "#033D75", color: "white" }}
-        >
-          View More
-        </button>
+        {bookRes?.data?.data?.total > limit && (
+          <button
+            onClick={() => {
+              setLimit(limit + 2);
+            }}
+            className="btn btn-sm"
+            style={{ backgroundColor: "#033D75", color: "white" }}
+          >
+            View More {bookRes.isFetching && (
+              <span
+                class="spinner-border spinner-border-sm "
+                role="status"
+              ></span>
+            )}
+          </button>
+        )}
       </div>
     </div>
   );
