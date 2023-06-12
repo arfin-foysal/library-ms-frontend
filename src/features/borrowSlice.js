@@ -28,16 +28,7 @@ export const borrowSlice = createSlice({
 
       state.borrow = removeBorrow;
     },
-    // update return date
 
-    updateReturnDate: (state, action) => {
-      const itemInBorrow = state.borrow.find(
-        (item) => item.id === action.payload.id
-      );
-      if (itemInBorrow) {
-        itemInBorrow.return_date = action.payload.return_date;
-      }
-    },
 
     //clear borrow
     clearBorrow: (state) => {
@@ -46,6 +37,6 @@ export const borrowSlice = createSlice({
   },
 });
 
-export const { addBorrow, removeItem, updateReturnDate, clearBorrow } =
+export const { addBorrow, removeItem, clearBorrow } =
   borrowSlice.actions;
 export default borrowSlice.reducer;

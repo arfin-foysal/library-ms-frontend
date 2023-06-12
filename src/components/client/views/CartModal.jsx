@@ -1,29 +1,21 @@
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  clearBorrow,
-  removeItem,
-  updateReturnDate,
-} from "../../../features/borrowSlice";
+import { clearBorrow, removeItem } from "../../../features/borrowSlice";
 import { toast } from "react-toastify";
-import { useItemRentCreateMutation } from "../../../services/itemRentApi";
+import { useItemRentCreateClientMutation } from "../../../services/ClientApi";
 
 function CartModal({ show, handleClose }) {
   const borrow = useSelector((state) => state.borrow);
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const dispatch = useDispatch();
-  const [itemRentCreate, res] = useItemRentCreateMutation();
-
-
-
-
-
+  const [itemRentCreateClient, res] = useItemRentCreateClientMutation();
 
   const totalQty = borrow?.borrow?.reduce(
     (total, book) => total + book?.item_qty,
     0
   );
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -34,16 +26,18 @@ function CartModal({ show, handleClose }) {
         toast.error("Please login first");
       } else {
         const data = {
-          items: borrow?.borrow,
-          qty: totalQty,
+          qty:totalQty,
           user_id: authUser.id,
+          items: borrow?.borrow,
         };
 
-       
-        await itemRentCreate(data);
+        // console.log(data);
+
+        const result = await itemRentCreateClient(data).unwrap();
+
         handleClose();
         dispatch(clearBorrow());
-        toast.success("Borrow request submitted successfully");
+        toast.success(result?.message);
       }
     }
   };
@@ -63,7 +57,6 @@ function CartModal({ show, handleClose }) {
                     <tr>
                       <th scope="col"></th>
                       <th scope="col">Product</th>
-                      <th scope="col">Return Date</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
@@ -84,27 +77,6 @@ function CartModal({ show, handleClose }) {
                           />
                         </td>
                         <td className="pt-4">{book?.title}</td>
-                        <td className="pt-4">
-                          <input
-                            className="form-control"
-                            type="date"
-                            name="return_date"
-                            value={book?.return_date}
-                            id=""
-                            required
-                            onChange={(e) => {
-                              dispatch(
-                                updateReturnDate({
-                                  id: book?.id,
-                                  title: book?.title,
-                                  photo: book?.photo,
-                                  item_qty: book?.item_qty,
-                                  return_date: e.target.value,
-                                })
-                              );
-                            }}
-                          />
-                        </td>
 
                         <td className="pt-4">
                           <button

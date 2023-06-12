@@ -17,7 +17,7 @@ const CreateBookRents = ({ handleClose }) => {
   const bookItemRes = useItemAndAvailableQtyQuery();
   const userRes = useUserListforBookIssueQuery();
 
-  
+  console.log(bookItemRes);
 
   const [allItem, setAllItem] = useState([]);
   const [item, setItem] = useState();

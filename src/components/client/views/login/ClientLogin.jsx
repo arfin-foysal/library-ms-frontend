@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { loginSchema } from "../../../../validation/loginSchema";
 import { toast } from "react-toastify";
 import { BsArrowRight } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./../../../../assets/logo/LbrMS-logo-white.png";
 import {
   clientAuthToken,
@@ -13,6 +13,7 @@ import {
 } from "../../../../features/clientAuthSlice";
 
 const ClientLogin = () => {
+  const navigate = useNavigate();
   const [clientLogin, { data, isLoading, isSuccess }] =
     useClientLoginMutation();
 
@@ -27,7 +28,6 @@ const ClientLogin = () => {
     onSubmit: async (values) => {
       try {
         const result = await clientLogin(values).unwrap();
-
         toast.success(result.message);
       } catch (error) {
         toast.error(error.data.message);
@@ -39,7 +39,6 @@ const ClientLogin = () => {
     dispatch(clientAuthUser(data?.user));
     dispatch(clientAuthToken(data?.user?.token));
     dispatch(clientUserRole(data?.user?.user_role));
-    //   // navigate("/dashboard");
     window.location.reload(false);
   }
 
@@ -49,7 +48,10 @@ const ClientLogin = () => {
         {/* <!-- Outer Row --> */}
         <div className="row justify-content-center my-5">
           <div className="col-12 col-md-4 pt-5">
-            <div className="card o-hidden border-0 shadow-lg my-5 " style={{backgroundColor:"#033D75"}} >
+            <div
+              className="card o-hidden border-0 shadow-lg my-5 "
+              style={{ backgroundColor: "#033D75" }}
+            >
               <div className="card-body p-0">
                 <div className="row">
                   <div className="col">

@@ -34,27 +34,6 @@ export const ClientApi = createApi({
       providesTags: ["Client"],
     }),
 
-    // categoryCreateOrUpdate: builder.mutation({
-    //   query: (body) => {
-    //     return {
-    //       url: `client/profile-update`,
-    //       method: "POST",
-    //       body: body,
-    //       headers:clientHeaders,
-    //     };
-    //   },
-    //   invalidatesTags: ["Client"],
-    // }),
-
-    // deleteCategory: builder.mutation({
-    //   query: (id) => ({
-    //     url: `admin/delete-category/${id}`,
-    //     method: 'DELETE',
-    //     headers
-    //   }),
-    //   invalidatesTags: ['Client']
-    // }),
-
     getItemById: builder.query({
       query: (Id) => ({
         url: `client/get-item-by-id/${Id}`,
@@ -101,6 +80,17 @@ export const ClientApi = createApi({
       }),
       invalidatesTags: ["Client"],
     }),
+    itemRentCreateClient: builder.mutation({
+      query: (body) => {
+        return {
+          url: `client/item-rent-create-client`,
+          method: "POST",
+          body: body,
+          headers:clientHeaders,
+        };
+      },
+      invalidatesTags: ["Client"],
+    }),
   }),
 });
 
@@ -113,5 +103,6 @@ export const {
   useBoweredBookByUserQuery,
   usePendingBoweredListQuery,
   useGetHomePageBookQuery,
+  useItemRentCreateClientMutation,
   
  } = ClientApi;

@@ -1,14 +1,10 @@
 import React from "react";
-import BookCard from "./common/BookCard";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { MdLanguage } from "react-icons/md";
 import { BsCalendar2Date } from "react-icons/bs";
 import avatar from "./../../../../src/assets/images/profile-picture.png/";
-import {
-  useGetAllBookItemQuery,
-  useGetItemByIdQuery,
-} from "../../../services/ClientApi";
-import { useParams } from "react-router-dom";
+import { useGetItemByIdQuery } from "../../../services/ClientApi";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBorrow } from "../../../features/borrowSlice";
 import ReactPlayer from "react-player";
@@ -18,16 +14,23 @@ import BrochureView from "./common/BrochureView";
 import VirtualBookView from "./common/VirtualBookView";
 
 const BookDetails = () => {
+  const authUser = useSelector((state) => state.clientAuth.clientUser);
   const [modalShow, setModalShow] = React.useState(false);
   const [modalVShow, setModalVShow] = React.useState(false);
 
   const { id } = useParams();
   const bookDetailsRes = useGetItemByIdQuery(id);
   const book = bookDetailsRes?.data?.data;
-
   const dispatch = useDispatch();
 
-  console.log(book?.virtual_book)
+
+
+  //return date today after 7days
+
+  const returnDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 10);
+
   return (
     <>
       <BrochureView
@@ -67,23 +70,28 @@ const BookDetails = () => {
                   <div className="text-md-center mt-2 ">
                     {book?.item_type === "physical" ? (
                       <div>
-                        <button
-                          className="btn btn-primary mx-1 btn-sm"
-                          onClick={() =>
-                            dispatch(
-                              addBorrow({
-                                id: book?.id,
-                                item_id: book?.id,
-                                title: book?.title,
-                                photo: book?.photo,
-                                item_qty: 1,
-                                return_date: "",
-                              })
-                            )
-                          }
-                        >
-                          Add Borrow
-                        </button>
+                        {book?.qty > 0 ? (
+                          <button
+                            className="btn btn-primary mx-1 btn-sm"
+                            onClick={() =>
+                              dispatch(
+                                addBorrow({
+                                  id: book?.id,
+                                  item_id: book?.id,
+                                  title: book?.title,
+                                  photo: book?.photo,
+                                  item_qty: 1,
+                                  return_date: returnDate,
+                                })
+                              )
+                            }
+                          >
+                            Borrow Now
+                          </button>
+                        ) : (
+                          <p className="text-danger">Out of Stock</p>
+                        )}
+
                         <button
                           className="btn btn-info btn-sm mx-1"
                           variant="primary"
@@ -94,13 +102,22 @@ const BookDetails = () => {
                       </div>
                     ) : (
                       <div>
-                        <button
-                          className="btn btn-info btn-sm mx-1"
-                          variant="primary"
-                          onClick={() => setModalVShow(true)}
-                        >
-                          View
-                        </button>
+                        {authUser?.id ? (
+                          <button
+                            className="btn btn-info btn-sm mx-1"
+                            variant="primary"
+                            onClick={() => setModalVShow(true)}
+                          >
+                            View E-Book
+                          </button>
+                        ) : (
+                          <Link
+                            to="/login"
+                            className="btn btn-info btn-sm mx-1"
+                          >
+                            Login to view
+                          </Link>
+                        )}
                       </div>
                     )}
                   </div>
@@ -117,17 +134,15 @@ const BookDetails = () => {
                   </p>
                   <p>
                     <b>Category: </b>
-
                     <span className="text-primary">{book?.category_name}</span>
                   </p>
                   <p>
                     <b>Book Type: </b>
-
                     <span className="text-primary">{book?.item_type}</span>
                   </p>
-
                   <p>
                     <b>Originally Published: </b>
+                    
                     {book?.publish_date}
                   </p>
 
