@@ -2,7 +2,7 @@ import React from "react";
 
 const OrderRecevedDetails = ({ handleClose, values }) => {
 
-  console.log(values);
+
 
   return (
     <div>

@@ -4,10 +4,8 @@ import { Form, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useAuthorCreateOrUpdateMutation } from "../../../../../services/authorApi";
 
-
 const CreateAuthor = ({ handleClose }) => {
-
-  const [ authorCreateOrUpdate,res] = useAuthorCreateOrUpdateMutation();
+  const [authorCreateOrUpdate, res] = useAuthorCreateOrUpdateMutation();
   const [previewImage, setPreviewImage] = useState();
   function handelImage(e) {
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
@@ -27,7 +25,7 @@ const CreateAuthor = ({ handleClose }) => {
       is_active: false,
     },
 
-    onSubmit: async (values,{resetForm}) => {
+    onSubmit: async (values, { resetForm }) => {
       let formData = new FormData();
       formData.append("name", values.name);
       formData.append("email", values.email);
@@ -44,16 +42,15 @@ const CreateAuthor = ({ handleClose }) => {
 
       try {
         const result = await authorCreateOrUpdate(formData).unwrap();
-        toast.success(result.message)
-    
+        toast.success(result.message);
       } catch (error) {
         toast.warn(error.data.message);
       }
     },
   });
-    if (res.isSuccess) {
-      handleClose();
-    }
+  if (res.isSuccess) {
+    handleClose();
+  }
 
   return (
     <div>
@@ -122,7 +119,7 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-12 my-1">
+          <div className="form-group row col-6 my-1">
             <label className="col-12 col-form-label">Present Address</label>
             <div className="col-12">
               <input
@@ -137,7 +134,7 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-12 my-1">
+          <div className="form-group row col-6 my-1">
             <label className="col-12 col-form-label">Parmanent Address</label>
             <div className="col-12">
               <input
@@ -152,7 +149,7 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-12 my-1">
+          <div className="form-group row col-6 my-1">
             <label className="col-12 col-form-label">Bio</label>
             <div className="col-12">
               <textarea
@@ -167,9 +164,9 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-4 my-1">
-            <label className="col-3 col-form-label">Photo</label>
-            <div className="col-9">
+          <div className="form-group row col-6 my-1">
+            <label className="col-12 col-form-label">Photo</label>
+            <div className="col-12">
               <input
                 className="form-control"
                 name="photo"
@@ -183,7 +180,7 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-4 my-1">
+          <div className="form-group row col-12 my-1">
             <label className="col-3 col-form-label">Is Show</label>
             <div className="col-9">
               <div class="form-check form-switch mt-2">
@@ -200,7 +197,7 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-4 my-1">
+          <div className="form-group row col-12 my-1">
             <label className="col-3 col-form-label">Is Active</label>
             <div className="col-9">
               <div class="form-check form-switch mt-2">
@@ -217,7 +214,7 @@ const CreateAuthor = ({ handleClose }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-4">
           <img
             className="py-2"
             src={previewImage}
@@ -228,17 +225,13 @@ const CreateAuthor = ({ handleClose }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-       
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
-                Close
-              </button>
-            </div>
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button className="btn btn-dark me-2" onClick={handleClose}>
+              Close
+            </button>
+
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
           </div>
         </Modal.Footer>
       </form>

@@ -97,7 +97,7 @@ const CreateCategory = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-6 my-2">
+          <div className="form-group row col-12 my-2">
             <label className="col-3 col-form-label">Is Show</label>
             <div className="col-9">
               <div class="form-check form-switch mt-2">
@@ -114,7 +114,7 @@ const CreateCategory = ({ handleClose }) => {
             </div>
           </div>
 
-          <div className="form-group row col-6 my-2 ">
+          <div className="form-group row col-12 my-2 ">
             <label className="col-3 col-form-label">Is Active</label>
             <div className="col-9">
               <div class="form-check form-switch mt-2">
@@ -131,7 +131,7 @@ const CreateCategory = ({ handleClose }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-4">
           <img
             className="py-2"
             src={previewImage}
@@ -142,16 +142,13 @@ const CreateCategory = ({ handleClose }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
-                Close
-              </button>
-            </div>
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button className="btn btn-dark me-2" onClick={handleClose}>
+              Close
+            </button>
+
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
           </div>
         </Modal.Footer>
       </form>

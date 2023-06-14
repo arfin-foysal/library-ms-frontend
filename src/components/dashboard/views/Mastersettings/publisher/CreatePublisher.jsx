@@ -88,6 +88,7 @@ const CreatePublisher = ({ handleClose }) => {
                 name="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
+                required
               />
             </div>
           </div>
@@ -168,8 +169,8 @@ const CreatePublisher = ({ handleClose }) => {
           </div>
 
           <div className="form-group row col-6 my-3 ">
-            <label className="col-6 col-form-label">Photo</label>
-            <div className="col-6">
+            <label className="col-3 col-form-label">Photo</label>
+            <div className="col-9">
               <input
                 className="form-control "
                 name="photo"
@@ -184,8 +185,8 @@ const CreatePublisher = ({ handleClose }) => {
           </div>
 
           <div className="form-group row col-6 my-3">
-            <label className="col-6 col-form-label">Establish</label>
-            <div className="col-6">
+            <label className="col-3 col-form-label">Establish</label>
+            <div className="col-9">
               <input className="form-control"
                 type="date" 
                 name="establish"
@@ -231,7 +232,7 @@ const CreatePublisher = ({ handleClose }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-4">
           <img
             className="py-2"
             src={previewImage}
@@ -242,16 +243,13 @@ const CreatePublisher = ({ handleClose }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
-                Close
-              </button>
-            </div>
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button className="btn btn-dark me-2" onClick={handleClose}>
+              Close
+            </button>
+
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
           </div>
         </Modal.Footer>
       </form>

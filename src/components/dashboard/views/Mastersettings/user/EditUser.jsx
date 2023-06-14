@@ -153,7 +153,7 @@ const EditUser = ({ handleClose,param }) => {
           </div>
         </div>
 
-        <div>
+        <div className="mx-4">
           {previewImage ? (
             <img
               className="py-2"
@@ -166,9 +166,9 @@ const EditUser = ({ handleClose,param }) => {
             <img
               className="py-2"
               src={
-                formik.values.profile_photo_path === null
+                formik.values.photo === null
                   ? avater
-                  : `${import.meta.env.VITE_FILE_URL}${formik.values.profile_photo_path}`
+                  : `${import.meta.env.VITE_FILE_URL}${formik.values.photo}`
               }
               width="80px"
               height="80px"
@@ -176,26 +176,19 @@ const EditUser = ({ handleClose,param }) => {
             />
           )}
         </div>
-
-
-
         <Modal.Footer>
           <div className=" d-flex">
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button type="submit" className="btn btn-success me-2">
+              Submit
+            </button>
 
-            <div className="mx-5">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={handleClose}
+            >
+              Close
+            </button>
           </div>
         </Modal.Footer>
       </form>

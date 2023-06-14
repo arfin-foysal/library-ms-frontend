@@ -19,7 +19,7 @@ import { useItemAndAvailableQtyQuery } from "../../../../../services/itemRentApi
 const ItemQtyList = () => {
   const res = useItemAndAvailableQtyQuery();
 
-  console.log(res);
+
 
   const [deleteItemOrder] = useDeleteItemOrderMutation();
 
@@ -129,10 +129,10 @@ const ItemQtyList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Item Order" />
+      <PageTopHeader title="Item Quantity List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Item Order List</div>
+          <div>Item Quantity List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"

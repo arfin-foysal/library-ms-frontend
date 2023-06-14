@@ -67,8 +67,8 @@ const EditLanguage = ({ handleClose, param }) => {
 
 
           <div className="form-group row col-12 my-2">
-            <label className="col-6 col-form-label">Is Active</label>
-            <div className="col-6">
+            <label className="col-4 col-form-label">Is Active</label>
+            <div className="col-4">
               <div class="form-check form-switch mt-2">
                 <Form.Check
                   type="switch"
@@ -87,21 +87,17 @@ const EditLanguage = ({ handleClose, param }) => {
  
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button type="submit" className="btn btn-success me-2">
+              Submit
+            </button>
 
-            <div className="ms-2">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={handleClose}
+            >
+              Close
+            </button>
           </div>
         </Modal.Footer>
 

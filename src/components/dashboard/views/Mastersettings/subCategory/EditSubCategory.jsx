@@ -149,7 +149,7 @@ const EditSubCategory = ({ handleClose, param }) => {
           </div>
         </div>
 
-        <div>
+        <div className="mx-4">
           {previewImage ? (
             <img
               className="py-2"
@@ -174,23 +174,15 @@ const EditSubCategory = ({ handleClose, param }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button className="btn btn-dark me-2" onClick={handleClose}>
+              Close
+            </button>
 
-            <div className="mx-5">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
           </div>
-        </Modal.Footer>
+        </Modal.Footer> 
       </form>
     </div>
   );

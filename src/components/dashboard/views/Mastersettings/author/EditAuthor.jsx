@@ -122,7 +122,7 @@ const EditAuthor = ({ handleClose, param }) => {
             </div>
           </div>
 
-          <div className="form-group row col-12 my-1">
+          <div className="form-group row col-6 my-1">
             <label className="col-12 col-form-label">Present Address</label>
             <div className="col-12">
               <input
@@ -137,7 +137,7 @@ const EditAuthor = ({ handleClose, param }) => {
             </div>
           </div>
 
-          <div className="form-group row col-12 my-1">
+          <div className="form-group row col-6 my-1">
             <label className="col-12 col-form-label">Parmanent Address</label>
             <div className="col-12">
               <input
@@ -152,7 +152,7 @@ const EditAuthor = ({ handleClose, param }) => {
             </div>
           </div>
 
-          <div className="form-group row col-12 my-1">
+          <div className="form-group row col-6 my-1">
             <label className="col-12 col-form-label">Bio</label>
             <div className="col-12">
               <textarea
@@ -167,9 +167,9 @@ const EditAuthor = ({ handleClose, param }) => {
             </div>
           </div>
 
-          <div className="form-group row col-4 my-1">
-            <label className="col-3 col-form-label">Photo</label>
-            <div className="col-9">
+          <div className="form-group row col-6 my-1">
+            <label className="col-12 col-form-label">Photo</label>
+            <div className="col-12">
               <input
                 className="form-control"
                 name="photo"
@@ -183,7 +183,7 @@ const EditAuthor = ({ handleClose, param }) => {
             </div>
           </div>
 
-          <div className="form-group row col-4 my-1">
+          <div className="form-group row col-12 my-1">
             <label className="col-3 col-form-label">Is Show</label>
             <div className="col-9">
               <div class="form-check form-switch mt-2">
@@ -200,7 +200,7 @@ const EditAuthor = ({ handleClose, param }) => {
             </div>
           </div>
 
-          <div className="form-group row col-4 my-1">
+          <div className="form-group row col-12 my-1">
             <label className="col-3 col-form-label">Is Active</label>
             <div className="col-9">
               <div class="form-check form-switch mt-2">
@@ -218,7 +218,7 @@ const EditAuthor = ({ handleClose, param }) => {
           </div>
         </div>
 
-        <div>
+        <div className="mx-4">
           {previewImage ? (
             <img
               className="py-2"
@@ -243,21 +243,17 @@ const EditAuthor = ({ handleClose, param }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button type="submit" className="btn btn-success me-2">
+              Submit
+            </button>
 
-            <div className="mx-5">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={handleClose}
+            >
+              Close
+            </button>
           </div>
         </Modal.Footer>
       </form>

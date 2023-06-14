@@ -2,13 +2,14 @@
 import {  AiOutlineUserAdd } from "react-icons/ai";
 import { RiUserSettingsLine, RiUserStarLine } from "react-icons/ri";
 import { RiUserReceived2Line,RiFileListLine } from "react-icons/ri";
-import { BiCategory } from "react-icons/bi";
+import { BiBook, BiBookBookmark, BiBookContent, BiCategory } from "react-icons/bi";
 import { IoLanguage } from "react-icons/io5";
 import { BiLandscape,BiBookAlt ,BiBookAdd} from "react-icons/bi";
 import { GoBook } from "react-icons/go";
 import { MdOutlinePublishedWithChanges, } from "react-icons/md";
 import { AiOutlineBorderOuter } from "react-icons/ai";
 import { CiViewList } from "react-icons/ci";
+import { BsDashSquare, BsDashSquareDotted } from "react-icons/bs";
 
 
 
@@ -29,7 +30,7 @@ export const navItem = [
   {
     title: "Book Issue",
     role: "admin",
-    icon: <AiOutlineBorderOuter />,
+    icon: <BiBookContent />,
     children: [
       {
         title: "Issue List",
@@ -41,13 +42,13 @@ export const navItem = [
         title: "Return Date Expired",
         link: "return-date-expired-list",
         role: "admin",
-        icon: <BiBookAdd />,
+        icon: <BiBookBookmark />,
       },
       {
         title: "Damage Book",
         link: "book-damage-list",
         role: "admin",
-        icon: <BiBookAdd />,
+        icon: <BiBook />,
       },
     ],
   },
@@ -79,13 +80,13 @@ export const navItem = [
   {
     title: "Vendor Payment",
     role: "admin",
-    icon: <CiViewList />,
+    icon: <BsDashSquare size={14} />,
     children: [
       {
         title: "Vendor Payment",
         link: "vandor-payment",
         role: "admin",
-        icon: <RiFileListLine />,
+        icon: <BsDashSquareDotted size={14} />,
       },
     ],
   },

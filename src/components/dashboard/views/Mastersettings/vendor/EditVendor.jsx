@@ -86,7 +86,8 @@ const EditVendor = ({ handleClose, param }) => {
               className="form-control"
               name="email"
               onChange={formik.handleChange}
-              value={formik.values.email}
+                value={formik.values.email}
+                required
             />
           </div>
         </div>
@@ -186,7 +187,8 @@ const EditVendor = ({ handleClose, param }) => {
         <div className="form-group row col-6 my-3 ">
           <label className="col-6 col-form-label">Photo</label>
           <div className="col-6">
-            <input
+              <input
+          
               className="form-control "
               name="photo"
               type="file"
@@ -215,7 +217,7 @@ const EditVendor = ({ handleClose, param }) => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mx-4">
           {previewImage ? (
             <img
               className="py-2"
@@ -240,21 +242,17 @@ const EditVendor = ({ handleClose, param }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button type="submit" className="btn btn-success me-2">
+              Submit
+            </button>
 
-            <div className="mx-5">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={handleClose}
+            >
+              Close
+            </button>
           </div>
         </Modal.Footer>
     </form>

@@ -214,7 +214,7 @@ const CreateVendor = ({ handleClose }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-4">
           <img
             className="py-2"
             src={previewImage}
@@ -225,16 +225,13 @@ const CreateVendor = ({ handleClose }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
-                Close
-              </button>
-            </div>
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button className="btn btn-dark me-2" onClick={handleClose}>
+              Close
+            </button>
+
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
           </div>
         </Modal.Footer>
       </form>

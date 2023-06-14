@@ -190,7 +190,7 @@ const EditPublisher = ({ handleClose, param }) => {
             <label className="col-6 col-form-label">Establish</label>
             <div className="col-6">
               <input className="form-control"
-                type="datetime" 
+                type="date"
                 name="establish"
                 onChange={formik.handleChange}
                 value={formik.values.establish}
@@ -237,7 +237,7 @@ const EditPublisher = ({ handleClose, param }) => {
           </div>
         </div>
   
-        <div>
+        <div className="mx-4">
           {previewImage ? (
             <img
               className="py-2"
@@ -262,21 +262,17 @@ const EditPublisher = ({ handleClose, param }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button type="submit" className="btn btn-success me-2">
+              Submit
+            </button>
 
-            <div className="mx-5">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={handleClose}
+            >
+              Close
+            </button>
           </div>
         </Modal.Footer>
       </form>

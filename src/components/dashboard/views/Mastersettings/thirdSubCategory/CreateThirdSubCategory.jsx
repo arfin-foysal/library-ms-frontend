@@ -21,6 +21,7 @@ const CreateThirdSubCategory = ({ handleClose }) => {
     initialValues: {
       name: "",
       description: "",
+      category_id: "",
       photo: "",
       sub_category_id: "",
       is_active: false,
@@ -29,6 +30,7 @@ const CreateThirdSubCategory = ({ handleClose }) => {
     onSubmit: async (values, { resetForm }) => {
       let formData = new FormData();
       formData.append("name", values.name);
+
 
       formData.append("description", values.description);
       formData.append("photo", values.photo);
@@ -72,7 +74,7 @@ const CreateThirdSubCategory = ({ handleClose }) => {
             </div>
           </div>
           <div className="form-group row col-12 my-1">
-            <label className="col-12 col-form-label">Category</label>
+            <label className="col-12 col-form-label">Sub Category</label>
             <div className="col-12">
               <select
                 className="form-select form-control"
@@ -143,7 +145,7 @@ const CreateThirdSubCategory = ({ handleClose }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="mx-4">
           <img
             className="py-2"
             src={previewImage}
@@ -154,16 +156,13 @@ const CreateThirdSubCategory = ({ handleClose }) => {
         </div>
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
-                Close
-              </button>
-            </div>
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+            <button className="btn btn-dark me-2" onClick={handleClose}>
+              Close
+            </button>
+
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
           </div>
         </Modal.Footer>
       </form>

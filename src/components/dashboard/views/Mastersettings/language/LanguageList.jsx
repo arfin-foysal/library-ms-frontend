@@ -81,7 +81,7 @@ const LanguageList = () => {
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Add New Category");
+                handelClickValue("Add New Language");
               }}
             >
               Add New Language

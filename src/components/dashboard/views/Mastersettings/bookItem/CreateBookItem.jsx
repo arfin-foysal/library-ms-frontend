@@ -63,7 +63,7 @@ const CreateBookItem = ({ handleClose }) => {
       is_show: false,
       is_active: false,
       publish_date: "",
-      virtual_book: "",
+      virtual_book: null,
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -227,17 +227,18 @@ const CreateBookItem = ({ handleClose }) => {
                     name="video_url"
                     onChange={formik.handleChange}
                     value={formik.values.video_url}
-                    required
+                   
                   />
                 </div>
               </div>
 
-              <div className={
-                formik.values.item_type === "physical"
-                  ? "col-6"
-                  : "col-6 d-none"
-                
-              }>
+              <div
+                className={
+                  formik.values.item_type === "physical"
+                    ? "col-6"
+                    : "col-6 d-none"
+                }
+              >
                 <label className="col-12 col-form-label">Brochure</label>
                 <div className="col-12">
                   <input
@@ -262,7 +263,9 @@ const CreateBookItem = ({ handleClose }) => {
                     : "col-6 d-none"
                 }
               >
-                <label className="col-12 col-form-label">Virtual PDF File</label>
+                <label className="col-12 col-form-label">
+                  Virtual PDF File
+                </label>
                 <div className="col-12">
                   <input
                     className="form-control"
@@ -292,6 +295,7 @@ const CreateBookItem = ({ handleClose }) => {
                       formik.setFieldValue("photo", e.currentTarget.files[0]);
                       handelImage(e);
                     }}
+                    required
                   />
                 </div>
               </div>
@@ -299,6 +303,7 @@ const CreateBookItem = ({ handleClose }) => {
                 <label className="col-12 col-form-label">summary</label>
                 <div className="col-12">
                   <textarea
+                    maxLength={250}
                     placeholder="Enter Summary"
                     type="text"
                     className="form-control"
@@ -548,16 +553,16 @@ const CreateBookItem = ({ handleClose }) => {
 
         <Modal.Footer>
           <div className=" d-flex">
-            <div>
-              <button className="btn btn-dark" onClick={handleClose}>
+            
+              <button className="btn btn-dark me-1" onClick={handleClose}>
                 Close
               </button>
-            </div>
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
+           
+          
+              <button type="submit" className="btn btn-success ">
                 Submit
               </button>
-            </div>
+         
           </div>
         </Modal.Footer>
       </form>

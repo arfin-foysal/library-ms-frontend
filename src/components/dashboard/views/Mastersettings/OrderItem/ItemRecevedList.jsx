@@ -146,21 +146,11 @@ const ItemRecevedList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Item Order" />
+      <PageTopHeader title="Item Received List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Item Order List</div>
-          <div>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => {
-                handleShow();
-                handelClickValue("Add New Item Order");
-              }}
-            >
-              Add New Item Order
-            </button>
-          </div>
+          <div>Item Received List</div>
+  
         </div>
 
         <div class="card-body p-0 ">

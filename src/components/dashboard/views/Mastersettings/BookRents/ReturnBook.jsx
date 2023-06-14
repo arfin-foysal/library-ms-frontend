@@ -8,8 +8,6 @@ const ReturnBook = ({ handleClose, param }) => {
   const [item, setItem] = useState();
   const [show, setShow] = useState(false);
 
-
-
   const rentsItem = () => {
     const data = [];
     param?.item_rents_Detail?.map((item) => {
@@ -171,9 +169,7 @@ const ReturnBook = ({ handleClose, param }) => {
                           <th scope="col">Return Type</th>
                           <th
                             scope="col"
-                            className={
-                             show ? "d-block" : "d-none"
-                            }
+                            className={show ? "d-block" : "d-none"}
                           >
                             Penalty Amount
                           </th>
@@ -212,15 +208,18 @@ const ReturnBook = ({ handleClose, param }) => {
                                 defaultValue={
                                   item.status ? item.status : "return"
                                 }
-                                onChange={(e) =>{
+                                onChange={(e) => {
                                   statusHandeler({
                                     item_id: item.item_id,
                                     status: e.target.value,
-                                  })
-                                  setShow(e.target.value === "overdue" || e.target.value === "damaged"
-                                   ? true : false);
-                                }
-                                }
+                                  });
+                                  setShow(
+                                    e.target.value === "overdue" ||
+                                      e.target.value === "damaged"
+                                      ? true
+                                      : false
+                                  );
+                                }}
                               >
                                 <option value="return">Return</option>
                                 <option value="rental">Rental</option>
@@ -232,7 +231,8 @@ const ReturnBook = ({ handleClose, param }) => {
                               <input
                                 type="number"
                                 className={
-                                  item.status === "overdue"||item.status === "damaged"
+                                  item.status === "overdue" ||
+                                  item.status === "damaged"
                                     ? "d-block form-control"
                                     : "d-none"
                                 }
@@ -244,7 +244,6 @@ const ReturnBook = ({ handleClose, param }) => {
                                     item_id: item.item_id,
                                     item_amount_of_penalty: e.target.value,
                                   });
-                                
                                 }}
                               />
                             </td>
@@ -276,16 +275,13 @@ const ReturnBook = ({ handleClose, param }) => {
 
             <Modal.Footer>
               <div className=" d-flex">
-                <div>
-                  <button className="btn btn-dark" onClick={handleClose}>
-                    Close
-                  </button>
-                </div>
-                <div className="mx-5">
-                  <button type="submit" className="btn btn-success">
-                    Submit
-                  </button>
-                </div>
+                <button className="btn btn-dark me-1" onClick={handleClose}>
+                  Close
+                </button>
+
+                <button type="submit" className="btn btn-success ">
+                  Submit
+                </button>
               </div>
             </Modal.Footer>
           </form>

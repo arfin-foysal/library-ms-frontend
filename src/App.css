@@ -28,4 +28,10 @@
     width: 200px !important;
   } 
   /* Sweet Alert Coustomize End  */
+
+  .row
+  {
+    margin-left: 0px !important;
+    /* margin-right: 0px !important; */
+  }
   

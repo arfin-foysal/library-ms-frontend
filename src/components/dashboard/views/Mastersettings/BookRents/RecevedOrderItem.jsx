@@ -318,20 +318,21 @@ const RecevedOrderItem = ({ handleClose }) => {
                 </div>
               </div>
 
-              <Modal.Footer>
-                <div className=" d-flex">
-                  <div>
-                    <button className="btn btn-dark" onClick={handleClose}>
-                      Close
-                    </button>
-                  </div>
-                  <div className="mx-5">
-                    <button type="submit" className="btn btn-success">
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </Modal.Footer>
+             
+        <Modal.Footer>
+          <div className=" d-flex">
+            
+              <button className="btn btn-dark me-1" onClick={handleClose}>
+                Close
+              </button>
+           
+          
+              <button type="submit" className="btn btn-success ">
+                Submit
+              </button>
+         
+          </div>
+        </Modal.Footer>
             </form>
           </div>
         </div>
