@@ -55,8 +55,31 @@ export const clientAuthSlice = createSlice({
       state.clientRole = null;
       state.clientToken = null;
     },
+
+
+
+
+
   },
 });
+
+
+//auto logout after 1 hour
+export const autoLogout = (time) => (dispatch) => {
+  setTimeout(() => {
+    dispatch(clientLogout());
+  }, time);
+};
+
+
+
+
+
+
+
+
+
+
 
 export const {
   clientAuthUser,

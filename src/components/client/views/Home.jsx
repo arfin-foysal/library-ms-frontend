@@ -5,12 +5,12 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { BiLike } from "react-icons/bi";
-import { AiFillLike } from "react-icons/ai";
+
 import BookCard from "./common/BookCard";
-import { useGetAllBookItemQuery, useGetHomePageBookQuery } from "../../../services/ClientApi";
+
 import Loader from "./../../dashboard/common/Loader";
 import { Link } from "react-router-dom";
+import { useGetHomePageBookQuery } from "../../../services/clientSiteApi";
 const Home = () => {
   const bookRes = useGetHomePageBookQuery();
  

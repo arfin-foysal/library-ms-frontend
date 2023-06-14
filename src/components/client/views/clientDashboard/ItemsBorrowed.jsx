@@ -1,7 +1,8 @@
 import React from "react";
-import { useBoweredBookByUserQuery } from "../../../../services/ClientApi";
+
 import BoweredBook from "../common/BoweredBook";
 import Loader from "../../../dashboard/common/Loader";
+import { useBoweredBookByUserQuery } from "../../../../services/clientSiteApi";
 
 const ItemsBorrowed = () => {
   const boweredRes = useBoweredBookByUserQuery();

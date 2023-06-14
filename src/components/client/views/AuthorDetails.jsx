@@ -4,11 +4,7 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { MdLanguage } from "react-icons/md";
 import { BsCalendar2Date } from "react-icons/bs";
 import avatar from "./../../../../src/assets/images/profile-picture.png/";
-import {
-  useGetAllBookItemQuery,
-  useGetAuthorAndItemQuery,
-  useGetItemByIdQuery,
-} from "../../../services/ClientApi";
+
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBorrow } from "../../../features/borrowSlice";
@@ -16,6 +12,7 @@ import ReactPlayer from "react-player";
 import Loader from "../../dashboard/common/Loader";
 import RelatedBookCard from "./common/RelatedBookCard";
 import AuthorBookCard from "./common/AuthorBookCard";
+import { useGetAuthorAndItemQuery } from "../../../services/clientSiteApi";
 
 const AuthorDetails = () => {
   const { id } = useParams();

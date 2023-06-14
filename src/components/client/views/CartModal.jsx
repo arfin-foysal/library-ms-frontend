@@ -3,7 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { clearBorrow, removeItem } from "../../../features/borrowSlice";
 import { toast } from "react-toastify";
-import { useItemRentCreateClientMutation } from "../../../services/ClientApi";
+import { useItemRentCreateClientMutation } from "../../../services/clientSiteApi";
+
 
 function CartModal({ show, handleClose }) {
   const borrow = useSelector((state) => state.borrow);

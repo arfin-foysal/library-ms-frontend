@@ -14,9 +14,9 @@ const RelatedBookCard = ({ book }) => {
       </Link>
 
       <div className="card-body m-0 p-0 text-center">
-        <p className="card-text p-0 m-0 mt-2">{book?.title}</p>
+        <p className="card-text p-0 m-0 mt-2 text-capitalize">{book?.title}</p>
         <div className="mt-2">
-          <p className=" text-muted"> <b>by </b>{book?.authors[0]?.name}</p>
+          <p className=" text-muted "> <b>by </b>{book?.authors[0]?.name}</p>
           <hr />
           <Link to={`/bookdetails/${book?.id}`} className="btn btn-primary btn-sm">
             View Book

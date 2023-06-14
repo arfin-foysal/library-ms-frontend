@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 const VirtualBookView = (props) => {
-  console.log(props?.virtual);
+ 
   return (
     <Modal
       {...props}

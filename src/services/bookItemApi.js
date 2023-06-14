@@ -1,18 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { headers } from "../utils/ApiHeaders";
+import { apiSliceAdmin } from "../store/api/apiSliceAdmin";
 
-export const bookItemApi = createApi({
+export const bookItemApi = apiSliceAdmin.injectEndpoints({
   reducerPath: "bookItemApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_API_URL,
+  // }),
   tagTypes: ["BookItem"],
   endpoints: (builder) => ({
     getBookItemList: builder.query({
       query: () => ({
         url: "admin/all-item-list/",
         method: "GET",
-        headers,
+        // headers,
       }),
       providesTags: ["BookItem"],
     }),
@@ -23,7 +24,7 @@ export const bookItemApi = createApi({
           url: `admin/create-or-update-item`,
           method: "POST",
           body: body,
-          headers,
+          // headers,
         };
       },
       invalidatesTags: ["BookItem"],
@@ -32,7 +33,7 @@ export const bookItemApi = createApi({
       query: (id) => ({
         url: `admin/delete-item/${id}`,
         method: "DELETE",
-        headers,
+        // headers,
       }),
       invalidatesTags: ["BookItem"],
     }),
@@ -42,7 +43,7 @@ export const bookItemApi = createApi({
       query: () => ({
         url: "admin/date-expired-item",
         method: "GET",
-        headers,
+        // headers,
       }),
       invalidatesTags: ["BookItem"],
     }),

@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { headers } from "../utils/ApiHeaders";
+import { apiSliceAdmin } from "../store/api/apiSliceAdmin";
 
-export const authorApi = createApi({
+export const authorApi = apiSliceAdmin.injectEndpoints({
   reducerPath: "authorApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_API_URL,
+  // }),
   tagTypes: ["Author"],
   endpoints: (builder) => ({
 
@@ -13,7 +14,7 @@ export const authorApi = createApi({
       query: () => ({
         url: "admin/all-author-list",
         method: "GET",
-        headers,
+        // headers,
       }),
       providesTags: ["Author"],
     }),
@@ -25,7 +26,7 @@ export const authorApi = createApi({
           url: `admin/create-or-update-author`,
           method: "POST",
           body: body,
-          headers,
+          // headers,
         };
       },
       invalidatesTags: ["Author"],
@@ -34,7 +35,7 @@ export const authorApi = createApi({
       query: (id) => ({
         url: `admin/delete-author/${id}`,
         method: 'DELETE',
-        headers
+        // headers
       }),
       invalidatesTags: ['Author']
     }),

@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { headers } from "../utils/ApiHeaders";
+import { apiSliceAdmin } from "../store/api/apiSliceAdmin";
 // item-rent-create'
-export const itemRentApi = createApi({
+export const itemRentApi = apiSliceAdmin.injectEndpoints({
   reducerPath: "itemRentApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_API_URL,
+  // }),
   tagTypes: ["Rent"],
   endpoints: (builder) => ({
 

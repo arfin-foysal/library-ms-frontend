@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { headers } from "../utils/ApiHeaders";
+import { apiSliceAdmin } from "../store/api/apiSliceAdmin";
 
-export const authApi = createApi({
+export const authApi = apiSliceAdmin.injectEndpoints({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_API_URL,
+  // }),
   tagTypes: ["Auth"],
   endpoints: (builder) => ({
     login: builder.mutation({
@@ -17,15 +18,7 @@ export const authApi = createApi({
       }),
       providesTags: ["Auth"],
     }),
-    clientLogin: builder.mutation({
-      query: (body) => ({
-        url: "auth/client-login",
-        method: "POST",
-        body,
-        headers,
-      }),
-      providesTags: ["Auth"],
-    }),
+
     register: builder.mutation({
       query: (body) => ({
         url: "auth/register",

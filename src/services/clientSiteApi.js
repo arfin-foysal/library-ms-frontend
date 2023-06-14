@@ -1,18 +1,13 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { clientHeaders,  } from "../utils/ApiHeaders";
+import { apiSlice } from './../store/api/apiSlice';
 
-export const ClientApi = createApi({
-  reducerPath: "clientApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-  }),
+export const clientSiteApi = apiSlice.injectEndpoints({
+  reducerPath: "clientSiteApi",
   tagTypes: ["Client"],
   endpoints: (builder) => ({
     getAllBookItem: builder.query({
-      query: ({limit}) => ({
+      query: ({ limit }) => ({
         url: `client/get-all-item?limit=${limit}`,
         method: "GET",
-        headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
@@ -20,7 +15,6 @@ export const ClientApi = createApi({
       query: () => ({
         url: "client/get-home-page-book",
         method: "GET",
-        headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
@@ -29,7 +23,6 @@ export const ClientApi = createApi({
       query: () => ({
         url: "client/get-author-and-item",
         method: "GET",
-        headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
@@ -38,11 +31,9 @@ export const ClientApi = createApi({
       query: (Id) => ({
         url: `client/get-item-by-id/${Id}`,
         method: "GET",
-        headers:clientHeaders,
       }),
       invalidatesTags: ["Client"],
     }),
-
 
     profileUpdate: builder.mutation({
       query: (body) => {
@@ -50,7 +41,6 @@ export const ClientApi = createApi({
           url: `client/profile-update`,
           method: "POST",
           body: body,
-          headers:clientHeaders,
         };
       },
       invalidatesTags: ["Client"],
@@ -60,7 +50,6 @@ export const ClientApi = createApi({
       query: () => ({
         url: `client/single-user`,
         method: "GET",
-        headers:clientHeaders,
       }),
       providesTags: ["Client"],
     }),
@@ -68,7 +57,6 @@ export const ClientApi = createApi({
       query: () => ({
         url: `client/rent-item-by-user`,
         method: "GET",
-        headers:clientHeaders,
       }),
       invalidatesTags: ["Client"],
     }),
@@ -76,7 +64,13 @@ export const ClientApi = createApi({
       query: () => ({
         url: `client/pending-order-list`,
         method: "GET",
-        headers:clientHeaders,
+      }),
+      invalidatesTags: ["Client"],
+    }),
+    itemReturnTimeExpired: builder.query({
+      query: () => ({
+        url: `client/item-return-time-expired`,
+        method: "GET",
       }),
       invalidatesTags: ["Client"],
     }),
@@ -86,7 +80,6 @@ export const ClientApi = createApi({
           url: `client/item-rent-create-client`,
           method: "POST",
           body: body,
-          headers:clientHeaders,
         };
       },
       invalidatesTags: ["Client"],
@@ -94,7 +87,7 @@ export const ClientApi = createApi({
   }),
 });
 
-export const { 
+export const {
   useGetAllBookItemQuery,
   useGetItemByIdQuery,
   useGetAuthorAndItemQuery,
@@ -104,5 +97,5 @@ export const {
   usePendingBoweredListQuery,
   useGetHomePageBookQuery,
   useItemRentCreateClientMutation,
-  
- } = ClientApi;
+  useItemReturnTimeExpiredQuery,
+} = clientSiteApi;

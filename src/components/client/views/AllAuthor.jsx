@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import avatar from "./../../../../src/assets/images/profile-picture.png/";
-import { useGetAuthorAndItemQuery } from "../../../services/ClientApi";
+
 import Loader from "./../../dashboard/common/Loader";
 import { Link } from "react-router-dom";
+import { useGetAuthorAndItemQuery } from "../../../services/clientSiteApi";
 const AllAuthor = () => {
   const res = useGetAuthorAndItemQuery();
 

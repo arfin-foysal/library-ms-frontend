@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import Loader from "./../../../dashboard/common/Loader";
 
 import avatar from "./../../../../assets/images/profile-picture.png";
-import { useGetSingleUserQuery, useProfileUpdateMutation } from "../../../../services/ClientApi";
+import { useGetSingleUserQuery, useProfileUpdateMutation } from "../../../../services/clientSiteApi";
+
 const PersonalInfo = () => {
   const profileRes = useGetSingleUserQuery();
 
@@ -16,7 +17,7 @@ const PersonalInfo = () => {
     setPreviewImage(URL.createObjectURL(e.target.files[0]));
   }
 
-  console.log(res);
+
 
   const formik = useFormik({
 

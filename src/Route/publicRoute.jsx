@@ -1,6 +1,3 @@
-import Error from "../components/client/Error";
-
-import NotAccess from "../components/client/NotAccess";
 import Login from "../components/pages/login/Login";
 import Signup from "../components/pages/signup/Signup";
 import {
@@ -21,6 +18,10 @@ import ClientLayout from "../components/client/views/clientDashboard/ClientLayou
 import PersonalInfo from "../components/client/views/clientDashboard/PersonalInfo";
 import ItemsBorrowed from "../components/client/views/clientDashboard/ItemsBorrowed";
 import PendingItems from "../components/client/views/clientDashboard/PendingItems";
+import OverDueItems from "../components/client/views/clientDashboard/OverDueItems";
+import Contact from './../components/client/views/Contact';
+import NotAccess from "../components/pages/commonViews/NotAccess";
+import Error from "../components/pages/commonViews/Error";
 
 export const publicRoute = [
   {
@@ -48,6 +49,10 @@ export const publicRoute = [
         element: <AllAuthor />,
       },
       {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
         path: "/client-dashboard",
         element:
           clientAuthUser === "" && clientAuthUserToken === "" ? (
@@ -67,6 +72,10 @@ export const publicRoute = [
           {
             path: "/client-dashboard/pending-items",
             element: <PendingItems />,
+          },
+          {
+            path: "/client-dashboard/over-due-items",
+            element: <OverDueItems />,
           }
           
         ]

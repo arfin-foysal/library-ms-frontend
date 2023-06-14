@@ -3,7 +3,7 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { MdLanguage } from "react-icons/md";
 import { BsCalendar2Date } from "react-icons/bs";
 import avatar from "./../../../../src/assets/images/profile-picture.png/";
-import { useGetItemByIdQuery } from "../../../services/ClientApi";
+
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBorrow } from "../../../features/borrowSlice";
@@ -12,7 +12,8 @@ import Loader from "../../dashboard/common/Loader";
 import RelatedBookCard from "./common/RelatedBookCard";
 import BrochureView from "./common/BrochureView";
 import VirtualBookView from "./common/VirtualBookView";
-
+import moment from "moment";
+import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
 const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const [modalShow, setModalShow] = React.useState(false);
@@ -22,8 +23,6 @@ const BookDetails = () => {
   const bookDetailsRes = useGetItemByIdQuery(id);
   const book = bookDetailsRes?.data?.data;
   const dispatch = useDispatch();
-
-
 
   //return date today after 7days
 
@@ -52,8 +51,8 @@ const BookDetails = () => {
 
                 <div className="col-md-4 col-12 ">
                   <div
-                    className="card p-3 border-primary shadow"
-                    style={{ width: "15rem" }}
+                    className="card p-3 border-primary shadow w-100 "
+                    // style={{ width: "15rem" }}
                   >
                     <div>
                       <img
@@ -67,7 +66,7 @@ const BookDetails = () => {
                     <div className="card-body m-0 p-0 text-center"></div>
                   </div>
 
-                  <div className="text-md-center mt-2 ">
+                  <div className="text-center my-3 ">
                     {book?.item_type === "physical" ? (
                       <div>
                         {book?.qty > 0 ? (
@@ -125,7 +124,7 @@ const BookDetails = () => {
                   <div></div>
                 </div>
                 <div className="col-md-8 col-12">
-                  <h5>{book?.title} </h5>
+                  <h5 className="text-capitalize">{book?.title} </h5>
                   <p>
                     by{" "}
                     <span className="text-primary">
@@ -142,8 +141,10 @@ const BookDetails = () => {
                   </p>
                   <p>
                     <b>Originally Published: </b>
-                    
-                    {book?.publish_date}
+
+                    <span className="text-primary">
+                      {moment(book?.publish_date).format("MMMM Do YYYY")}
+                    </span>
                   </p>
 
                   <div className="row mt-2 border border-1 py-2">
@@ -186,7 +187,8 @@ const BookDetails = () => {
                         <b>Publish date</b>
                       </p>
                       <BsCalendar2Date size={30} />
-                      <p>{book?.publish_date}</p>
+
+                      <p>{moment(book?.publish_date).format("MMMM Do YYYY")}</p>
                     </div>
                   </div>
 
@@ -226,15 +228,15 @@ const BookDetails = () => {
             </div>
           </div>
           <div className="col-md-4 col-12">
-            <div>
-              <h5> Related Products</h5>
+            <div >
+              <h5 className="my-3"> Related Products</h5>
               <div className="d-flex flex-wrap justify-content-between mb-5">
                 {book?.related_items?.map((book, i) => (
                   <RelatedBookCard key={i} book={book} />
                 ))}
               </div>
             </div>
-            <div>
+            <div className="d-flex justify-content-center">
               <ReactPlayer
                 className="react-player
                 react-player__shadow

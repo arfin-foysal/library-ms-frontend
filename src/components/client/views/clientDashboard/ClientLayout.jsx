@@ -2,9 +2,9 @@ import React from "react";
 import ebook from "./../../../../assets/images/dashboard-ebook.png";
 import { Link, Outlet } from "react-router-dom";
 import { HiInformationCircle } from "react-icons/hi";
-
 import { RiBookFill } from "react-icons/ri";
 import { MdPending } from "react-icons/md";
+import { BsFillCalendarEventFill } from "react-icons/bs";
 const ClientLayout = () => {
   return (
     <div>    <div className=" text-center " style={{backgroundColor:"#6682C81A"}}>
@@ -31,6 +31,11 @@ const ClientLayout = () => {
                 <li className="nav-item">
                   <Link className="nav-link " to="/client-dashboard/pending-items">
                     <MdPending /> Pending Items
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link " to="/client-dashboard/over-due-items">
+                    <BsFillCalendarEventFill size={12} /> Over Due Items
                   </Link>
                 </li>
               </ul>

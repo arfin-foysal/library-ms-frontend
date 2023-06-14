@@ -2,9 +2,9 @@ import React from "react";
 import damo from "./../../../../assets/images/img_1.jpg";
 import { Link } from "react-router-dom";
 import moment from "moment";
-const BoweredBook = ({ book }) => {
+const OverDueBook = ({ book }) => {
   return (
-    <div className="card p-3 border-primary shadow" style={{ width: "13rem" }}>
+    <div className="card p-3 border-danger shadow" style={{ width: "13rem" }}>
       <Link to={`/bookdetails/${book?.id}`}>
         <img
           src={`${import.meta.env.VITE_FILE_URL}/${book?.photo}`}
@@ -24,9 +24,12 @@ const BoweredBook = ({ book }) => {
             {book?.authors[0]?.name}
           </p> */}
           <p className="text-muted ">
-            <b>Borrowed Date: </b>
-            <br />
+            <p className="m-0">Borrowed Date: </p>
             {moment(book?.rental_date).format("MMMM Do YYYY")}
+          </p>
+          <p className="text-muted ">
+            <p className="m-0">Exp Date: </p>
+            {moment(book?.return_date).format("MMMM Do YYYY")}
           </p>
           <hr />
 
@@ -42,4 +45,4 @@ const BoweredBook = ({ book }) => {
   );
 };
 
-export default BoweredBook;
+export default OverDueBook;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import BookCard from "./common/BookCard";
-import { useGetAllBookItemQuery } from "../../../services/ClientApi";
+
 import Loader from "../../dashboard/common/Loader";
+import { useGetAllBookItemQuery } from "../../../services/clientSiteApi";
 
 const AllBook = () => {
   const [limit, setLimit] = useState(5);

@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { headers } from "../utils/ApiHeaders";
-
-export const categoryApi = createApi({
+import { apiSliceAdmin } from './../store/api/apiSliceAdmin';
+export const categoryApi = apiSliceAdmin.injectEndpoints({
   reducerPath: "categoryApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
-  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: import.meta.env.VITE_API_URL,
+  // }),
+
   tagTypes: ["Category"],
   endpoints: (builder) => ({
 
