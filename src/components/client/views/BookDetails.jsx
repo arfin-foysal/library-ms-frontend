@@ -16,6 +16,7 @@ import moment from "moment";
 import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
 const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
+  const authToken = useSelector((state) => state.clientAuth.clientToken);
   const [modalShow, setModalShow] = React.useState(false);
   const [modalVShow, setModalVShow] = React.useState(false);
 
@@ -23,6 +24,9 @@ const BookDetails = () => {
   const bookDetailsRes = useGetItemByIdQuery(id);
   const book = bookDetailsRes?.data?.data;
   const dispatch = useDispatch();
+
+  console.log(authUser);
+  console.log(authToken);
 
   //return date today after 7days
 
@@ -71,7 +75,7 @@ const BookDetails = () => {
                       <div>
                         {book?.qty > 0 ? (
                           <button
-                            className="btn btn-primary mx-1 btn-sm"
+                            className="btn btn-primary mx-1 btn-sm btn-library"
                             onClick={() =>
                               dispatch(
                                 addBorrow({
@@ -101,7 +105,7 @@ const BookDetails = () => {
                       </div>
                     ) : (
                       <div>
-                        {authUser?.id ? (
+                        {authUser&&authToken ? (
                           <button
                             className="btn btn-info btn-sm mx-1"
                             variant="primary"
@@ -228,7 +232,7 @@ const BookDetails = () => {
             </div>
           </div>
           <div className="col-md-4 col-12">
-            <div >
+            <div>
               <h5 className="my-3"> Related Products</h5>
               <div className="d-flex flex-wrap justify-content-between mb-5">
                 {book?.related_items?.map((book, i) => (

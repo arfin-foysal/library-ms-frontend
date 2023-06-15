@@ -21,7 +21,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     authToken: (state, action) => {
-      Cookies.set("library_user_token", action.payload);
+      Cookies.set("library_user_token", action.payload, { expires: 2 });
     },
 
     authUser: (state, action) => {
@@ -33,7 +33,10 @@ export const authSlice = createSlice({
     },
 
     userPermission: (state, action) => {
-      localStorage.setItem("library_permissions", JSON.stringify(action.payload));
+      localStorage.setItem(
+        "library_permissions",
+        JSON.stringify(action.payload)
+      );
     },
 
     logout: (state) => {
@@ -41,7 +44,7 @@ export const authSlice = createSlice({
       localStorage.removeItem("library_user");
       localStorage.removeItem("library_permissions");
       localStorage.removeItem("library_user_role");
-      
+
       state.user = null;
       state.permissions = null;
       state.token = null;
@@ -50,6 +53,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { authUser, userPermission, userRole, authToken,logout} =
+export const { authUser, userPermission, userRole, authToken, logout } =
   authSlice.actions;
 export default authSlice.reducer;

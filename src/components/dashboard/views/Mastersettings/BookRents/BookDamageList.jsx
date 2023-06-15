@@ -12,6 +12,7 @@ import {
   useItemDamageListQuery,
 
 } from "../../../../../services/itemRentApi";
+import moment from "moment";
 
 
 const BookDamageList = () => {
@@ -70,6 +71,11 @@ const BookDamageList = () => {
         size: 10,
       },
       {
+        accessorKey: "isbn", //normal accessorKey
+        header: "ISBN",
+        size: 10,
+      },
+      {
         accessorFn: (row) =>
           row?.user_photo ? (
             <>
@@ -94,6 +100,7 @@ const BookDamageList = () => {
         header: "Borrower Photo",
         size: 10,
       },
+   
       {
         accessorKey: "user_name", //access nested data with dot notation
         header: "Borrower name",
@@ -106,18 +113,38 @@ const BookDamageList = () => {
         header: "Penalty Amount",
         size: 10,
       },
- 
-  
+
       {
-        accessorKey: "rental_date", //normal accessorKey
+        accessorFn: (row) =>
+          row?.rental_date && (
+            <>
+              {moment(row.rental_date).format("MMMM Do YYYY")}
+            </>
+          ) ,
+
+        id: "rental_date",
         header: "Rental Date",
         size: 10,
       },
       {
-        accessorKey: "return_date", //normal accessorKey
+        accessorFn: (row) =>
+          row?.rental_date && (
+            <>
+              {moment(row.return_date).format("MMMM Do YYYY")} <br/> <span className=" bg-danger text-white p-1 rounded-2">Not Return</span>
+            </>
+          ) ,
+
+        id: "return_date",
         header: "Return Date",
         size: 10,
       },
+ 
+
+      // {
+      //   accessorKey: "return_date", //normal accessorKey
+      //   header: "Return Date",
+      //   size: 10,
+      // },
    
 
       // {

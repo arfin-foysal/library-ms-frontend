@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 const OrderItemList = () => {
   const res = useAllItemOrderQuery();
 
-
   const [deleteItemOrder] = useDeleteItemOrderMutation();
 
   const { data, isSuccess, isFetching, isError, error } = res;
@@ -153,10 +152,10 @@ const OrderItemList = () => {
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Add New Item Order");
+                handelClickValue("Item Order");
               }}
             >
-              Add New Item Order
+              Add Item Order
             </button>
           </div>
         </div>
@@ -177,40 +176,20 @@ const OrderItemList = () => {
             renderRowActions={(row, index) => (
               <>
                 <div className="d-flex ">
-                  <div className="mx-1">
-                    <button
-                      to="#"
-                      className="btn btn-secondary btn-sm d-flex align-items-center"
-                      onClick={() => {
-                        handleShow();
-                        handelClickValue("Order Information");
-                        setParamId(row?.row?.original);
-                      }}
-                    >
-                      {/* <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div> */}
-                      <div>Details</div>
-                    </button>
-                  </div>
-
-                  {/* <div >
-                    <button
-                      title=""
-                      className="px-2 d-flex align-items-center btn btn-primary btn-sm"
-                      onClick={() => {
-                        handleShow();
-                        handelClickValue("Edit Item Order");
-                        setParamId(row?.row?.original);
-                      }}
-                    >
-                      <div>
-                        <FaEdit size={16} />
-                      </div>
-                      <div> Edit</div>
-                    </button>
-                  </div> */}
-
+                  <button
+                    to="#"
+                    className="btn btn-secondary btn-sm d-flex align-items-center"
+                    onClick={() => {
+                      handleShow();
+                      handelClickValue("Order Information");
+                      setParamId(row?.row?.original);
+                    }}
+                  >
+                    {/* <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div> */}
+                    <div>Details</div>
+                  </button>
                   {row?.row?.original?.order_status === "unreceived" && (
-                    <div>
+                    <>
                       <button
                         onClick={() =>
                           confirmHandel(
@@ -231,14 +210,14 @@ const OrderItemList = () => {
 
                       <Link
                         to={`/dashboard/receved-order-list/${row?.row?.original?.id}`}
-                        className="px-2 d-flex align-items-center btn btn-info btn-sm my-1"
+                        className="px-2 d-flex align-items-center btn btn-info btn-sm"
                       >
-                        <div>Receve</div>
+                        <div>Received</div>
                         <div>
                           <IoReceipt size={13} />
                         </div>
                       </Link>
-                    </div>
+                    </>
                   )}
                 </div>
               </>

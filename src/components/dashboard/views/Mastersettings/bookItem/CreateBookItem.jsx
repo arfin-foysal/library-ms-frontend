@@ -64,6 +64,7 @@ const CreateBookItem = ({ handleClose }) => {
       is_active: false,
       publish_date: "",
       virtual_book: null,
+      barcode_or_rfid: "",
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -90,6 +91,7 @@ const CreateBookItem = ({ handleClose }) => {
       formData.append("is_free", values.is_free);
       formData.append("publish_date", values.publish_date);
       formData.append("virtual_book", values.virtual_book);
+      formData.append("barcode_or_rfid", values.barcode_or_rfid);
 
       if (authorId.length <= 0) {
         toast.error("Please select Author");
@@ -105,6 +107,10 @@ const CreateBookItem = ({ handleClose }) => {
       }
 
       resetForm();
+      setPreviewImage(null);
+      setAuthorId([]);
+
+
 
       try {
         const result = await bookItemCreateOrUpdate(formData).unwrap();
@@ -138,6 +144,20 @@ const CreateBookItem = ({ handleClose }) => {
                     name="title"
                     onChange={formik.handleChange}
                     value={formik.values.title}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="col-12">
+                <label className="col-12 col-form-label">Barcode Or Rfid</label>
+                <div className="col-12">
+                  <input
+                    placeholder="Enter Barcode Or Rfid"
+                    type="text"
+                    className="form-control"
+                    name="barcode_or_rfid"
+                    onChange={formik.handleChange}
+                    value={formik.values.barcode_or_rfid}
                     required
                   />
                 </div>
@@ -272,7 +292,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="virtual_book"
                     type="file"
                     accept="image/*,.pdf"
-                    required
+                 
                     onChange={(e) => {
                       formik.setFieldValue(
                         "virtual_book",
@@ -283,7 +303,7 @@ const CreateBookItem = ({ handleClose }) => {
                 </div>
               </div>
 
-              <div className="col-6">
+              <div className="col">
                 <label className="col-12 col-form-label">Photo</label>
                 <div className="col-12">
                   <input
@@ -559,7 +579,7 @@ const CreateBookItem = ({ handleClose }) => {
               </button>
            
           
-              <button type="submit" className="btn btn-success ">
+              <button type="submit" className="btn btn-success " data-dismiss="modal">
                 Submit
               </button>
          

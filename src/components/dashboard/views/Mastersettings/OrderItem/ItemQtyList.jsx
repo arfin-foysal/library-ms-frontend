@@ -134,15 +134,7 @@ const ItemQtyList = () => {
         <div class="card-header d-flex justify-content-between ">
           <div>Item Quantity List</div>
           <div>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => {
-                handleShow();
-                handelClickValue("Add New Item Order");
-              }}
-            >
-              Add New Item Order
-            </button>
+
           </div>
         </div>
 
@@ -159,82 +151,7 @@ const ItemQtyList = () => {
               },
             }}
             // enablePagination="true"
-            renderRowActions={(row, index) => (
-              <>
-                <div className="d-flex ">
-                  <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
-                  </div>
-
-                  {/* <div >
-                    <button
-                      title=""
-                      className="px-2 d-flex align-items-center btn btn-primary btn-sm"
-                      onClick={() => {
-                        handleShow();
-                        handelClickValue("Edit Item Order");
-                        setParamId(row?.row?.original);
-                      }}
-                    >
-                      <div>
-                        <FaEdit size={16} />
-                      </div>
-                      <div> Edit</div>
-                    </button>
-                  </div> */}
-
-                  {/* {row?.row?.original?.order_status === "unreceived" ? (
-                    <div>
-                      <button
-                        onClick={() =>
-                          confirmHandel(
-                            "error",
-                            "Delete",
-                            "#FF0000",
-                            row?.row?.original?.id,
-                            handelDelete
-                          )
-                        }
-                        className="px-2 mx-2 d-flex align-items-center btn btn-danger btn-sm "
-                      >
-                        <div> Delete</div>
-                        <div>
-                          <FaTrash size={13} />
-                        </div>
-                      </button>
-
-                      <Link
-                        to={`/dashboard/receved-order-list/${row?.row?.original?.id}`}
-                        className="px-2 d-flex align-items-center btn btn-info btn-sm my-1"
-                      >
-                        <div>Receved</div>
-                        <div>
-                          <IoReceipt size={13} />
-                        </div>
-                      </Link>
-                    </div>
-                  ) : (
-                    <>
-                    <span className="badge bg-success">received</span>
-                  </>
-                  )} */}
-                </div>
-              </>
-            )}
+    
           />
         </div>
       </div>

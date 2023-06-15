@@ -22,10 +22,10 @@ const EditBookItem = ({ handleClose, param }) => {
   const publisharRes = useGetPublisharListQuery();
   const langRes = useGetLanguageListQuery();
   const countryRes = useGetLanguageListQuery();
-  const categoryRes = useGetCategoryListQuery();
-  const subcategoryRes = useGetSubCategoryListByCategoryQuery(categoryId);
-  const thirdSubCateRes =
-    useGetThirdSubCategoryListbySubcategotyIdQuery(subCategoryId);
+  // const categoryRes = useGetCategoryListQuery();
+  // const subcategoryRes = useGetSubCategoryListByCategoryQuery(categoryId);
+  // const thirdSubCateRes =
+  //   useGetThirdSubCategoryListbySubcategotyIdQuery(subCategoryId);
   const authorRes = useGetAuthorListQuery();
 
   const [previewImage, setPreviewImage] = useState();
@@ -48,8 +48,6 @@ const EditBookItem = ({ handleClose, param }) => {
       formik.setFieldValue("third_category_id", null);
     }
   };
-
-  console.log("param", param);
 
   const formik = useFormik({
     enableReinitialize: true,

@@ -20,7 +20,7 @@ const BookCard = ({ book }) => {
           <p className=" text-muted"> <b>by </b>{book?.authors[0]?.name}</p>
           <hr />
 
-          <Link to={`/bookdetails/${book?.id}`} className="btn btn-primary btn-sm">
+          <Link to={`/bookdetails/${book?.id}`} className="btn btn-primary btn-sm btn-library">
             View Book
           </Link>
         </div>

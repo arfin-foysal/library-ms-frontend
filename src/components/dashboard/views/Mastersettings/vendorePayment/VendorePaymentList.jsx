@@ -30,38 +30,10 @@ const VendorePaymentList = () => {
     setClickValue(value);
   }, []);
 
-  const handelDelete = async (id) => {
-    const result = await deleteBookItem(id).unwrap();
-    toast.success(result.message);
-  };
+
 
   const columns = useMemo(
     () => [
-      // {
-      //   accessorFn: (row) =>
-      //     row?.photo ? (
-      //       <>
-      //         <img
-      //           className="img-fluid rounded-circle shadow"
-      //           style={{ width: "40px", height: "40px" }}
-      //           src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
-      //           alt=""
-
-      //         ></img>
-      //       </>
-      //     ) : (
-      //       <img
-      //         className="img-fluid rounded-circle shadow"
-      //         style={{ width: "40px", height: "40px" }}
-      //         src={avatar}
-      //         alt=""
-      //       ></img>
-      //     ),
-
-      //   id: "Photo",
-      //   header: "Photo",
-      //   size: 10,
-      // },
 
       {
         accessorKey: "vendor_payment_no", //access nested data with dot notation
@@ -133,10 +105,10 @@ const VendorePaymentList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Book Item" />
+      <PageTopHeader title="Vendor Payment" />
       <div class="card border shadow-lg ">
         <div class="card-header d-flex justify-content-between ">
-          <div> Book Item List</div>
+          <div>Vendor Payment List</div>
 
         </div>
 
@@ -180,7 +152,7 @@ const VendorePaymentList = () => {
                       className="px-2 d-flex align-items-center btn btn-primary btn-sm"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Edit Book Item");
+                        handelClickValue("Vendor Payment");
                         setParamId(row?.row?.original);
                       }}
                     >

@@ -23,7 +23,7 @@ const OrderItemModal = ({ handleClose, show, clickValue, paramId }) => {
           <Modal.Title>{clickValue}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {clickValue === "Add New Item Order" && (
+          {clickValue === "Item Order" && (
             <CreateOrderItem handleClose={handleClose} />
           )}
           {clickValue === "Order Information" && (

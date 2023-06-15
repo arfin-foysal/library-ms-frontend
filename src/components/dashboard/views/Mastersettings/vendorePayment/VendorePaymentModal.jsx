@@ -1,7 +1,6 @@
 import React from "react";
 
 import Modal from "react-bootstrap/Modal";
-import CreateBookItem from "./CreateVendorePayment";
 import EditBookItem from "./EditVendorePayment";
 
 const BookItemModal = ({ handleClose, show, clickValue, paramId }) => {
@@ -21,10 +20,8 @@ const BookItemModal = ({ handleClose, show, clickValue, paramId }) => {
           <Modal.Title>{clickValue}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {clickValue === "Add New Book Item" && (
-            <CreateBookItem handleClose={handleClose} />
-          )}
-          {clickValue === "Edit Book Item" && (
+   
+          {clickValue === "Vendor Payment" && (
             <EditBookItem handleClose={handleClose} param={paramId} />
           )}
         </Modal.Body>

@@ -66,7 +66,7 @@ const AllBook = () => {
         {bookRes?.data?.data?.total > limit && (
           <button
             onClick={() => {
-              setLimit(limit + 2);
+              setLimit(limit + 5);
             }}
             className="btn btn-sm"
             style={{ backgroundColor: "#033D75", color: "white" }}

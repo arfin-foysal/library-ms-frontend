@@ -17,6 +17,14 @@ export const bookItemApi = apiSliceAdmin.injectEndpoints({
       }),
       providesTags: ["BookItem"],
     }),
+    getItemForSelectField: builder.query({
+      query: () => ({
+        url: "admin/get-item-for-select-field",
+        method: "GET",
+        // headers,
+      }),
+      providesTags: ["BookItem"],
+    }),
 
     bookItemCreateOrUpdate: builder.mutation({
       query: (body) => {
@@ -55,4 +63,5 @@ export const {
   useBookItemCreateOrUpdateMutation,
   useDeleteBookItemMutation,
   useGetDateExpiredListQuery,
+  useGetItemForSelectFieldQuery
 } = bookItemApi;

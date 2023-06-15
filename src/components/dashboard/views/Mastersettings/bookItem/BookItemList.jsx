@@ -63,6 +63,11 @@ const BookItemList = () => {
         header: "Title",
         size: 10,
       },
+      {
+        accessorKey: "barcode_or_rfid", //access nested data with dot notation
+        header: "Barcode Or Rfid",
+        size: 10,
+      },
 
       {
         accessorKey: "isbn", //normal accessorKey
@@ -147,10 +152,10 @@ const BookItemList = () => {
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Add New Book Item");
+                handelClickValue("Add New Book");
               }}
             >
-              Add New Book Item
+              Add New Book
             </button>
           </div>
         </div>
@@ -195,7 +200,7 @@ const BookItemList = () => {
                       className="px-2 d-flex align-items-center btn btn-primary btn-sm"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Edit Book Item");
+                        handelClickValue("Edit Book");
                         setParamId(row?.row?.original);
                       }}
                     >

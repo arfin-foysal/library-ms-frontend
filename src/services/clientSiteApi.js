@@ -34,6 +34,13 @@ export const clientSiteApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Client"],
     }),
+    virtualItemView: builder.query({
+      query: (Id) => ({
+        url: `client/virtual-item-view/${Id}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Client"],
+    }),
 
     profileUpdate: builder.mutation({
       query: (body) => {
@@ -98,4 +105,5 @@ export const {
   useGetHomePageBookQuery,
   useItemRentCreateClientMutation,
   useItemReturnTimeExpiredQuery,
+  useVirtualItemViewQuery,
 } = clientSiteApi;

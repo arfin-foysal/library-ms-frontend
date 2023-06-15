@@ -1,7 +1,7 @@
 import React from "react";
 
 const OrderDetails = ({ handleClose, values }) => {
-  console.log(values);
+
   return (
     <div>
       <div className="row">

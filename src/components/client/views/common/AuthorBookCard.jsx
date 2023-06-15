@@ -23,7 +23,7 @@ const AuthorBookCard = ({ book }) => {
 
           <Link
             to={`/bookdetails/${book?.item_id}`}
-            className="btn btn-primary btn-sm"
+            className="btn btn-primary btn-sm btn-library"
           >
             View Book
           </Link>

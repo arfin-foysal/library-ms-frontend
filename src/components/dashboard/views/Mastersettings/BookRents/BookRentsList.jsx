@@ -15,6 +15,7 @@ import {
   useDeleteRentsMutation,
   useItemRentsListQuery,
 } from "../../../../../services/itemRentApi";
+import moment from "moment";
 
 const BookRentsList = () => {
   const res = useItemRentsListQuery();
@@ -82,14 +83,25 @@ const BookRentsList = () => {
         header: "Qty",
         size: 10,
       },
+
       {
-        accessorKey: "rental_date", //normal accessorKey
+        accessorFn: (row) =>
+          row?.rental_date && (
+            <>{moment(row.rental_date).format("MMMM Do YYYY")}</>
+          ),
+
+        id: "rental_date",
         header: "Rental Date",
         size: 10,
       },
       {
-        accessorKey: "return_date", //normal accessorKey
-        header: "Return Date",
+        accessorFn: (row) =>
+          row?.rental_date && (
+            <>{moment(row.rental_date).format("MMMM Do YYYY")}</>
+          ),
+
+        id: "return_date",
+        header: "return Date",
         size: 10,
       },
 
@@ -143,10 +155,10 @@ const BookRentsList = () => {
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Add New Book Issue");
+                handelClickValue("Book Issue");
               }}
             >
-              Add New Book Issue
+              Add Book Issue
             </button>
           </div>
         </div>
@@ -169,38 +181,18 @@ const BookRentsList = () => {
                 <div className="d-flex ">
                   <div className="mr-1">
                     <Link
-                  to="#"
-                    className="btn btn-secondary btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Book Issue Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  {/* <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div> */}
-                  <div>Details</div>
-                  
-                  
-                </Link>
-                  </div>
-
-                  {/* <div >
-                    <button
-                      title=""
-                      className="px-2 d-flex align-items-center btn btn-primary btn-sm"
+                      to="#"
+                      className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Edit Item Order");
+                        handelClickValue("Book Issue Information");
                         setParamId(row?.row?.original);
                       }}
                     >
-                      <div>
-                        <FaEdit size={16} />
-                      </div>
-                      <div> Edit</div>
-                    </button>
-                  </div> */}
+                      <div>Details</div>
+                    </Link>
+                  </div>
+
                   {row?.row?.original?.status === "inactive" && (
                     <div className=" d-flex">
                       <div>
@@ -243,22 +235,22 @@ const BookRentsList = () => {
                     </div>
                   )}
                   {row?.row?.original?.status === "active" && (
-                  <div>
-                    <button
-                      className="px-2 mx-2 d-flex align-items-center btn btn-info btn-sm"
-                      to="#"
-                      onClick={() => {
-                        handleShow();
-                        handelClickValue("Return Book Item");
-                        setParamId(row?.row?.original);
-                      }}
-                    >
-                      <div>Return</div>
-                      <div>
-                        <IoReceipt size={13} />
-                      </div>
-                    </button>
-                  </div>
+                    <div>
+                      <button
+                        className="px-2 mx-2 d-flex align-items-center btn btn-info btn-sm"
+                        to="#"
+                        onClick={() => {
+                          handleShow();
+                          handelClickValue("Return Book");
+                          setParamId(row?.row?.original);
+                        }}
+                      >
+                        <div>Return</div>
+                        <div>
+                          <IoReceipt size={13} />
+                        </div>
+                      </button>
+                    </div>
                   )}
                 </div>
               </>

@@ -4,7 +4,7 @@ import { Form, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { useGetVendorListQuery } from "../../../../../services/vendorApi";
-import { useGetBookItemListQuery } from "../../../../../services/bookItemApi";
+import { useGetBookItemListQuery, useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
 import { useItemOrderMutation } from "../../../../../services/itemOrder";
 import {
   useItemAndAvailableQtyQuery,
@@ -14,10 +14,10 @@ import {
 
 const CreateBookRents = ({ handleClose }) => {
   const [itemRentCreate, res] = useItemRentCreateMutation();
-  const bookItemRes = useItemAndAvailableQtyQuery();
+  const bookItemRes = useGetItemForSelectFieldQuery();
   const userRes = useUserListforBookIssueQuery();
 
-  console.log(bookItemRes);
+
 
   const [allItem, setAllItem] = useState([]);
   const [item, setItem] = useState();
@@ -114,6 +114,8 @@ const CreateBookRents = ({ handleClose }) => {
     handleClose();
   }
 
+  const qtyRef = React.useRef();
+
   return (
     <div>
       <form
@@ -139,7 +141,7 @@ const CreateBookRents = ({ handleClose }) => {
                 </div>
               </div> */}
 
-              <div className="col-3">
+              <div className="col-4">
                 <label className="col-12 col-form-label">Item</label>
                 <Select
                   // isMulti
@@ -151,9 +153,16 @@ const CreateBookRents = ({ handleClose }) => {
                     availableQtyHandeler(e);
                   }}
                   getOptionValue={(option) => `${option["id"]}`}
-                  getOptionLabel={(option) => `${option["title"]}`}
+                  getOptionLabel={(option) => `${option["title"]}( ${option["barcode_or_rfid"]} )`}
                   options={bookItemRes.isSuccess && bookItemRes.data?.data}
                   isLoading={bookItemRes.isLoading}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      qtyRef.current.focus();
+                    }
+                  }}
+    
+                
                 />
               </div>
 
@@ -173,7 +182,7 @@ const CreateBookRents = ({ handleClose }) => {
                   />
                 </div>
                 <p className=" badge bg-danger ms-1">
-                  Available:<span>{availableQty}</span>{" "}
+                  Available:<span>{availableQty ? availableQty:" Not available "}</span>
                 </p>
               </div>
               <div className="col-3">
@@ -189,11 +198,14 @@ const CreateBookRents = ({ handleClose }) => {
                     onChange={(e) => setitem_return_date(e.target.value)}
                     value={item_return_date}
                     required
+
+                    ref={qtyRef}
+                  
                   />
                 </div>
               </div>
 
-              <div className="col-3 " style={{ marginTop: "37px" }}>
+              <div className="col-2 " style={{ marginTop: "37px" }}>
                 <buttton
                   onClick={itemHandeler}
                   className="btn btn-primary d-block"

@@ -13,9 +13,9 @@ import { Link } from "react-router-dom";
 import {
   useBookRentActiveMutation,
   useDeleteRentsMutation,
-
 } from "../../../../../services/itemRentApi";
 import { useGetDateExpiredListQuery } from "../../../../../services/bookItemApi";
+import moment from "moment";
 
 const BookReturnExpiredList = () => {
   const res = useGetDateExpiredListQuery();
@@ -49,7 +49,6 @@ const BookReturnExpiredList = () => {
                 style={{ width: "40px", height: "40px" }}
                 src={`${import.meta.env.VITE_FILE_URL}${row?.item_photo}`}
                 alt=""
-
               ></img>
             </>
           ) : (
@@ -79,7 +78,6 @@ const BookReturnExpiredList = () => {
                 style={{ width: "40px", height: "40px" }}
                 src={`${import.meta.env.VITE_FILE_URL}${row?.user_photo}`}
                 alt=""
-
               ></img>
             </>
           ) : (
@@ -96,6 +94,11 @@ const BookReturnExpiredList = () => {
         size: 10,
       },
       {
+        accessorKey: "isbn", //normal accessorKey
+        header: "ISBN",
+        size: 10,
+      },
+      {
         accessorKey: "user_name", //access nested data with dot notation
         header: "Borrower name",
         size: 10,
@@ -106,21 +109,31 @@ const BookReturnExpiredList = () => {
         header: "Rental No",
         size: 10,
       },
- 
- 
 
-      // {
-      //   accessorKey: "qty", //normal accessorKey
-      //   header: "Qty",
-      //   size: 10,
-      // },
       // {
       //   accessorKey: "rental_date", //normal accessorKey
       //   header: "Rental Date",
       //   size: 10,
       // },
+
       {
-        accessorKey: "return_date", //normal accessorKey
+        accessorFn: (row) =>
+          row?.return_date && (
+            <>
+              {moment(row.return_date).format("MMMM Do YYYY")} <br />
+              {row?.rental_status === "active" ? (
+                <span className=" bg-danger text-white p-1 rounded-2">
+                  Not Return
+                </span>
+              ) : (
+                <span className=" bg-info text-white p-1 rounded-2">
+                   Admin Not Active
+                </span>
+              )}
+            </>
+          ),
+
+        id: "return_date",
         header: "Return Date",
         size: 10,
       },
@@ -139,20 +152,6 @@ const BookReturnExpiredList = () => {
         id: "order Status",
         header: "Order Status",
       },
-      // {
-      //   //accessorFn function that combines multiple data together
-      //   accessorFn: (row) =>
-      //     row?.is_active === true ? (
-      //       <>
-      //         <span className="badge bg-info">Active</span>
-      //       </>
-      //     ) : (
-      //       <span className="badge bg-danger">Inactive</span>
-      //     ),
-
-      //   id: "Status",
-      //   header: "Status",
-      // },
     ],
     []
   );
@@ -166,21 +165,10 @@ const BookReturnExpiredList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Issue List" />
+      <PageTopHeader title="Date Expired List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Book Issue List</div>
-          <div>
-            <button
-              className="btn btn-primary btn-sm"
-              onClick={() => {
-                handleShow();
-                handelClickValue("Add New Book Issue");
-              }}
-            >
-              Add New Book Issue
-            </button>
-          </div>
+          <div>Date Expired List</div>
         </div>
 
         <div class="card-body p-0 ">
@@ -201,24 +189,19 @@ const BookReturnExpiredList = () => {
                 <div className="d-flex ">
                   <div className="mr-1">
                     <Link
-                  to="#"
-                    className="btn btn-secondary btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Book Issue Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  {/* <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div> */}
-                  <div>Details</div>
-                  
-                  
-                </Link>
+                      to="#"
+                      className="btn btn-secondary btn-sm d-flex align-items-center"
+                      onClick={() => {
+                        handleShow();
+                        handelClickValue("Book Issue Information");
+                        setParamId(row?.row?.original);
+                      }}
+                    >
+                      {/* <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div> */}
+                      <div>Details</div>
+                    </Link>
                   </div>
-        
-
-                </div> 
+                </div>
               </>
             )}
           />

@@ -14,11 +14,13 @@ export const borrowSlice = createSlice({
     addBorrow: (state, action) => {
       const itemInCart = state.borrow.find(
         (item) => item.id === action.payload.id
+
       );
       if (itemInCart) {
         toast.error("This book is already in your borrow list");
       } else {
         state.borrow.push({ ...action.payload, item_qty: 1 });
+        toast.success("Book added to borrow list");
       }
     },
     removeItem: (state, action) => {

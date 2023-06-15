@@ -1,7 +1,7 @@
+import moment from "moment";
 import React from "react";
 
 const BookRentDetails = ({ handleClose, values }) => {
-
   return (
     <div>
       <div className="row">
@@ -30,11 +30,13 @@ const BookRentDetails = ({ handleClose, values }) => {
               </tr>
               <tr>
                 <th>Rent Date:</th>
-                <th>{values?.rental_date}</th>
+
+                <th>{moment(values?.rental_date).format("MMMM Do YYYY")}</th>
               </tr>
               <tr>
                 <th>Return Date:</th>
-                <th>{values?.return_date}</th>
+
+                <th>{moment(values?.return_date).format("MMMM Do YYYY")}</th>
               </tr>
               <tr>
                 <th>Qty:</th>
@@ -51,19 +53,18 @@ const BookRentDetails = ({ handleClose, values }) => {
               </tr>
             </thead>
           </table>
-          
-            {values?.item_rents_Detail?.length === 0 && (
-              <div class="alert alert-success text-center" role="alert">
-              <>All Item Already Return</>
-                </div>  
-            )}
-          {values?.item_rents_Detail?.length !== 0 && (
-             <div class="alert alert-warning text-center" role="alert">
 
+          {values?.item_rents_Detail?.length === 0 && (
+            <div class="alert alert-success text-center" role="alert">
+              <>All Item Already Return</>
+            </div>
+          )}
+          {values?.item_rents_Detail?.length !== 0 && (
+            <div class="alert alert-warning text-center" role="alert">
               <> All items are not returned</>
-              </div> 
-            )}
-        
+            </div>
+          )}
+
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -90,7 +91,8 @@ const BookRentDetails = ({ handleClose, values }) => {
                   <td>{item.item_name}</td>
                   <td>{item.status}</td>
                   <td>{item.item_qty}</td>
-                  <td>{item.return_date}</td>
+
+                  <th>{moment(values?.return_date).format("MMMM Do YYYY")}</th>
                 </tr>
               ))}
             </tbody>

@@ -21,7 +21,7 @@ export const clientAuthSlice = createSlice({
   initialState,
   reducers: {
     clientAuthToken: (state, action) => {
-      Cookies.set("client_library_user_token", action.payload);
+      Cookies.set("client_library_user_token", action.payload, { expires: 2 });
     },
 
     clientAuthUser: (state, action) => {
@@ -55,14 +55,8 @@ export const clientAuthSlice = createSlice({
       state.clientRole = null;
       state.clientToken = null;
     },
-
-
-
-
-
   },
 });
-
 
 //auto logout after 1 hour
 export const autoLogout = (time) => (dispatch) => {
@@ -70,16 +64,6 @@ export const autoLogout = (time) => (dispatch) => {
     dispatch(clientLogout());
   }, time);
 };
-
-
-
-
-
-
-
-
-
-
 
 export const {
   clientAuthUser,
