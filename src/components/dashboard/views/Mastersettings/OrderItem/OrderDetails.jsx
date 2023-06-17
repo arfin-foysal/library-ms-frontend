@@ -6,8 +6,8 @@ const OrderDetails = ({ handleClose, values }) => {
     <div>
       <div className="row">
 
-              <div >
-             
+        <div >
+
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -46,12 +46,12 @@ const OrderDetails = ({ handleClose, values }) => {
                 <th>Note:</th>
                 <th>{values?.note}</th>
               </tr>
-           
+
             </thead>
           </table>
           <div class="alert alert-secondary text-center" role="alert">
-  Item Details
-</div>
+            Item Details
+          </div>
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -69,9 +69,8 @@ const OrderDetails = ({ handleClose, values }) => {
                   <th>
                     <img
                       width={50}
-                      src={`${import.meta.env.VITE_FILE_URL}${
-                        item?.item_photo
-                      }`}
+                      src={`${import.meta.env.VITE_FILE_URL}${item?.item_photo
+                        }`}
                       alt=""
                     />
                   </th>

@@ -13,7 +13,8 @@ import RelatedBookCard from "./common/RelatedBookCard";
 import BrochureView from "./common/BrochureView";
 import VirtualBookView from "./common/VirtualBookView";
 import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
-import { Reviews } from "./common/Reviews";
+import { AddReviews } from "./common/AddReviews";
+import Reviews from "./common/Reviews";
 const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const authToken = useSelector((state) => state.clientAuth.clientToken);
@@ -126,13 +127,17 @@ const BookDetails = () => {
                       </div>
                     )}
                   </div>
+                  <Reviews itemId={book?.id} />
 
-                  <Reviews itemId={book?.id } />
+                  {authUser && authToken && (
+                    <AddReviews itemId={book?.id } />
+                  )}
+                  
                 </div>
                 <div className="col-md-8 col-12">
                   <h5 className="text-capitalize">{book?.title} </h5>
                   <p>
-                    by{" "}
+                    by
                     <span className="text-primary">
                       {book?.authors[0]?.name}
                     </span>
