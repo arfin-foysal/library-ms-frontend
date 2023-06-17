@@ -81,6 +81,9 @@ export const clientSiteApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Client"],
     }),
+
+   
+
     itemRentCreateClient: builder.mutation({
       query: (body) => {
         return {
@@ -90,6 +93,30 @@ export const clientSiteApi = apiSlice.injectEndpoints({
         };
       },
       invalidatesTags: ["Client"],
+    }),
+    reviewItem: builder.mutation({
+      query: (body) => {
+        return {
+          url: `client/review-item`,
+          method: "POST",
+          body: body,
+        };
+      },
+      invalidatesTags: ["Client"],
+    }),
+    getReviewByUser: builder.query({
+      query: (id) => ({
+        url: `client/get-review-by-user/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Client"],
+    }),
+    getReviewByItem: builder.query({
+      query: (id) => ({
+        url: `client/get-review-by-item/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Client"],
     }),
   }),
 });
@@ -106,4 +133,7 @@ export const {
   useItemRentCreateClientMutation,
   useItemReturnTimeExpiredQuery,
   useVirtualItemViewQuery,
+  useReviewItemMutation,
+  useGetReviewByUserQuery,
+  useGetReviewByItemQuery,
 } = clientSiteApi;

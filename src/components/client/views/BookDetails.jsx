@@ -3,7 +3,7 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { MdLanguage } from "react-icons/md";
 import { BsCalendar2Date } from "react-icons/bs";
 import avatar from "./../../../../src/assets/images/profile-picture.png/";
-
+import moment from "moment";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBorrow } from "../../../features/borrowSlice";
@@ -12,8 +12,8 @@ import Loader from "../../dashboard/common/Loader";
 import RelatedBookCard from "./common/RelatedBookCard";
 import BrochureView from "./common/BrochureView";
 import VirtualBookView from "./common/VirtualBookView";
-import moment from "moment";
 import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
+import { Reviews } from "./common/Reviews";
 const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const authToken = useSelector((state) => state.clientAuth.clientToken);
@@ -25,8 +25,10 @@ const BookDetails = () => {
   const book = bookDetailsRes?.data?.data;
   const dispatch = useDispatch();
 
-  console.log(authUser);
-  console.log(authToken);
+
+
+  // console.log(authUser);
+  // console.log(authToken);
 
   //return date today after 7days
 
@@ -105,7 +107,7 @@ const BookDetails = () => {
                       </div>
                     ) : (
                       <div>
-                        {authUser&&authToken ? (
+                        {authUser && authToken ? (
                           <button
                             className="btn btn-info btn-sm mx-1"
                             variant="primary"
@@ -125,7 +127,7 @@ const BookDetails = () => {
                     )}
                   </div>
 
-                  <div></div>
+                  <Reviews itemId={book?.id } />
                 </div>
                 <div className="col-md-8 col-12">
                   <h5 className="text-capitalize">{book?.title} </h5>
