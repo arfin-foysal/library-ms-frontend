@@ -1,21 +1,21 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import { useUpdatePasswordMutation } from "../../../../services/authApi";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { useResetPasswordMutation } from "../../../../../services/userApi";
 
-const PasswordUpdateModal = ({ handleClose, show, clickValue, paramId }) => {
-  const [updatePassword, res] = useUpdatePasswordMutation();
+const PasswordUpdateModal = ({ handleClose, show, paramId }) => {
+  const [resetPassword] = useResetPasswordMutation();
 
   const formik = useFormik({
     initialValues: {
       new_password: "",
     },
-    onSubmit: async (values,{resetForm}) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
-        const result = await updatePassword({
-          user_id: paramId,
-          new_password: values.new_password,
+        const result = await resetPassword({
+          id: paramId,
+          password: values.new_password,
         }).unwrap();
 
         if (result.status) {
@@ -35,13 +35,13 @@ const PasswordUpdateModal = ({ handleClose, show, clickValue, paramId }) => {
       <Modal show={show} onHide={handleClose} size="sm">
         <Modal.Header closeButton className="bg-warning">
           <Modal.Title className="fs-6">
-        {clickValue}
+            Reset Password
           </Modal.Title>
         </Modal.Header >
         <Modal.Body>
           <div>
             <form onSubmit={formik.handleSubmit}>
-              <div className="form-group">
+              <div className="form-group ">
                 <label htmlFor="password">New Password</label>
                 <input
                   type="password"
@@ -51,9 +51,10 @@ const PasswordUpdateModal = ({ handleClose, show, clickValue, paramId }) => {
                   name="new_password"
                   onChange={formik.handleChange}
                   value={formik.values.new_password}
+                  required
                 />
               </div>
-              <Modal.Footer>
+              <Modal.Footer className=" border-0">
                 <button
                   type="button"
                   className="btn btn-secondary"

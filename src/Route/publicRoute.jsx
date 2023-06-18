@@ -84,6 +84,8 @@ export const publicRoute = [
       },
     ],
   },
+  
+  //client login
 
   {
     path: "/login",
@@ -94,15 +96,21 @@ export const publicRoute = [
         <ClientLogin />
       ),
   },
+
+  
   {
     path: "/signup",
     element:
-      authUser !== "" && authUserToken !== "" ? (
+    clientAuthUser !== "" && clientAuthUserToken !== "" ? (
         <Navigate to={"/"} replace />
       ) : (
         <ClientSignup />
       ),
   },
+
+
+  //dashboard login
+
   {
     path: "/dashboard-login",
     element:

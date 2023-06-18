@@ -16,6 +16,7 @@ import {
   useDeleteUserMutation,
   useGetUserListQuery,
 } from "../../../../../services/userApi";
+import PasswordUpdateModal from "./PasswordUpdateModal";
 
 const UserList = () => {
   const res = useGetUserListQuery();
@@ -26,9 +27,13 @@ const UserList = () => {
   const [clickValue, setClickValue] = useState(null);
   const [paramId, setParamId] = useState(null);
   const [show, setShow] = useState(false);
+  const [showP, setShowP] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleCloseP = () => setShowP(false);
+  const handleShowP = () => setShowP(true);
 
   const handelClickValue = useCallback((value) => {
     setClickValue(value);
@@ -115,6 +120,13 @@ const UserList = () => {
         handleClose={handleClose}
         clickValue={clickValue}
         paramId={paramId}
+      />
+      <PasswordUpdateModal
+        show={showP}
+        handleClose={handleCloseP}
+        paramId={paramId}
+
+
       />
       <PageTopHeader title="User" />
       <div class="card border shadow-lg ">
@@ -204,15 +216,10 @@ const UserList = () => {
                   </div>
                   <div>
                     <button
-                      onClick={() =>
-                        confirmHandel(
-                          "error",
-                          "Delete",
-                          "#FF0000",
-                          row?.row?.original?.id,
-                          handelDelete
-                        )
-                      }
+                      onClick={() => {
+                        handleShowP();
+                        setParamId(row?.row?.original?.id);
+                      }}
                       className="px-2 d-flex align-items-center btn btn-warning btn-sm"
                     >
                       <div> Reset</div>

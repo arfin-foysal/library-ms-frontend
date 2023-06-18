@@ -10,9 +10,12 @@ const Footer = () => {
           <div className="row  text-white mt-2 py-5 ">
             <div className="col-4">
               <h4>Library Management System</h4>
-              <p className="">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
+              <p 
+                style={{
+                  fontSize: "13px",
+                }}
+              >
+              BacBon limited was incorporated in Bangladesh on December 23, 2013, under the companies act (Act XVIII) of 1994, with the registrar of Joint Stock Companies & Firms Bangladesh (The registration number is C-113111/13).
               </p>
             </div>
             <div className="col-4">
@@ -38,7 +41,7 @@ const Footer = () => {
                 </Link>
                 <Link to="/contact">
                   <li>
-                    Contact Us
+                    Contact
                   </li>
                 </Link>
 

@@ -5,7 +5,7 @@ import { BsCart3 } from "react-icons/bs";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo/LbrMS-logo-white.png";
 import avatar from "../../../assets/images/profile-picture.png";
-import { BiLogInCircle, BiLogOut } from "react-icons/bi";
+import { BiLogInCircle, BiLogOut, BiUserCircle } from "react-icons/bi";
 import { useState } from "react";
 
 import { Dropdown } from "react-bootstrap";
@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import CartModal from "../../client/views/CartModal";
 import { clientLogout } from "../../../features/clientAuthSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 
 function Header() {
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ function Header() {
                 Author
               </NavLink>
               <NavLink className=" text-white mx-2" to="/contact">
-                Contact Us
+                Contact
               </NavLink>
             </Nav>
 
@@ -105,12 +106,21 @@ function Header() {
                     )}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item> {authUser?.name} </Dropdown.Item>
+                      {/* <Dropdown.Item> */}
+                      {/* <BiUserCircle size={20} className="text-center" /> */}
+                      <div className=" text-center text-white text-capitalize" style={{backgroundColor:"#033D75"}}>
+                         {authUser?.name}
+                      </div>
+                     
+                
+                    {/* </Dropdown.Item> */}
                     <Dropdown.Item > 
-                      <Link className="text-dark" to="/client-dashboard">Dashboard</Link>{" "}
+                        <Link className="text-dark" to="/client-dashboard">
+                          <MdOutlineSpaceDashboard size={18} className="me-2"/>
+                          Dashboard</Link>{" "}
                     </Dropdown.Item>
                     <Dropdown.Item onClick={() => handelLogout()}>
-                      <BiLogOut /> Logout
+                      <BiLogOut size={20} className="me-2" /> Logout
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>

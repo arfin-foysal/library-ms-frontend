@@ -50,12 +50,12 @@ const Header = () => {
               />
             </Dropdown.Toggle>
             <Dropdown.Menu style={{ marginLeft: "-90px" }}>
-              <Dropdown.Item >
+              {/* <Dropdown.Item >
                 <BiUser /> Profile
-              </Dropdown.Item>
-              <Dropdown.Item >
+              </Dropdown.Item> */}
+              {/* <Dropdown.Item >
                 <RiSettings2Fill /> Setting
-              </Dropdown.Item>
+              </Dropdown.Item> */}
               <Dropdown.Item onClick={() => handelLogout()}>
                 <BiLogOut /> Logout
               </Dropdown.Item>
