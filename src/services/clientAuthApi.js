@@ -14,7 +14,19 @@ export const clientAuthApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["clientAuth"],
     }),
+    clientRegister: builder.mutation({
+      query: (body) => ({
+        url: "/auth/client-register",
+        method: "POST",
+        body,
+        headers,
+      }),
+      invalidatesTags: ["Auth"],
+    }),
   }),
 });
 
-export const { useClientLoginMutation } = clientAuthApi;
+export const { useClientLoginMutation,
+  useClientRegisterMutation,
+
+} = clientAuthApi;

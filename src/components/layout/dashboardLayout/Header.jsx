@@ -16,7 +16,7 @@ const Header = () => {
   
   const handelLogout = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/dashboard-login");
     toast.success("Logout Successfully");
     window.location.reload(false);
   };

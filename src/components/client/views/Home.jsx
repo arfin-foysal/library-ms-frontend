@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useGetHomePageBookQuery } from "../../../services/clientSiteApi";
 const Home = () => {
   const bookRes = useGetHomePageBookQuery();
+  const book =bookRes?.data?.data
  
 
   return (
@@ -66,7 +67,7 @@ const Home = () => {
             >
               {bookRes?.isLoading && <Loader />}
 
-              {bookRes?.data?.data?.map((book, i) => (
+              {book?.new_product?.map((book, i) => (
                 <SwiperSlide key={i}>
                   <BookCard book={book} />
                 </SwiperSlide>
@@ -116,7 +117,7 @@ const Home = () => {
             >
               {bookRes?.isLoading && <Loader />}
 
-              {bookRes?.data?.data?.map((book, i) => (
+              {book?.most_read.map((book, i) => (
                 <SwiperSlide key={i}>
                   <BookCard book={book} />
                 </SwiperSlide>
@@ -124,7 +125,7 @@ const Home = () => {
             </Swiper>
           </div>
           <div className="col mt-5 text-center">
-            <Link to="/allbook" className="btn btn-primary">View All Books</Link>
+            <Link to="/allbook" className=" btn btn-primary btn-sm btn-library">View All Books</Link>
           </div>
         </div>
       </div>

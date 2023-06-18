@@ -44,11 +44,13 @@ export const authSlice = createSlice({
       localStorage.removeItem("library_user");
       localStorage.removeItem("library_permissions");
       localStorage.removeItem("library_user_role");
+      
 
       state.user = null;
       state.permissions = null;
       state.token = null;
       state.role = null;
+
     },
   },
 });

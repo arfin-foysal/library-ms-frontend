@@ -1,10 +1,10 @@
 import React from "react";
-import { Dna } from "react-loader-spinner";
+import { Vortex } from "react-loader-spinner";
 const Loader = () => {
   return (
     <>
-    
-    <div
+
+      <div
         className="text-center"
         style={{
           textAlign: "center",
@@ -14,16 +14,19 @@ const Loader = () => {
           height: "2000px",
         }}
       >
-        <Dna
+        <Vortex
           visible={true}
           height="80"
           width="80"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper"
+          ariaLabel="vortex-loading"
+          wrapperStyle={{
+
+          }}
+          wrapperClass="vortex-wrapper"
+          colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
         />
       </div>
-      
+
     </>
   );
 };

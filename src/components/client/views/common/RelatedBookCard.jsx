@@ -1,6 +1,7 @@
 import React from "react";
 import damo from "./../../../../assets/images/img_1.jpg";
 import { Link } from "react-router-dom";
+import Star from "./Star";
 const RelatedBookCard = ({ book }) => {
   return (
     <div className="card p-3 border-primary shadow" style={{ width: "10rem" }}>
@@ -17,6 +18,16 @@ const RelatedBookCard = ({ book }) => {
         <p className="card-text p-0 m-0 mt-2 text-capitalize">{book?.title}</p>
         <div className="mt-2">
           <p className=" text-muted "> <b>by </b>{book?.authors[0]?.name}</p>
+          {
+            // rating
+            book?.rating ? (
+              <Star rating={book?.rating} />
+            ) :
+              (
+                <Star rating={0} />
+              )
+          }
+
           <hr />
           <Link to={`/bookdetails/${book?.id}`} className="btn btn-primary btn-sm btn-library">
             View Book

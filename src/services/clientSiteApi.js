@@ -32,7 +32,7 @@ export const clientSiteApi = apiSlice.injectEndpoints({
         url: `client/get-item-by-id/${Id}`,
         method: "GET",
       }),
-      invalidatesTags: ["Client"],
+      providesTags: ["Client"],
     }),
     virtualItemView: builder.query({
       query: (Id) => ({

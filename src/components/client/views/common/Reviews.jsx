@@ -1,10 +1,8 @@
 import React from 'react'
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useGetReviewByItemQuery } from '../../../../services/clientSiteApi';
 import avatar from "./../../../../assets/images/profile-picture.png";
-const Reviews = ({ itemId }) => {
-    const reviewItemRes = useGetReviewByItemQuery(itemId);
-    const resData = reviewItemRes?.data?.data;
+const Reviews = ({ reviews }) => {
+
     return (
         <div className="m-2">
             {/* review */}
@@ -14,8 +12,8 @@ const Reviews = ({ itemId }) => {
 
             <hr />
 
-            {resData?.map((item, i) => (
-                <div >
+            {reviews?.map((item, i) => (
+                <div key={i}>
                     {item?.profile_photo_path ? (
                         <img
                             className="img-fluid rounded-circle shadow"

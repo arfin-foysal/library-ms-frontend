@@ -1,61 +1,65 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,  } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
-// import { signupSchema } from "../../../validation/signupSchema";
-import logo from "./../../../assets/logo/logo.png";
-// import { useRegisterMutation } from "../../../services/authApi";
+import logo from "./../../../../assets/logo/LbrMS-logo-white.png";
 import { BsArrowRight } from "react-icons/bs";
-const Signup = () => {
+import { signupSchema } from "../../../../validation/signupSchema";
+import { useClientRegisterMutation } from "../../../../services/clientAuthApi";
+const ClientSignup = () => {
   const navigate = useNavigate();
-//   const [register, res] = useRegisterMutation();
-//   const { data, isLoading, isSuccess } = res;
+  const [clientRegister, res] = useClientRegisterMutation();
+  const { data, isLoading, isSuccess } = res;
+
+
 
   const formik = useFormik({
-    // validationSchema: signupSchema,
+    validationSchema: signupSchema,
     initialValues: {
       name: "",
       username: "",
       email: "",
-      number: "",
+      phone: "",
       password: "",
       confirm_password: "",
     },
 
     onSubmit: async (values) => {
       try {
-        // const result = await register(values).unwrap();
-        // console.log(values);
-        // toast.success(result.message);
+        const result = await clientRegister(values).unwrap();
+        console.log(values);
+        toast.success(result.message);
       } catch (error) {
         toast.error(error.data.message);
       }
     },
   });
 
-//   if (isSuccess) {
-//     navigate("/login");
-//     // window.location.reload(false);
-//   }
+  if (isSuccess) {
+    navigate("/login");
+    // window.location.reload(false);
+  }
 
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-12 col-md-6 py-2  ">
-          <div className="card o-hidden border-0 shadow-lg my-5">
+          <div className="card o-hidden border-0 shadow-lg my-5"
+            style={{ backgroundColor: "#033D75" }}
+          >
             <div className="card-body p-0">
               {/* <!-- Nested Row within Card Body --> */}
               <div className="row">
                 <div className="col">
                   <div className="p-5">
                     <div>
-                      {/* {isLoading && (
+                      {isLoading && (
                         <div className="text-center">
                           <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                           </div>
                         </div>
-                      )} */}
+                      )}
                     </div>
 
                     <div className="text-center pb-3">
@@ -107,19 +111,19 @@ const Signup = () => {
                         <input
                           type="number"
                           placeholder="Enter Number"
-                          name="number"
-                          value={formik.values.number}
+                          name="phone"
+                          value={formik.values.phone}
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
                           className={
-                            formik.errors.number && formik.touched.number
+                            formik.errors.phone && formik.touched.phone
                               ? "form-control form-control-user is-invalid  shadow"
                               : "form-control form-control-usershadow"
                           }
                         />
-                        {formik.errors.number && formik.touched.number ? (
+                        {formik.errors.phone && formik.touched.phone ? (
                           <div className="invalid-feedback">
-                            {formik.errors.number}
+                            {formik.errors.phone}
                           </div>
                         ) : null}
                         </div>
@@ -207,7 +211,7 @@ const Signup = () => {
 
              
                     <div className="text-center pt-2">
-                      <Link className="small text-dark" to="/login">
+                      <Link className="small" to="/login">
                         Already have an account? Login!
                       </Link>
                     </div>
@@ -222,4 +226,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default ClientSignup;

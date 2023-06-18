@@ -126,18 +126,18 @@ const ClientLogin = () => {
                       </form>
                       <hr />
                       <div className="text-center ">
-                        <Link
+                        {/* <Link
                           className="small text-white"
                           to="forgot-password.html"
                         >
                           Forgot Password?
-                        </Link>
+                        </Link> */}
                       </div>
-                      {/* <div className="text-center">
-                      <Link className="small text-dark" to="/signup">
+                      <div className="text-center">
+                      <Link className="small" to="/signup">
                         Create an Account!
                       </Link>
-                    </div> */}
+                    </div>
                     </div>
                   </div>
                 </div>

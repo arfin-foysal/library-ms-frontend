@@ -1,5 +1,5 @@
 import Login from "../components/pages/login/Login";
-import Signup from "../components/pages/signup/Signup";
+import Signup from "../components/client/views/signup/ClientSignup";
 import {
   authUser,
   authUserToken,
@@ -22,6 +22,8 @@ import OverDueItems from "../components/client/views/clientDashboard/OverDueItem
 import Contact from './../components/client/views/Contact';
 import NotAccess from "../components/pages/commonViews/NotAccess";
 import Error from "../components/pages/commonViews/Error";
+import ClientSignup from "../components/client/views/signup/ClientSignup";
+
 
 export const publicRoute = [
   {
@@ -98,7 +100,7 @@ export const publicRoute = [
       authUser !== "" && authUserToken !== "" ? (
         <Navigate to={"/"} replace />
       ) : (
-        <Signup />
+        <ClientSignup />
       ),
   },
   {
@@ -110,15 +112,15 @@ export const publicRoute = [
         <Login />
       ),
   },
-  {
-    path: "/dashboard-signup",
-    element:
-      authUser !== "" && authUserToken !== "" ? (
-        <Navigate to={"/dashboard"} replace />
-      ) : (
-        <Signup />
-      ),
-  },
+  // {
+  //   path: "/dashboard-signup",
+  //   element:
+  //     authUser !== "" && authUserToken !== "" ? (
+  //       <Navigate to={"/dashboard"} replace />
+  //     ) : (
+  //       <Signup />
+  //     ),
+  // },
 
   {
     path: "/not-access",

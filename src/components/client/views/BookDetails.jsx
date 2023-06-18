@@ -9,12 +9,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBorrow } from "../../../features/borrowSlice";
 import ReactPlayer from "react-player";
 import Loader from "../../dashboard/common/Loader";
+
+import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
+
+// const Artists = React.lazy(() => import('./Artists'));
+
+import { AddReviews } from "./common/AddReviews";
+import Reviews from "./common/Reviews";
 import RelatedBookCard from "./common/RelatedBookCard";
 import BrochureView from "./common/BrochureView";
 import VirtualBookView from "./common/VirtualBookView";
-import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
-import { AddReviews } from "./common/AddReviews";
-import Reviews from "./common/Reviews";
+import Star from "./common/Star";
+
+
+
 const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const authToken = useSelector((state) => state.clientAuth.clientToken);
@@ -28,7 +36,8 @@ const BookDetails = () => {
 
 
 
-  // console.log(authUser);
+
+
   // console.log(authToken);
 
   //return date today after 7days
@@ -59,7 +68,7 @@ const BookDetails = () => {
                 <div className="col-md-4 col-12 ">
                   <div
                     className="card p-3 border-primary shadow w-100 "
-                    // style={{ width: "15rem" }}
+                  // style={{ width: "15rem" }}
                   >
                     <div>
                       <img
@@ -70,7 +79,20 @@ const BookDetails = () => {
                       />
                     </div>
 
-                    <div className="card-body m-0 p-0 text-center"></div>
+
+
+                    <div className="card-body mt-1 p-0 text-center">
+                      {
+                        // rating
+                        book?.rating ? (
+                          <Star rating={book?.rating} />
+                        ) :
+                          (
+                            <Star rating={0} />
+                          )
+                      }
+
+                    </div>
                   </div>
 
                   <div className="text-center my-3 ">
@@ -127,12 +149,12 @@ const BookDetails = () => {
                       </div>
                     )}
                   </div>
-                  <Reviews itemId={book?.id} />
+                  <Reviews reviews={book?.reviews} />
 
                   {authUser && authToken && (
-                    <AddReviews itemId={book?.id } />
+                    <AddReviews itemId={book?.id} />
                   )}
-                  
+
                 </div>
                 <div className="col-md-8 col-12">
                   <h5 className="text-capitalize">{book?.title} </h5>
@@ -212,9 +234,8 @@ const BookDetails = () => {
                           <img
                             className="img-fluid rounded-circle shadow"
                             style={{ width: "40px", height: "40px" }}
-                            src={`${import.meta.env.VITE_FILE_URL}${
-                              author?.author_photo
-                            }`}
+                            src={`${import.meta.env.VITE_FILE_URL}${author?.author_photo
+                              }`}
                             alt=""
                           ></img>
                         ) : (
