@@ -101,7 +101,7 @@ const BookRentsList = () => {
           ),
 
         id: "return_date",
-        header: "return Date",
+        header: "Return Date",
         size: 10,
       },
 

@@ -35,7 +35,7 @@ const Loader = () => {
 
           }}
           wrapperClass="vortex-wrapper"
-          colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+          colors={['red', 'red', 'red', 'purple', 'purple', 'purple']}
         />
       </div>
 

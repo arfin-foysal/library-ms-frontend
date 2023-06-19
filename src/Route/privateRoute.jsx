@@ -22,6 +22,7 @@ import ItemQtyList from "../components/dashboard/views/Mastersettings/OrderItem/
 import ItemRecevedList from "../components/dashboard/views/Mastersettings/OrderItem/ItemRecevedList";
 import BookReturnExpiredList from "../components/dashboard/views/Mastersettings/BookRents/BookReturnExpiredList";
 import BookDamageList from "../components/dashboard/views/Mastersettings/BookRents/BookDamageList";
+import BookReturnList from "../components/dashboard/views/Mastersettings/BookRents/BookReturnList";
 
 
 export const privateRoute = [
@@ -125,6 +126,11 @@ export const privateRoute = [
   {
     path: "book-damage-list",
     element: <BookDamageList />,
+    role: "admin",
+  },
+  {
+    path: "return-list",
+    element: <BookReturnList />,
     role: "admin",
   },
   {

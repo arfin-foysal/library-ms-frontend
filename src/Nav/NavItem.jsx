@@ -39,6 +39,12 @@ export const navItem = [
         icon: <BiBookAdd />,
       },
       {
+        title: "Book Return List",
+        link: "return-list",
+        role: "admin",
+        icon: <BiBookBookmark />,
+      },
+      {
         title: "Return Date Expired",
         link: "return-date-expired-list",
         role: "admin",

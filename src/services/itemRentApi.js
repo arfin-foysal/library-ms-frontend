@@ -81,11 +81,20 @@ export const itemRentApi = apiSliceAdmin.injectEndpoints({
         method: 'POST',
         headers
       }),
-      invalidatesTags: ["Rent"]
+      invalidatesTags: ["Rent",
+      "Common"]
     }),
     itemDamageList: builder.query({
       query: () => ({
         url: "admin/item-damage-list",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Rent"],
+    }),
+    itemReturnList: builder.query({
+      query: () => ({
+        url: "admin/item-return-list",
         method: "GET",
         headers,
       }),
@@ -103,5 +112,6 @@ export const {
   useDeleteRentsMutation,
   useBookRentActiveMutation,
   useUserListforBookIssueQuery,
-  useItemDamageListQuery
+  useItemDamageListQuery,
+  useItemReturnListQuery
 } = itemRentApi;

@@ -63,13 +63,23 @@ export const commonApi = apiSliceAdmin.injectEndpoints({
       },
       invalidatesTags: ["Common"],
     }),
-    deleteCountery: builder.mutation({
+    deleteCountry: builder.mutation({
       query: (id) => ({
         url: `admin/delete-countery/${id}`,
         method: 'DELETE',
         headers
       }),
       invalidatesTags: ['Common']
+    }),
+
+
+    dashboardSummery: builder.query({
+      query: () => ({
+        url: "admin/dashboard-summery",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Common"],
     }),
 
   }),
@@ -81,7 +91,11 @@ export const {
   useDeleteLanguageMutation,
   // <------------------- country api ------------------------>
   useGetCounteryListQuery,
-  useCounteryCreateOrUpdateMutation
+  useCounteryCreateOrUpdateMutation,
+  useDeleteCountryMutation,
+  useDashboardSummeryQuery
+  
+
 
  } =
 commonApi;

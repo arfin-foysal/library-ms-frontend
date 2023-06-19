@@ -8,13 +8,14 @@ import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";  
 import PageTopHeader from "../../../common/PageTopHeader";
 import CategoryModal from "./CountryModal";
-import { useDeleteLanguageMutation, useGetCounteryListQuery } from "../../../../../services/commonApi";
+import {  useGetCounteryListQuery } from "../../../../../services/commonApi";
+import { useDeleteCategoryMutation } from "../../../../../services/categoryApi";
 
 
 const CountryList = () => {
   const res = useGetCounteryListQuery();
 
-  const [deleteLanguage] = useDeleteLanguageMutation();
+  const [deleteCountry] = useDeleteCategoryMutation();
   
   const { data, isSuccess, isFetching, isError, error } = res;
   const [clickValue, setClickValue] = useState(null);
@@ -29,7 +30,7 @@ const CountryList = () => {
   }, []);
 
   const handelDelete = async (id) => {
-    const result = await deleteLanguage(id).unwrap();
+    const result = await deleteCountry(id).unwrap();
     toast.success(result.message);
   };
 
