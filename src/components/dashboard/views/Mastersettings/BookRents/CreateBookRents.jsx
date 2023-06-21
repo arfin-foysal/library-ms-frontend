@@ -1,13 +1,12 @@
 import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Form, Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Select from "react-select";
-import { useGetVendorListQuery } from "../../../../../services/vendorApi";
-import { useGetBookItemListQuery, useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
-import { useItemOrderMutation } from "../../../../../services/itemOrder";
+import { useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
+
 import {
-  useItemAndAvailableQtyQuery,
+
   useItemRentCreateMutation,
   useUserListforBookIssueQuery,
 } from "../../../../../services/itemRentApi";
@@ -24,6 +23,11 @@ const CreateBookRents = ({ handleClose }) => {
   const [item_qty, setitem_qty] = useState(1);
   const [item_return_date, setitem_return_date] = useState();
   const [availableQty, setAvailableQty] = useState();
+
+
+
+
+
 
   const availableQtyHandeler = (e) => {
     setAvailableQty(e.qty);
@@ -161,8 +165,8 @@ const CreateBookRents = ({ handleClose }) => {
                       qtyRef.current.focus();
                     }
                   }}
-    
-                
+
+
                 />
               </div>
 
@@ -182,7 +186,7 @@ const CreateBookRents = ({ handleClose }) => {
                   />
                 </div>
                 <p className=" badge bg-danger ms-1">
-                  Available:<span>{availableQty ? availableQty:" Not available "}</span>
+                  Available:<span>{availableQty ? availableQty : " Not available "}</span>
                 </p>
               </div>
               <div className="col-3">
@@ -200,7 +204,7 @@ const CreateBookRents = ({ handleClose }) => {
                     required
 
                     ref={qtyRef}
-                  
+
                   />
                 </div>
               </div>
@@ -303,19 +307,19 @@ const CreateBookRents = ({ handleClose }) => {
           </div>
         </div>
 
-    
+
         <Modal.Footer>
           <div className=" d-flex">
-            
-              <button className="btn btn-dark me-1" onClick={handleClose}>
-                Close
-              </button>
-           
-          
-              <button type="submit" className="btn btn-success ">
-                Submit
-              </button>
-         
+
+            <button className="btn btn-dark me-1" onClick={handleClose}>
+              Close
+            </button>
+
+
+            <button type="submit" className="btn btn-success ">
+              Submit
+            </button>
+
           </div>
         </Modal.Footer>
       </form>

@@ -38,7 +38,7 @@ export const itemOrder = apiSliceAdmin.injectEndpoints({
         method: "DELETE",
         headers,
       }),
-      invalidatesTags: ["ItemOrder"],
+      invalidatesTags: ["ItemOrder","Common"],
     }),
 
     unrecevedItemByOrderId: builder.query({
@@ -47,7 +47,7 @@ export const itemOrder = apiSliceAdmin.injectEndpoints({
         method: "GET",
         headers,
       }),
-      providesTags: ["ItemOrder"],
+      providesTags: ["ItemOrder","Common"],
     }),
 
     itemOrderReceved: builder.mutation({

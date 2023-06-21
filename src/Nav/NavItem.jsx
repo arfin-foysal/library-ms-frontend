@@ -77,7 +77,7 @@ export const navItem = [
       },
       {
         title: "Item Received List",
-        link: "item-receved-list",
+        link: "item-received-list",
         role: "admin",
         icon: <RiFileListLine />,
       },

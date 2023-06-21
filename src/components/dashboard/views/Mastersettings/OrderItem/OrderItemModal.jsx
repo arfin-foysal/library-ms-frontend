@@ -32,7 +32,7 @@ const OrderItemModal = ({ handleClose, show, clickValue, paramId }) => {
           {clickValue === "Edit Book Item" && (
             <EditOrderItem handleClose={handleClose} param={paramId} />
           )}
-          {clickValue === "Receved Information" && (
+          {clickValue === "Received Information" && (
             <OrderRecevedDetails handleClose={handleClose} values={paramId} />
           )}
         </Modal.Body>

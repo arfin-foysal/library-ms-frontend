@@ -72,7 +72,7 @@ export const itemRentApi = apiSliceAdmin.injectEndpoints({
         method: 'DELETE',
         headers
       }),
-      invalidatesTags: ["Rent"]
+      invalidatesTags: ["Rent","Common"]
     }),
 
     bookRentActive: builder.mutation({

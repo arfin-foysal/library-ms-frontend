@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopBox = ({ name, color, icon,item }) => {
+const TopBox = ({ name, color, icon,item,des }) => {
   return (
     <div className="col-xl-3 col-md-6 mb-4 ">
       <div
@@ -16,7 +16,7 @@ const TopBox = ({ name, color, icon,item }) => {
                 {name}
               </div>
               <div className="h5 mb-0 font-weight-bold text-gray-800">
-                {item}
+                {item} <span className=" fs-6  text-uppercase">{des}</span>
               </div>
             </div>
             <div className="col-auto ">

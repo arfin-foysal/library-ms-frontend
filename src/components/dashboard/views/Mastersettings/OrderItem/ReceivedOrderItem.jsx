@@ -13,7 +13,7 @@ import {
 import PageTopHeader from "../../../common/PageTopHeader";
 import { useNavigate, useParams } from "react-router-dom";
 
-const RecevedOrderItem = ({ handleClose }) => {
+const ReceivedOrderItem = ({ handleClose }) => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [itemOrderReceved, res] = useItemOrderRecevedMutation();
@@ -332,4 +332,4 @@ const RecevedOrderItem = ({ handleClose }) => {
   );
 };
 
-export default RecevedOrderItem;
+export default ReceivedOrderItem;

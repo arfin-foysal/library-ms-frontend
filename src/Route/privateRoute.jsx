@@ -15,7 +15,7 @@ import BookItemList from "../components/dashboard/views/Mastersettings/bookItem/
 import MembershipList from "../components/dashboard/views/Mastersettings/membershipPlan/MembershipList";
 import OrderItemList from "../components/dashboard/views/Mastersettings/OrderItem/OrderItemList";
 
-import RecevedOrderItem from "../components/dashboard/views/Mastersettings/OrderItem/RecevedOrderItem";
+
 import VendorePaymentList from "../components/dashboard/views/Mastersettings/vendorePayment/VendorePaymentList";
 import BookRentsList from "../components/dashboard/views/Mastersettings/BookRents/BookRentsList";
 import ItemQtyList from "../components/dashboard/views/Mastersettings/OrderItem/ItemQtyList";
@@ -23,6 +23,7 @@ import ItemRecevedList from "../components/dashboard/views/Mastersettings/OrderI
 import BookReturnExpiredList from "../components/dashboard/views/Mastersettings/BookRents/BookReturnExpiredList";
 import BookDamageList from "../components/dashboard/views/Mastersettings/BookRents/BookDamageList";
 import BookReturnList from "../components/dashboard/views/Mastersettings/BookRents/BookReturnList";
+import ReceivedOrderItem from "../components/dashboard/views/Mastersettings/OrderItem/ReceivedOrderItem";
 
 
 export const privateRoute = [
@@ -105,11 +106,11 @@ export const privateRoute = [
   },
   {
     path: "receved-order-list/:id",
-    element: <RecevedOrderItem />,
+    element: <ReceivedOrderItem />,
     role: "admin",
   },
   {
-    path: "item-receved-list",
+    path: "item-received-list",
     element: <ItemRecevedList />,
     role: "admin",
   },

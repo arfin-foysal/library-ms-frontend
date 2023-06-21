@@ -5,11 +5,13 @@ import Loader from "../../dashboard/common/Loader";
 import { useGetAllBookItemQuery } from "../../../services/clientSiteApi";
 
 const AllBook = () => {
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(10);
 
   const bookRes = useGetAllBookItemQuery({ limit: limit });
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+
+
 
 
 
@@ -57,11 +59,20 @@ const AllBook = () => {
       <div className="my-5">
         {bookRes?.isLoading && <Loader />}
         <div className="d-flex flex-wrap justify-content-between">
-          {filteredData?.data?.map((book, i) => (
-            <div className="m-2" key={i}>
-              <BookCard book={book} />
-            </div>
-          ))}
+          
+          {search === "" &&
+            bookRes?.data?.data?.data?.map((book, i) => (
+              <div className="m-2" key={i}>
+                <BookCard book={book} />
+              </div>
+            ))}
+          
+          {search !== "" &&
+            filteredData?.map((book, i) => (
+              <div className="m-2" key={i}>
+                <BookCard book={book} />
+              </div>
+            ))}
         </div>
       </div>
       <div className="mt-5 text-center">

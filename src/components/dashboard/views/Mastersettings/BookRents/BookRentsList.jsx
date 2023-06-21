@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
-import AuthorModal from "./BookRentsModal";
+import BookRentsModal from "./BookRentsModal";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { confirmHandel } from "../../../../../utils/Alert";
 import avatar from "../../../../../assets/images/profile-picture.png";
@@ -140,7 +140,7 @@ const BookRentsList = () => {
   return (
     <>
       {isFetching && <Loader />}
-      <AuthorModal
+      <BookRentsModal
         show={show}
         handleClose={handleClose}
         clickValue={clickValue}

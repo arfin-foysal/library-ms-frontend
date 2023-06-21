@@ -79,7 +79,7 @@ export const commonApi = apiSliceAdmin.injectEndpoints({
         method: "GET",
         headers,
       }),
-      providesTags: ["Common"],
+      providesTags: ["Common","Rent"],
     }),
 
   }),

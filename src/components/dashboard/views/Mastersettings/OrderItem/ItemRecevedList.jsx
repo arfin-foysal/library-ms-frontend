@@ -175,7 +175,7 @@ const ItemRecevedList = () => {
                       className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Receved Information");
+                        handelClickValue("Received Information");
                         setParamId(row?.row?.original);
                       }}
                     >
