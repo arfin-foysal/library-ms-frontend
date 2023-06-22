@@ -24,7 +24,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
   const [discount, setDiscount] = useState(0);
   const [allItem, setAllItem] = useState([]);
 
- 
+
 
   const unrecevedOrder = () => {
     let data = [];
@@ -120,6 +120,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
       try {
         const result = await itemOrderReceved(data).unwrap();
         toast.success(result.message);
+        resetForm();
       } catch (error) {
         toast.warn(error.data.message);
       }
@@ -128,18 +129,19 @@ const ReceivedOrderItem = ({ handleClose }) => {
 
   if (res.isSuccess) {
 
+
     navigate("/dashboard/order-list");
-   
+
   }
 
   return (
     <>
-      <PageTopHeader title="Receved Order" />
-      <div class="card border shadow-lg">
-        <div class="card-header d-flex justify-content-between ">
-          <div>Item Order List</div>
+      <PageTopHeader title="Received Order" />
+      <div className="card border shadow-lg">
+        <div className="card-header d-flex justify-content-between ">
+          <div>Received Order</div>
         </div>
-        <div class="card-body ">
+        <div className="card-body ">
           <div>
             <form
               className="form-sample"
@@ -192,7 +194,9 @@ const ReceivedOrderItem = ({ handleClose }) => {
                       </label>
                       <div className="col-12">
                         <input
-                          placeholder="Invoice No"
+                          placeholder="
+                          Enter Invoice No
+                          "
                           type="text"
                           className="form-control"
                           name="invoice_no"
@@ -204,7 +208,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                     </div>
 
                     <div className="py-2 pb-3 my-4 ">
-                      <table class="table">
+                      <table className="table">
                         <thead>
                           <tr>
                             <th scope="col">Photo</th>
@@ -222,9 +226,8 @@ const ReceivedOrderItem = ({ handleClose }) => {
                                 {" "}
                                 <img
                                   width={40}
-                                  src={`${import.meta.env.VITE_FILE_URL}${
-                                    item?.item_photo
-                                  }`}
+                                  src={`${import.meta.env.VITE_FILE_URL}${item?.item_photo
+                                    }`}
                                   alt=""
                                 />
                               </td>
@@ -275,7 +278,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                       </div>
                     </div>
                     <div className="col-6 border ">
-                      <table class="table table-white table-striped">
+                      <table className="table table-white table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Sub Total Amount :</th>
@@ -309,21 +312,21 @@ const ReceivedOrderItem = ({ handleClose }) => {
                 </div>
               </div>
 
-         
-        <Modal.Footer>
-          <div className=" d-flex">
-            
-              <button className="btn btn-dark me-1" onClick={handleClose}>
-                Close
-              </button>
-           
-          
-              <button type="submit" className="btn btn-success ">
-                Submit
-              </button>
-         
-          </div>
-        </Modal.Footer>
+
+              <Modal.Footer>
+                <div className=" d-flex">
+
+                  <button className="btn btn-dark me-1" onClick={handleClose}>
+                    Close
+                  </button>
+
+
+                  <button type="submit" className="btn btn-success ">
+                    Submit
+                  </button>
+
+                </div>
+              </Modal.Footer>
             </form>
           </div>
         </div>

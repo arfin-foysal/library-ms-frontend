@@ -103,8 +103,8 @@ const CategoryList = () => {
         paramId={paramId}
       />
       <PageTopHeader title="Category" />
-      <div class="card border shadow-lg ">
-        <div class="card-header d-flex justify-content-between ">
+      <div className="card border shadow-lg ">
+        <div className="card-header d-flex justify-content-between ">
           <div> Category List</div>
           <div>
             <button
@@ -119,7 +119,7 @@ const CategoryList = () => {
           </div>
         </div>
 
-        <div class="card-body p-0">
+        <div className="card-body p-0">
           <MaterialReactTable
             columns={columns}
             data={isSuccess && data?.data}

@@ -38,7 +38,7 @@ const BookDetails = () => {
 
 
 
-  // console.log(authToken);
+
 
   //return date today after 7days
 
@@ -246,8 +246,10 @@ const BookDetails = () => {
                             alt=""
                           ></img>
                         )}
-
-                        <b className="ms-2 ">{author?.name}</b>
+                        <Link to={`/authordetails/${author?.id}`} className=" text-primary">
+                          <b className="ms-2 ">{author?.name}</b>
+                        </Link>
+                     
                         <br />
                         {/* <p className="my-2">
                           <b>Biography:</b> {author?.author_bio}

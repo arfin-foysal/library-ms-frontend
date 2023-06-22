@@ -33,27 +33,27 @@ const VendorDetails = ({ handleClose, param }) => {
           <div className="col-6">
             <p>
               Name:
-              <span class="font-weight-bold text-primary ">{param.name}</span>
+              <span className="font-weight-bold text-primary ">{param.name}</span>
             </p>
             <p>
               Email:
-              <span class="font-weight-bold text-primary ">{param.email}</span>
+              <span className="font-weight-bold text-primary ">{param.email}</span>
             </p>
             <p>
               Mobile:
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.mobile}
               </span>
             </p>
             <p>
             Contact Person :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.contact_person}
               </span>
             </p>
             <p>
             Primary Supply Products :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.primary_supply_products}
               </span>
             </p>
@@ -61,19 +61,19 @@ const VendorDetails = ({ handleClose, param }) => {
           <div className="col-6 ">
             <p>
             Contact Person Mobile :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.contact_person_mobile}
               </span>
             </p>
             <p>
             Office Address :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.office_address}
               </span>
             </p>
             <p>
             Warehouse Address :
-              <span class="font-weight-bold text-primary ">{param.warehouse_address}</span>
+              <span className="font-weight-bold text-primary ">{param.warehouse_address}</span>
             </p>
 
             <p>

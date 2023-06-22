@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
+
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -14,13 +14,12 @@ export const borrowSlice = createSlice({
     addBorrow: (state, action) => {
       const itemInCart = state.borrow.find(
         (item) => item.id === action.payload.id
-
       );
       if (itemInCart) {
         toast.error("This book is already in your borrow list");
       } else {
         state.borrow.push({ ...action.payload, item_qty: 1 });
-        toast.success("Book added to borrow list");
+        toast("Book added to borrow list 🛒");
       }
     },
     removeItem: (state, action) => {
@@ -31,7 +30,6 @@ export const borrowSlice = createSlice({
       state.borrow = removeBorrow;
     },
 
-
     //clear borrow
     clearBorrow: (state) => {
       state.borrow = [];
@@ -39,9 +37,5 @@ export const borrowSlice = createSlice({
   },
 });
 
-export const { addBorrow, removeItem, clearBorrow } =
-  borrowSlice.actions;
+export const { addBorrow, removeItem, clearBorrow } = borrowSlice.actions;
 export default borrowSlice.reducer;
-
-
-

@@ -102,8 +102,8 @@ const SubCategoryList = () => {
         paramId={paramId}
       />
       <PageTopHeader title="Sub Category" />
-      <div class="card border shadow-lg ">
-        <div class="card-header d-flex justify-content-between ">
+      <div className="card border shadow-lg ">
+        <div className="card-header d-flex justify-content-between ">
           <div> Sub Category List</div>
           <div>
             <button
@@ -118,7 +118,7 @@ const SubCategoryList = () => {
           </div>
         </div>
 
-        <div class="card-body p-0">
+        <div className="card-body p-0">
           <MaterialReactTable
             columns={columns}
             data={isSuccess && data?.data}

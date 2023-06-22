@@ -152,11 +152,11 @@ const RecevedOrderItem = ({ handleClose }) => {
   return (
     <>
       <PageTopHeader title="Receved Order" />
-      <div class="card border shadow-lg">
-        <div class="card-header d-flex justify-content-between ">
+      <div className="card border shadow-lg">
+        <div className="card-header d-flex justify-content-between ">
           <div>Item Order List</div>
         </div>
-        <div class="card-body ">
+        <div className="card-body ">
           <div>
             <form
               className="form-sample"
@@ -222,7 +222,7 @@ const RecevedOrderItem = ({ handleClose }) => {
         
 
                     <div className="py-2 pb-3 my-4 ">
-                      <table class="table">
+                      <table className="table">
                         <thead>
                           <tr>
                             <th scope="col">Name</th>
@@ -282,7 +282,7 @@ const RecevedOrderItem = ({ handleClose }) => {
                       </div>
                     </div>
                     <div className="col-6 border ">
-                      <table class="table table-white table-striped">
+                      <table className="table table-white table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Sub Total Amount :</th>

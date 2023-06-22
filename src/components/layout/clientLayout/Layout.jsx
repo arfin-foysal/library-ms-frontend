@@ -12,8 +12,11 @@ function Layout() {
   return (
     <div>
       <Header />
-      <Outlet />
-      <Footer/>
+      <div className="content-wrapper">
+        <Outlet />
+      </div>
+
+      <Footer />
     </div>
   );
 }

@@ -146,19 +146,19 @@ const BookRentsList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Issue List" />
+      <PageTopHeader title="Rents List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Book Issue List</div>
+          <div>Book Rent List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Book Issue");
+                handelClickValue("Book Rent");
               }}
             >
-              Add Book Issue
+              Add Book Rent
             </button>
           </div>
         </div>
@@ -185,7 +185,7 @@ const BookRentsList = () => {
                       className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Book Issue Information");
+                        handelClickValue("Book Rent Information");
                         setParamId(row?.row?.original);
                       }}
                     >

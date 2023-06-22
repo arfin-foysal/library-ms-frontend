@@ -18,6 +18,7 @@ function Contact() {
             width="100%"
             height="450"
             referrerpolicy="no-referrer-when-downgrade"
+
           ></iframe>
         </div>
 
@@ -28,7 +29,7 @@ function Contact() {
                 <BiCurrentLocation/>
                 Location
               </h3>
-              <div class="text ">
+              <div className="text ">
                 <p>
                   House #13(5th Floor), Block-C, <br /> Main Road, Banasree,
                   Rampura, Dhaka-1219.
@@ -41,7 +42,7 @@ function Contact() {
               <h3>
                 <BsPhoneFill/>
                 Phone Number</h3>
-              <div class="text ">
+              <div className="text ">
                 <p>
                   +88 01836 14 9699 <br /> +88 02 8396601
                 </p>
@@ -54,7 +55,7 @@ function Contact() {
                 
                 <MdMarkEmailUnread/>
                 E-Mail Us</h3>
-              <div class="text ">
+              <div className="text ">
                 <p>info@bacbonltd.com</p>
               </div>
             </div>

@@ -17,6 +17,11 @@ function CartModal({ show, handleClose }) {
     0
   );
 
+   //return date today after 7days
+
+   const returnDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+   .toISOString()
+   .slice(0, 10);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -30,9 +35,11 @@ function CartModal({ show, handleClose }) {
           qty:totalQty,
           user_id: authUser.id,
           items: borrow?.borrow,
+          note: "ClientSite user borrow book",
+          return_date: returnDate,
         };
 
-        // console.log(data);
+
 
         const result = await itemRentCreateClient(data).unwrap();
 

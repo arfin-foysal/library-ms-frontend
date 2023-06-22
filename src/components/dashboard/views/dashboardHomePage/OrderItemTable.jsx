@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
 import Loader from "../../common/Loader";
+import { Link } from 'react-router-dom';
 
 
 
@@ -86,13 +87,11 @@ const OrderItemTable = ({ orderItem,
       {isFetching && <Loader />}
 
 
-      <div class="card border shadow-lg">
-
-        <div class="card-body p-0 ">
+ 
           <MaterialReactTable
             columns={columns}
             data={isSuccess && orderItem}
-            enableBottomToolbar={false}
+            // enableBottomToolbar={false}
 
 
             muiTopToolbarProps={{
@@ -100,11 +99,37 @@ const OrderItemTable = ({ orderItem,
                 backgroundColor: "#3f4d67",
               },
             }}
-          // enablePagination="true"
+        // enablePagination="true"
+        muiTablePaginationProps={{
+          style: {
+            backgroundColor: "#3f4d67",
+            display: "none"
+          },
+        }
+        }
+
+
+
+
+
+        renderBottomToolbarCustomActions={() => {
+
+          return (
+            <div className="text-center">
+              <Link to="/dashboard/order-list" className="btn  btn-sm" style={{
+                backgroundColor: "#3f4d67",
+                color: "white"
+              }} >
+                View More
+              </Link>
+            </div>
+
+          )
+
+        }} 
 
           />
-        </div>
-      </div>
+      
     </>
   );
 };

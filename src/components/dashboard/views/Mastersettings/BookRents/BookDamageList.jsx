@@ -175,8 +175,8 @@ const BookDamageList = () => {
         paramId={paramId}
       />
       <PageTopHeader title="Damaged Book List" />
-      <div class="card border shadow-lg">
-        <div class="card-header d-flex justify-content-between ">
+      <div className="card border shadow-lg">
+        <div className="card-header d-flex justify-content-between ">
           <div>Damaged Book List</div>
           {/* <div>
             <button
@@ -191,7 +191,7 @@ const BookDamageList = () => {
           </div> */}
         </div>
 
-        <div class="card-body p-0 ">
+        <div className="card-body p-0 ">
           <MaterialReactTable
             columns={columns}
             data={isSuccess &&  data?.data}

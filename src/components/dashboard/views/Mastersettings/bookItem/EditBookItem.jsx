@@ -238,7 +238,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="video_url"
                     onChange={formik.handleChange}
                     value={formik.values.video_url}
-                    required
+                    
                   />
                 </div>
               </div>
@@ -543,23 +543,18 @@ const EditBookItem = ({ handleClose, param }) => {
         </div>
 
         <Modal.Footer>
-          <div className=" d-flex">
-            <div className="mx-5">
-              <button type="submit" className="btn btn-success">
-                Submit
-              </button>
-            </div>
+        <div className=" d-flex">
 
-            <div className="mx-5">
-              <button
-                type="button"
-                className="btn btn-dark"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </div>
-          </div>
+<button className="btn btn-dark me-1" onClick={handleClose}>
+  Close
+</button>
+
+
+<button type="submit" className="btn btn-success " data-dismiss="modal">
+  Submit
+</button>
+
+</div>
         </Modal.Footer>
       </form>
     </div>

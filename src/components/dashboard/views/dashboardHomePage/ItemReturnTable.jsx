@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
 import MaterialReactTable from 'material-react-table';
 import moment from "moment";
+import { Link } from 'react-router-dom';
 
 
 const ItemReturnTable = ({ returnItem,
@@ -69,11 +70,10 @@ const ItemReturnTable = ({ returnItem,
     <>
 
 
-      <div class="card-body p-0 ">
         <MaterialReactTable
           columns={columns}
           data={isSuccess && returnItem}
-          enableBottomToolbar={false}
+          // enableBottomToolbar={false}
           // enableRowActions
           // enableColumnActions
           positionActionsColumn="last"
@@ -84,8 +84,36 @@ const ItemReturnTable = ({ returnItem,
           }}
         // enablePagination="true"
 
+        muiTablePaginationProps={{
+          style: {
+            backgroundColor: "#3f4d67",
+            display: "none"
+          },
+        }
+        }
+
+
+
+
+
+        renderBottomToolbarCustomActions={() => {
+
+          return (
+            <div className="text-center">
+              <Link to="/dashboard/return-list" className="btn  btn-sm" style={{
+                backgroundColor: "#3f4d67",
+                color: "white"
+              }} >
+                View More
+              </Link>
+            </div>
+
+          )
+
+        }} 
+
         />
-      </div>
+   
     </>
   );
 };

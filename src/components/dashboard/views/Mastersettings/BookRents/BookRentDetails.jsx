@@ -6,7 +6,7 @@ const BookRentDetails = ({ handleClose, values }) => {
     <div>
       <div className="row">
         <div>
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th>Rental No:</th>
@@ -24,7 +24,7 @@ const BookRentDetails = ({ handleClose, values }) => {
                     src={`${import.meta.env.VITE_FILE_URL}${
                       values?.user_photo
                     }`}
-                    alt=""
+                    alt="..."
                   />
                 </th>
               </tr>
@@ -55,17 +55,17 @@ const BookRentDetails = ({ handleClose, values }) => {
           </table>
 
           {values?.item_rents_Detail?.length === 0 && (
-            <div class="alert alert-success text-center" role="alert">
+            <div className="alert alert-success text-center" role="alert">
               <>All Item Already Return</>
             </div>
           )}
           {values?.item_rents_Detail?.length !== 0 && (
-            <div class="alert alert-warning text-center" role="alert">
+            <div className="alert alert-warning text-center" role="alert">
               <> All items are not returned</>
             </div>
           )}
 
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">Item Photo</th>

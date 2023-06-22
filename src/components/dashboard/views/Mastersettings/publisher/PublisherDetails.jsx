@@ -33,21 +33,21 @@ const PublisherDetails = ({ handleClose, param }) => {
           <div className="col-6">
             <p>
               Name:
-              <span class="font-weight-bold text-primary ">{param.name}</span>
+              <span className="font-weight-bold text-primary ">{param.name}</span>
             </p>
             <p>
               Email:
-              <span class="font-weight-bold text-primary ">{param.email}</span>
+              <span className="font-weight-bold text-primary ">{param.email}</span>
             </p>
             <p>
               Mobile:
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.mobile}
               </span>
             </p>
             <p>
               contact :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.contact}
               </span>
             </p>
@@ -55,19 +55,19 @@ const PublisherDetails = ({ handleClose, param }) => {
           <div className="col-6 ">
             <p>
               Present Addres :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.address1}
               </span>
             </p>
             <p>
               permanent Addres :
-              <span class="font-weight-bold text-primary ">
+              <span className="font-weight-bold text-primary ">
                 {param.address2}
               </span>
             </p>
             <p>
               Bio :
-              <span class="font-weight-bold text-primary ">{param.bio}</span>
+              <span className="font-weight-bold text-primary ">{param.bio}</span>
             </p>
 
             <p>

@@ -13,9 +13,9 @@ const ItemsBorrowed = () => {
 
       {boweredRes?.isFetching && <Loader />}
 
-      <div className="d-flex flex-wrap justify-content-between">
+      <div className="d-flex flex-wrap justify-content-start ">
         {boweredRes?.data?.data?.map((book) => (
-          <div className="my-2">
+          <div className="m-2">
             <BoweredBook book={book} />
           </div>
         ))}

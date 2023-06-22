@@ -24,13 +24,13 @@ const BookRentsModal
           <Modal.Title>{clickValue}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {clickValue === "Book Issue" && (
+          {clickValue === "Book Rent" && (
             <CreateBookRents handleClose={handleClose} />
           )}
           {clickValue === "Return Book" && (
             <ReturnBook handleClose={handleClose} param={paramId} />
           )}
-          {clickValue === "Book Issue Information" && (
+          {clickValue === "Book Rent Information" && (
             <BookRentDetails handleClose={handleClose} values={paramId} />
           )}
         </Modal.Body>

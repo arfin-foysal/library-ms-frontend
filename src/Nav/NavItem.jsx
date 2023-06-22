@@ -6,10 +6,10 @@ import { BiBook, BiBookBookmark, BiBookContent, BiCategory } from "react-icons/b
 import { IoLanguage } from "react-icons/io5";
 import { BiLandscape,BiBookAlt ,BiBookAdd} from "react-icons/bi";
 import { GoBook } from "react-icons/go";
-import { MdOutlinePublishedWithChanges, } from "react-icons/md";
+import { MdOutlinePublishedWithChanges, MdPayments, } from "react-icons/md";
 import { AiOutlineBorderOuter } from "react-icons/ai";
 import { CiViewList } from "react-icons/ci";
-import { BsDashSquare, BsDashSquareDotted } from "react-icons/bs";
+import { BsBasket, BsDashSquare, BsDashSquareDotted, BsFilterSquare, BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 
 
 
@@ -28,13 +28,13 @@ export const navItem = [
     ],
   },
   {
-    title: "Book Issue",
+    title: "Book Rents",
     role: "admin",
     icon: <BiBookContent />,
     children: [
       {
-        title: "Issue List",
-        link: "issue-list",
+        title: "Book Rents",
+        link: "rent-list",
         role: "admin",
         icon: <BiBookAdd />,
       },
@@ -67,32 +67,32 @@ export const navItem = [
         title: "Order List",
         link: "order-list",
         role: "admin",
-        icon: <RiFileListLine />,
+        icon: <BsReverseLayoutTextSidebarReverse size={12} />,
       },
       {
         title: "Item Quantity List",
         link: "Item-qty-list",
         role: "admin",
-        icon: <RiFileListLine />,
+        icon: <BsBasket size={14} />,
       },
       {
         title: "Item Received List",
         link: "item-received-list",
         role: "admin",
-        icon: <RiFileListLine />,
+        icon: <BsFilterSquare size={12} />,
       },
     ],
   },
   {
     title: "Vendor Payment",
     role: "admin",
-    icon: <BsDashSquare size={14} />,
+    icon: <BsDashSquare size={13} />,
     children: [
       {
         title: "Vendor Payment",
         link: "vandor-payment",
         role: "admin",
-        icon: <BsDashSquareDotted size={14} />,
+        icon: <MdPayments size={16} />,
       },
     ],
   },

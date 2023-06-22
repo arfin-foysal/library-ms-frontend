@@ -115,7 +115,7 @@ export const privateRoute = [
     role: "admin",
   },
   {
-    path: "issue-list",
+    path: "rent-list",
     element: <BookRentsList />,
     role: "admin",
   },

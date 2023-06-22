@@ -114,11 +114,11 @@ const ReturnBook = ({ handleClose, param }) => {
   }
 
   return (
-    <div class="card border shadow-lg">
-      <div class="card-header d-flex justify-content-between ">
+    <div className="card border shadow-lg">
+      <div className="card-header d-flex justify-content-between ">
         <div>Item Rents List</div>
       </div>
-      <div class="card-body ">
+      <div className="card-body ">
         <div>
           <form
             className="form-sample"
@@ -156,11 +156,11 @@ const ReturnBook = ({ handleClose, param }) => {
                   </div>
 
                   <div className="py-1  my-2 ">
-                    <div class="alert alert-dark text-center" role="alert">
+                    <div className="alert alert-dark text-center" role="alert">
                       Book Rents List
                     </div>
 
-                    <table class="table">
+                    <table className="table">
                       <thead>
                         <tr>
                           <th scope="col">Photo</th>
@@ -179,7 +179,7 @@ const ReturnBook = ({ handleClose, param }) => {
                         {item?.length === 0 && (
                           <tr>
                             <td colSpan="4" className="text-center">
-                              <div class="alert alert-success" role="alert">
+                              <div className="alert alert-success" role="alert">
                                 All Item Already Return
                               </div>
                             </td>
@@ -204,7 +204,7 @@ const ReturnBook = ({ handleClose, param }) => {
 
                             <td>
                               <select
-                                className="form-control"
+                                className="form-control fw-bold"
                                 defaultValue={
                                   item.status ? item.status : "return"
                                 }
@@ -221,10 +221,10 @@ const ReturnBook = ({ handleClose, param }) => {
                                   );
                                 }}
                               >
-                                <option value="return">Return</option>
-                                <option value="rental">Rental</option>
-                                <option value="overdue">Overdue</option>
-                                <option value="damaged">Damaged</option>
+                                <option value="return" className=" fw-bold text-success">Return</option>
+                                <option value="rental" className=" fw-bold  text-warning">Not Return</option>
+                                <option value="overdue" className=" fw-bold text-info">Overdue</option>
+                                <option value="damaged" className=" fw-bold  text-danger">Damaged</option>
                               </select>
                             </td>
                             <td>

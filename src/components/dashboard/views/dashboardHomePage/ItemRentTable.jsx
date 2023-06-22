@@ -5,6 +5,7 @@ import moment from "moment";
 import Loader from "../../common/Loader";
 
 import MaterialReactTable from "material-react-table";
+import { Link } from "react-router-dom";
 
 const ItemRentTable = ({ rent,
     isFetching,
@@ -78,20 +79,52 @@ const ItemRentTable = ({ rent,
             {isFetching && <Loader />}
 
 
-            <div >
+            < >
+
                 <MaterialReactTable
                     columns={columns}
                     data={isSuccess && rent}
-                    enableBottomToolbar={false}
-                    positionActionsColumn="last"
+                    // enableBottomToolbar={false}
+                    // positionActionsColumn="last"
                     muiTopToolbarProps={{
                         style: {
                             backgroundColor: "#3f4d67",
                         },
                     }}
 
+                    muiTablePaginationProps={{
+                        style: {
+                            backgroundColor: "#3f4d67",
+                            display: "none"
+                        },
+                    }
+                    }
+
+
+
+
+
+                    renderBottomToolbarCustomActions={() => {
+
+                        return (
+                            <div className="text-center">
+                                <Link to="/dashboard/issue-list" className="btn  btn-sm" style={{
+                                    backgroundColor: "#3f4d67",
+                                    color: "white"
+                                }} >
+                                    View More
+                                </Link>
+                            </div>
+
+                        )
+
+                    }
+
+
+                    }
+
                 />
-            </div>
+            </>
         </>
     );
 };

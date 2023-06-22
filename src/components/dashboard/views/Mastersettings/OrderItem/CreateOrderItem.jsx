@@ -277,6 +277,8 @@ const CreateOrderItem = ({ handleClose }) => {
                 <label className="col-12 col-form-label">Note</label>
                 <div className="col-12">
                   <textarea
+                    maxLength={200}
+                    
                     rows={4}
                     placeholder="Enter Note"
                     type="text"

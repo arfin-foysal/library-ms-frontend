@@ -20,7 +20,7 @@ const CreateBookRents = ({ handleClose }) => {
 
   const [allItem, setAllItem] = useState([]);
   const [item, setItem] = useState();
-  const [item_qty, setitem_qty] = useState(1);
+  const [item_qty, setitem_qty] = useState();
   const [item_return_date, setitem_return_date] = useState();
   const [availableQty, setAvailableQty] = useState();
 
@@ -155,6 +155,7 @@ const CreateBookRents = ({ handleClose }) => {
                   onChange={(e) => {
                     setItem(e);
                     availableQtyHandeler(e);
+                    setitem_qty(1);
                   }}
                   getOptionValue={(option) => `${option["id"]}`}
                   getOptionLabel={(option) => `${option["title"]}( ${option["barcode_or_rfid"]} )`}
@@ -174,8 +175,9 @@ const CreateBookRents = ({ handleClose }) => {
                 <label className="col-12 col-form-label">Quantity</label>
                 <div className="col-12">
                   <input
+              
                     disabled
-                    placeholder="Quantity"
+                    placeholder="Only 1 quantity allowed"
                     type="number"
                     className="form-control"
                     name="item_qty"

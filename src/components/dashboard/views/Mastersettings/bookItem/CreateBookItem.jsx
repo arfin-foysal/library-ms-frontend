@@ -186,7 +186,7 @@ const CreateBookItem = ({ handleClose }) => {
                     value={formik.values.item_type}
                     required
                   >
-                    <option>--Select--</option>
+                    <option value="" > --Select-- </option>
                     <option value="physical">Physical</option>
                     <option value="virtual">Virtual</option>
                   </select>
@@ -247,7 +247,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="video_url"
                     onChange={formik.handleChange}
                     value={formik.values.video_url}
-                   
+
                   />
                 </div>
               </div>
@@ -292,7 +292,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="virtual_book"
                     type="file"
                     accept="image/*,.pdf"
-                 
+
                     onChange={(e) => {
                       formik.setFieldValue(
                         "virtual_book",
@@ -573,16 +573,16 @@ const CreateBookItem = ({ handleClose }) => {
 
         <Modal.Footer>
           <div className=" d-flex">
-            
-              <button className="btn btn-dark me-1" onClick={handleClose}>
-                Close
-              </button>
-           
-          
-              <button type="submit" className="btn btn-success " data-dismiss="modal">
-                Submit
-              </button>
-         
+
+            <button className="btn btn-dark me-1" onClick={handleClose}>
+              Close
+            </button>
+
+
+            <button type="submit" className="btn btn-success " data-dismiss="modal">
+              Submit
+            </button>
+
           </div>
         </Modal.Footer>
       </form>

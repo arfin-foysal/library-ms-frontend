@@ -38,7 +38,7 @@ const AllAuthor = () => {
 
   return (
     <div className=" container">
-      <div class="row">
+      <div className="row">
         <div className="col"></div>
         <div className="col"></div>{" "}
         <div className="col-md-4 co-12 my-4">
@@ -58,7 +58,7 @@ const AllAuthor = () => {
       <div className="my-5">
         {isLoading && <Loader />}
         {filteredData?.map((author, i) => (
-          <div className="row shadow-lg border p-3 my-3">
+          <div className="row shadow-lg border p-3 my-3" key={i}>
             <div className="col pt-3 text-center">
               {author?.photo ? (
                 <img

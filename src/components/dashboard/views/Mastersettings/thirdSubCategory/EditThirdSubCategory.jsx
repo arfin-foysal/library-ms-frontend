@@ -132,7 +132,7 @@ const EditThirdSubCategory = ({ handleClose, param }) => {
           <div className="form-group row col-12 my-2">
             <label className="col-3 col-form-label">Is Active</label>
             <div className="col-9">
-              <div class="form-check form-switch mt-2">
+              <div className="form-check form-switch mt-2">
                 <Form.Check
                   type="switch"
                   id="custom-switch"

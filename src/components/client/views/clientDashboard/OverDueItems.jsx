@@ -15,9 +15,9 @@ const OverDueItems = () => {
 
       {pendingRes?.isFetching && <Loader />}
 
-      <div className="d-flex flex-wrap justify-content-between">
+      <div className="d-flex flex-wrap justify-content-star">
         {pendingRes?.data?.data?.map((book) => (
-          <div className="my-2">
+          <div className="m-2">
             <OverDueBook book={book} />
           </div>
         ))}

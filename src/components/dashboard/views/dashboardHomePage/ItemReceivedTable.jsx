@@ -3,6 +3,7 @@ import MaterialReactTable from "material-react-table";
 import OrderItemModal from "../Mastersettings/OrderItem/OrderItemModal";
 import Loader from "../../common/Loader";
 import moment from "moment";
+import { Link } from 'react-router-dom';
 const ItemReceivedTable = ({
   receiveItem,
   isFetching,
@@ -92,12 +93,10 @@ const ItemReceivedTable = ({
       {isFetching && <Loader />}
 
 
-      <div class="card border shadow-lg">
-
-        <div class="card-body p-0 ">
+    
           <MaterialReactTable
             columns={columns}
-            enableBottomToolbar={false}
+            // enableBottomToolbar={false}
             data={isSuccess && receiveItem}
 
             positionActionsColumn="last"
@@ -106,11 +105,37 @@ const ItemReceivedTable = ({
                 backgroundColor: "#3f4d67",
               },
             }}
-          // enablePagination="true"
+            // enablePagination="true"
+            muiTablePaginationProps={{
+              style: {
+                backgroundColor: "#3f4d67",
+                display: "none"
+              },
+            }
+            }
+
+
+
+
+
+            renderBottomToolbarCustomActions={() => {
+
+              return (
+                <div className="text-center">
+                  <Link to="/dashboard/item-received-list" className="btn  btn-sm" style={{
+                    backgroundColor: "#3f4d67",
+                    color: "white"
+                  }} >
+                    View More
+                  </Link>
+                </div>
+
+              )
+
+            }} 
 
           />
-        </div>
-      </div>
+
     </>
   );
 };

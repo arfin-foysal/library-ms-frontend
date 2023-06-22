@@ -10,7 +10,7 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
 
               <div >
              
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th>Receved No:</th>
@@ -55,10 +55,10 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
            
             </thead>
           </table>
-          <div class="alert alert-secondary text-center" role="alert">
+          <div className="alert alert-secondary text-center" role="alert">
   Item Details
 </div>
-          <table class="table table-bordered">
+          <table className="table table-bordered">
             <thead>
               <tr>
                 <th scope="col">Item Photo</th>

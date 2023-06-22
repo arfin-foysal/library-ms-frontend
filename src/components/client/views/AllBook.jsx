@@ -40,7 +40,7 @@ const AllBook = () => {
 
   return (
     <div className=" container">
-      <div class="row">
+      <div className="row">
         <div className="col"></div>
         <div className="col"></div>{" "}
         <div className="col-md-4 co-12 my-4">
@@ -58,7 +58,7 @@ const AllBook = () => {
       <h3>All Books</h3>
       <div className="my-5">
         {bookRes?.isLoading && <Loader />}
-        <div className="d-flex flex-wrap justify-content-between">
+        <div className="d-flex flex-wrap justify-content-star">
           
           {search === "" &&
             bookRes?.data?.data?.data?.map((book, i) => (
@@ -86,7 +86,7 @@ const AllBook = () => {
           >
             View More {bookRes.isFetching && (
               <span
-                class="spinner-border spinner-border-sm "
+                className="spinner-border spinner-border-sm "
                 role="status"
               ></span>
             )}

@@ -203,7 +203,7 @@ const EditVendor = ({ handleClose, param }) => {
         <div className="form-group row col-6 my-3">
           <label className="col-6 col-form-label">Is Active</label>
           <div className="col-6">
-            <div class="form-check form-switch mt-2">
+            <div className="form-check form-switch mt-2">
               <Form.Check
                 type="switch"
                 id="custom-switch"

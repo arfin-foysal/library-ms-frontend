@@ -163,7 +163,7 @@ const EditVendorePayment = ({ handleClose, param }) => {
                 </div>
               </div>
               <div className="col-6 border my-4">
-                <table class="table table-white table-striped">
+                <table className="table table-white table-striped">
                   <thead>
                     <tr>
                       <th scope="col">PayableAmount:</th>
