@@ -9,11 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBorrow } from "../../../features/borrowSlice";
 import ReactPlayer from "react-player";
 import Loader from "../../dashboard/common/Loader";
-
 import { useGetItemByIdQuery } from "../../../services/clientSiteApi";
-
-// const Artists = React.lazy(() => import('./Artists'));
-
 import { AddReviews } from "./common/AddReviews";
 import Reviews from "./common/Reviews";
 import RelatedBookCard from "./common/RelatedBookCard";
@@ -23,20 +19,16 @@ import Star from "./common/Star";
 
 
 
-const BookDetails = () => {
+  const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const authToken = useSelector((state) => state.clientAuth.clientToken);
   const [modalShow, setModalShow] = React.useState(false);
   const [modalVShow, setModalVShow] = React.useState(false);
-
   const { id } = useParams();
   const bookDetailsRes = useGetItemByIdQuery(id);
   const book = bookDetailsRes?.data?.data;
-  const dispatch = useDispatch();
-
-
-
-
+    const dispatch = useDispatch();
+    
 
 
 

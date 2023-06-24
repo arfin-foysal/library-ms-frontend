@@ -21,12 +21,26 @@ export const clientAuthApi = apiSlice.injectEndpoints({
         body,
         headers,
       }),
-      invalidatesTags: ["Auth"],
+      invalidatesTags: ["clientAuth"],
     }),
+    passwordChange: builder.mutation({
+      query: (body) => ({
+        url: "/client/password-change",
+        method: "POST",
+        body,
+        headers,
+      }),
+      invalidatesTags: ["clientAuth"],
+    }),
+
+
+    
   }),
 });
 
+
 export const { useClientLoginMutation,
   useClientRegisterMutation,
+  usePasswordChangeMutation,
 
 } = clientAuthApi;

@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 import { headers } from "../utils/ApiHeaders";
 import { apiSliceAdmin } from './../store/api/apiSliceAdmin';
 export const categoryApi = apiSliceAdmin.injectEndpoints({
@@ -120,6 +120,10 @@ export const categoryApi = apiSliceAdmin.injectEndpoints({
       }),
       invalidatesTags: ['Category']
     }),
+
+
+    
+
   }),
 });
 

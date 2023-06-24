@@ -15,7 +15,7 @@ import {
 const AuthorList = () => {
   const res = useGetAuthorListQuery();
   const [deleteAuthor] = useDeleteAuthorMutation();
-  const { data, isSuccess, isFetching, isError } = res;
+  const { data, isSuccess, isFetching } = res;
   const [clickValue, setClickValue] = useState(null);
   const [paramId, setParamId] = useState(null);
   const [show, setShow] = useState(false);

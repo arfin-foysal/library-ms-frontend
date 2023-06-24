@@ -4,9 +4,10 @@ import { Card } from "react-bootstrap";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import Loader from "./../../../dashboard/common/Loader";
-
+import { FcUnlock } from 'react-icons/fc';
 import avatar from "./../../../../assets/images/profile-picture.png";
 import { useGetSingleUserQuery, useProfileUpdateMutation } from "../../../../services/clientSiteApi";
+import { Link } from "react-router-dom";
 
 const PersonalInfo = () => {
   const profileRes = useGetSingleUserQuery();
@@ -32,7 +33,7 @@ const PersonalInfo = () => {
       gender: profileRes?.data?.data?.gender,
       description: profileRes?.data?.data?.description,
       profile_photo_path: profileRes?.data?.data?.profile_photo_path,
-      
+
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -49,9 +50,9 @@ const PersonalInfo = () => {
       // resetForm();
 
       try {
-          const result = await profileUpdate(formData).unwrap();
+        const result = await profileUpdate(formData).unwrap();
         toast.success(result.message);
-    
+
       } catch (error) {
         toast.warn(error.data.message);
       }
@@ -59,9 +60,18 @@ const PersonalInfo = () => {
   });
   return (
     <div>
-      <div>
-        <h4>Personal Information</h4>
-        <p>Tell us more about you</p>
+      <div className=" d-flex justify-content-between">
+        <div>
+          <h4>Personal Information</h4>
+          <p>Tell us more about you</p>
+        </div>
+
+        <div>
+          <Link to="/client-dashboard/password-change" className=" btn btn-warning btn-sm">
+            <FcUnlock size={22} />
+          </Link>
+        </div>
+
       </div>
       <div>
         <div>
@@ -168,15 +178,15 @@ const PersonalInfo = () => {
                     name="gender"
                     onChange={formik.handleChange}
                     value={formik.values.gender}
-                 className="form-control form-control-user shadow"
-              
+                    className="form-control form-control-user shadow"
+
                   >
                     <option value="">--select--</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                   </select>
-   
+
                 </div>
               </div>
 
@@ -204,7 +214,7 @@ const PersonalInfo = () => {
                   ) : null}
                 </div>
               </div>
-           
+
 
               <div className="form-group  col-md-6 my-1">
                 <label className="col-12 col-form-label">Photo</label>
@@ -225,7 +235,7 @@ const PersonalInfo = () => {
                 </div>
               </div>
 
-                 <div className="form-group  col-md-6 my-1">
+              <div className="form-group  col-md-6 my-1">
                 <label className="col-12 col-form-label">Description</label>
                 <div className="col-12">
                   <textarea
@@ -266,9 +276,9 @@ const PersonalInfo = () => {
                     src={
                       formik.values.profile_photo_path === null
                         ? avatar
-                        : `${import.meta.env.VITE_FILE_URL}${
-                            formik.values.profile_photo_path
-                          }`
+                        : `${import.meta.env.VITE_FILE_URL}${formik.values.profile_photo_path
+                        }`
+
                     }
                     width="80px"
                     height="80px"

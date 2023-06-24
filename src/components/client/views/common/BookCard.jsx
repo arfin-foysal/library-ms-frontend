@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Star from "./Star";
 const BookCard = ({ book }) => {
   return (
-    <div className="card p-3 border-primary shadow" style={{ width: "13rem" }}>
+    <div className="card p-3 border-primary shadow" style={{ width: "12rem" }}>
       <Link to={`/bookdetails/${book?.id}`}>
         <img
           src={`${import.meta.env.VITE_FILE_URL}/${book?.photo}`}

@@ -5,11 +5,6 @@ import CreateAuthor from "./CreateAuthor";
 import EditAuthor from "./EditAuthor";
 
 const AuthorModal = ({ handleClose, show, clickValue, paramId }) => {
-
-  
-
-
-
   return (
     <>
       <Modal show={show} onHide={handleClose} size="lg">

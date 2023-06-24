@@ -10,9 +10,7 @@ const ItemsBorrowed = () => {
   return (
     <div>
       <h4>Items Borrowed</h4>
-
       {boweredRes?.isFetching && <Loader />}
-
       <div className="d-flex flex-wrap justify-content-start ">
         {boweredRes?.data?.data?.map((book) => (
           <div className="m-2">

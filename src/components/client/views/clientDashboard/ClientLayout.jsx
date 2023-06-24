@@ -7,11 +7,11 @@ import { MdPending } from "react-icons/md";
 import { BsFillCalendarEventFill } from "react-icons/bs";
 const ClientLayout = () => {
   return (
-    <div>    <div className=" text-center " style={{backgroundColor:"#6682C81A"}}>
-          <img src={ebook} alt="" />
-        </div>
+    <div>    <div className=" text-center " style={{ backgroundColor: "#6682C81A" }}>
+      <img src={ebook} alt="" />
+    </div>
       <div className="container">
-    
+
         <div className="row py-4">
           <div className="col-4">
             {/* //Navbar */}

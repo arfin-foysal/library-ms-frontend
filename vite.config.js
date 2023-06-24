@@ -6,13 +6,11 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   plugins: [
     react(),
-    eslint(
-      {
-        cache: false,
-        include: ["./src/**/*.js", "./src/**/*.jsx"],
-        exclude: ["node_modules/**", "**/node_modules/**"],
-      },
-    ),
+    eslint({
+      cache: false,
+      include: ["./src/**/*.js", "./src/**/*.jsx"],
+      exclude: ["node_modules/**", "**/node_modules/**"],
+    }),
     VitePWA({
       registerType: "autoUpdate",
       devOptions: {
@@ -65,29 +63,26 @@ export default defineConfig({
         ],
       },
       workbox: {
-        runtimeCaching: [{
-          urlPattern: new RegExp('^https://fonts.(?:googleapis|gstatic).com/(.*)'),
-          handler: 'CacheFirst',
-          options: {
-            
-            cacheName: 'google-fonts',
-            expiration: {
-              maxEntries: 30,
-              maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => {
+              url.pathname.startsWith("/api");
             },
+            handler: "CacheFirst",
+            options: {
+              cacheName: "api-cache",
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 365 days
+              },
 
-            cacheableResponse: {
-              statuses: [0, 200]
-
-            }
-              
-          }
-
-        
-        },
-        ]
-        },
-
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
 });

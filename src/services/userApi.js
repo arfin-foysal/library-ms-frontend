@@ -18,7 +18,7 @@ export const userApi = apiSliceAdmin.injectEndpoints({
       providesTags: ["User"],
     }),
 
-userCreateOrUpdate: builder.mutation({
+    userCreateOrUpdate: builder.mutation({
       query: (body) => {
         return {
           url: `admin/create-or-update-user`,
@@ -28,9 +28,8 @@ userCreateOrUpdate: builder.mutation({
         };
       },
       invalidatesTags: ["User"],
-}),
+    }),
 
-    
     deleteUser: builder.mutation({
       query: (id) => ({
         url: `admin/delete-user/${id}`,
@@ -39,7 +38,7 @@ userCreateOrUpdate: builder.mutation({
       }),
       invalidatesTags: ["User"],
     }),
-resetPassword: builder.mutation({
+    resetPassword: builder.mutation({
       query: (body) => {
         return {
           url: `admin/reset-password`,
@@ -49,9 +48,7 @@ resetPassword: builder.mutation({
         };
       },
       invalidatesTags: ["User"],
-}),
-
-
+    }),
   }),
 });
 

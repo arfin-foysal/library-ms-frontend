@@ -1,5 +1,4 @@
 import React from "react";
-import damo from "./../../../../assets/images/img_1.jpg";
 import { Link } from "react-router-dom";
 import Star from "./Star";
 const RelatedBookCard = ({ book }) => {

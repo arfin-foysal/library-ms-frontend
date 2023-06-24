@@ -1,5 +1,4 @@
 import React from "react";
-import damo from "./../../../../assets/images/img_1.jpg";
 import { Link } from "react-router-dom";
 import moment from "moment";
 const OverDueBook = ({ book }) => {
@@ -19,10 +18,6 @@ const OverDueBook = ({ book }) => {
           {book?.title}
         </p>
         <div className="mt-2 text-center">
-          {/* <p className="text-muted m-0 m-1">
-            <b>by </b>
-            {book?.authors[0]?.name}
-          </p> */}
           <p className="text-muted ">
             <p className="m-0">Borrowed Date: </p>
             {moment(book?.rental_date).format("MMMM Do YYYY")}

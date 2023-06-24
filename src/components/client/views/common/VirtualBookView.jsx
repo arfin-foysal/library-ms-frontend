@@ -6,11 +6,7 @@ const VirtualBookView = (props) => {
     <Modal
       {...props}
       size="xl"
-    
-      // centered
-
       dialogClassName="modal-90w"
-     
       aria-labelledby="example-custom-modal-styling-title"
     >
       <Modal.Header closeButton></Modal.Header>

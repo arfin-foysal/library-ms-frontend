@@ -23,6 +23,7 @@ import Contact from './../components/client/views/Contact';
 import NotAccess from "../components/pages/commonViews/NotAccess";
 import Error from "../components/pages/commonViews/Error";
 import ClientSignup from "../components/client/views/signup/ClientSignup";
+import PasswordChange from "../components/client/views/clientDashboard/PasswordChange";
 
 
 export const publicRoute = [
@@ -78,6 +79,10 @@ export const publicRoute = [
           {
             path: "/client-dashboard/over-due-items",
             element: <OverDueItems />,
+          },
+          {
+            path: "/client-dashboard/password-change",
+            element: <PasswordChange />,
           }
           
         ]

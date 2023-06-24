@@ -108,7 +108,7 @@ const ItemRentTable = ({ rent,
 
                         return (
                             <div className="text-center">
-                                <Link to="/dashboard/issue-list" className="btn  btn-sm" style={{
+                                <Link to="/dashboard/rent-list" className="btn  btn-sm" style={{
                                     backgroundColor: "#3f4d67",
                                     color: "white"
                                 }} >

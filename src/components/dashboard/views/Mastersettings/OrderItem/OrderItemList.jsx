@@ -14,6 +14,7 @@ import {
   useDeleteItemOrderMutation,
 } from "../../../../../services/itemOrder";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 const OrderItemList = () => {
   const res = useAllItemOrderQuery();
@@ -96,11 +97,19 @@ const OrderItemList = () => {
         header: "Total",
         size: 10,
       },
+
+
       {
-        accessorKey: "tentative_date", //normal accessorKey
+        accessorFn: (row) =>
+            row?.tentative_date && (
+                <>{moment(row.tentative_date).format("MMMM Do YYYY")}</>
+            ),
+
+        id: "tentative_date",
         header: "Tentative Date",
         size: 10,
       },
+    
 
       {
         //accessorFn function that combines multiple data together

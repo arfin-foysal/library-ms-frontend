@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-
   useGetReviewByUserQuery,
   useReviewItemMutation,
 } from "../../../../services/clientSiteApi";
@@ -12,8 +11,7 @@ const colors = {
   orange: "#FFBA5A",
   grey: "#a9a9a9",
 };
-
-export const AddReviews =  ({ itemId }) => {
+export const AddReviews = ({ itemId }) => {
   const [reviewItem, res] = useReviewItemMutation();
   const reviewRes = useGetReviewByUserQuery(itemId);
   const data = reviewRes?.data?.data;
@@ -36,6 +34,7 @@ export const AddReviews =  ({ itemId }) => {
   useEffect(() => {
     setCurrentValue(data?.rating);
   }, [data?.rating]);
+
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -66,7 +65,7 @@ export const AddReviews =  ({ itemId }) => {
 
   return (
     <div className="mt-5">
-      
+
 
       <form
         className="form-sample"

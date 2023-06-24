@@ -1,4 +1,4 @@
-import { apiSlice } from './../store/api/apiSlice';
+import { apiSlice } from "./../store/api/apiSlice";
 
 export const clientSiteApi = apiSlice.injectEndpoints({
   reducerPath: "clientSiteApi",
@@ -82,8 +82,6 @@ export const clientSiteApi = apiSlice.injectEndpoints({
       invalidatesTags: ["Client"],
     }),
 
-   
-
     itemRentCreateClient: builder.mutation({
       query: (body) => {
         return {
@@ -118,6 +116,15 @@ export const clientSiteApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["Client"],
     }),
+
+    reviewDelete: builder.mutation({
+      query: (id) => ({
+        url: `client/delete-review/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Client"],
+    }),
+    
   }),
 });
 
@@ -136,4 +143,5 @@ export const {
   useReviewItemMutation,
   useGetReviewByUserQuery,
   useGetReviewByItemQuery,
+  useReviewDeleteMutation,
 } = clientSiteApi;

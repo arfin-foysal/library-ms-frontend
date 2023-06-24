@@ -1,19 +1,15 @@
 import React, { useCallback, useMemo, useState } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
-import AuthorModal from "./OrderItemModal";
-import { FaEdit, FaTrash } from "react-icons/fa";
-import { confirmHandel } from "../../../../../utils/Alert";
+
 import avatar from "../../../../../assets/images/profile-picture.png";
-import { toast } from "react-toastify";
+
 import Loader from "../../../common/Loader";
-import { IoReceipt } from "react-icons/io5";
+
 
 import {
 
-  useDeleteItemOrderMutation,
 } from "../../../../../services/itemOrder";
-import { Link } from "react-router-dom";
 import { useItemAndAvailableQtyQuery } from "../../../../../services/itemRentApi";
 
 const ItemQtyList = () => {
@@ -21,24 +17,12 @@ const ItemQtyList = () => {
 
 
 
-  const [deleteItemOrder] = useDeleteItemOrderMutation();
 
-  const { data, isSuccess, isFetching, isError, error } = res;
-  const [clickValue, setClickValue] = useState(null);
-  const [paramId, setParamId] = useState(null);
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const { data, isSuccess, isFetching} = res;
 
-  const handelClickValue = useCallback((value) => {
-    setClickValue(value);
-  }, []);
 
-  const handelDelete = async (id) => {
-    const result = await deleteItemOrder(id).unwrap();
-    toast.success(result.message);
-  };
+
 
   const columns = useMemo(
     () => [
@@ -123,12 +107,7 @@ const ItemQtyList = () => {
   return (
     <>
       {isFetching && <Loader />}
-      <AuthorModal
-        show={show}
-        handleClose={handleClose}
-        clickValue={clickValue}
-        paramId={paramId}
-      />
+
       <PageTopHeader title="Item Quantity List" />
       <div className="card border shadow-lg">
         <div className="card-header d-flex justify-content-between ">
