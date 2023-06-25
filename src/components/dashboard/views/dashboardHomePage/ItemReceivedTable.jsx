@@ -1,9 +1,10 @@
-import React, {  useMemo } from "react";
+import React, { useMemo } from "react";
 import MaterialReactTable from "material-react-table";
 import OrderItemModal from "../Mastersettings/OrderItem/OrderItemModal";
 import Loader from "../../common/Loader";
 import moment from "moment";
 import { Link } from 'react-router-dom';
+import { TbCurrencyTaka } from "react-icons/tb";
 const ItemReceivedTable = ({
   receiveItem,
   isFetching,
@@ -40,17 +41,32 @@ const ItemReceivedTable = ({
         size: 10,
       },
       {
-        accessorKey: "payable_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.payable_amount && (
+            <><TbCurrencyTaka />{row.payable_amount}</>
+          ),
+
+        id: "payable_amount",
         header: "Payable Amount",
         size: 10,
       },
       {
-        accessorKey: "paid_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.paid_amount && (
+            <><TbCurrencyTaka />{row.paid_amount}</>
+          ),
+
+        id: "paid_amount",
         header: "Paid Amount",
         size: 10,
       },
       {
-        accessorKey: "due_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.due_amount && (
+            <><TbCurrencyTaka />{row.due_amount}</>
+          ),
+
+        id: "due_amount",
         header: "Due Amount",
         size: 10,
       },
@@ -93,48 +109,48 @@ const ItemReceivedTable = ({
       {isFetching && <Loader />}
 
 
-    
-          <MaterialReactTable
-            columns={columns}
-            // enableBottomToolbar={false}
-            data={isSuccess && receiveItem}
 
-            positionActionsColumn="last"
-            muiTopToolbarProps={{
-              style: {
+      <MaterialReactTable
+        columns={columns}
+        // enableBottomToolbar={false}
+        data={isSuccess && receiveItem}
+
+        positionActionsColumn="last"
+        muiTopToolbarProps={{
+          style: {
+            backgroundColor: "#3f4d67",
+          },
+        }}
+        // enablePagination="true"
+        muiTablePaginationProps={{
+          style: {
+            backgroundColor: "#3f4d67",
+            display: "none"
+          },
+        }
+        }
+
+
+
+
+
+        renderBottomToolbarCustomActions={() => {
+
+          return (
+            <div className="text-center">
+              <Link to="/dashboard/item-received-list" className="btn  btn-sm" style={{
                 backgroundColor: "#3f4d67",
-              },
-            }}
-            // enablePagination="true"
-            muiTablePaginationProps={{
-              style: {
-                backgroundColor: "#3f4d67",
-                display: "none"
-              },
-            }
-            }
+                color: "white"
+              }} >
+                View More
+              </Link>
+            </div>
 
+          )
 
+        }}
 
-
-
-            renderBottomToolbarCustomActions={() => {
-
-              return (
-                <div className="text-center">
-                  <Link to="/dashboard/item-received-list" className="btn  btn-sm" style={{
-                    backgroundColor: "#3f4d67",
-                    color: "white"
-                  }} >
-                    View More
-                  </Link>
-                </div>
-
-              )
-
-            }} 
-
-          />
+      />
 
     </>
   );

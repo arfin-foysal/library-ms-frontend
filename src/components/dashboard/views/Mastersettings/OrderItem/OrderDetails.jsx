@@ -1,4 +1,5 @@
 import React from "react";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const OrderDetails = ({ handleClose, values }) => {
 
@@ -28,15 +29,15 @@ const OrderDetails = ({ handleClose, values }) => {
               </tr>
               <tr>
                 <th>Price:</th>
-                <th>{values?.amount}</th>
+                <th> <TbCurrencyTaka />{values?.amount}</th>
               </tr>
               <tr>
                 <th>Discount:</th>
-                <th>{values?.Discount}</th>
+                <th><TbCurrencyTaka />{values?.Discount}</th>
               </tr>
               <tr>
                 <th>Total Price:</th>
-                <th>{values?.total}</th>
+                <th><TbCurrencyTaka />{values?.total}</th>
               </tr>
               <tr>
                 <th>Order Status:</th>

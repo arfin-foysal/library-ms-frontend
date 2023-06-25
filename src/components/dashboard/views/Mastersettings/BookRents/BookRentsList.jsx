@@ -86,24 +86,29 @@ const BookRentsList = () => {
 
       {
         accessorFn: (row) =>
-          row?.rental_date && (
-            <>{moment(row.rental_date).format("MMMM Do YYYY")}</>
+          row && (
+            <>
+              {moment(row.rental_date).format("MMMM Do YYYY")}
+              <br/>
+              {moment(row.return_date).format("MMMM Do YYYY")}
+              
+            </>
           ),
 
-        id: "rental_date",
-        header: "Rental Date",
+        id: "rental_date & return_date ",
+        header: "Rental & Return Date",
         size: 10,
       },
-      {
-        accessorFn: (row) =>
-          row?.rental_date && (
-            <>{moment(row.rental_date).format("MMMM Do YYYY")}</>
-          ),
+      // {
+      //   accessorFn: (row) =>
+      //     row?.return_date && (
+      //       <>{moment(row.return_date).format("MMMM Do YYYY")}</>
+      //     ),
 
-        id: "return_date",
-        header: "Return Date",
-        size: 10,
-      },
+      //   id: "return_date",
+      //   header: "Return Date",
+      //   size: 10,
+      // },
 
       {
         //accessorFn function that combines multiple data together
@@ -210,7 +215,7 @@ const BookRentsList = () => {
                         >
                           <div> Delete</div>
                           <div>
-                            <FaTrash size={13} />
+                            {/* <FaTrash size={13} /> */}
                           </div>
                         </button>
                       </div>
@@ -226,7 +231,7 @@ const BookRentsList = () => {
                               bookRentActive
                             )
                           }
-                          className="px-2 mx-2 d-flex align-items-center btn btn-success btn-sm"
+                          className=" d-flex align-items-center btn btn-success btn-sm"
                         >
                           <div> Active</div>
                           <div>{/* <FaTrash size={13} /> */}</div>
@@ -237,7 +242,7 @@ const BookRentsList = () => {
                   {row?.row?.original?.status === "active" && (
                     <div>
                       <button
-                        className="px-2 mx-2 d-flex align-items-center btn btn-info btn-sm"
+                        className="mx-2 d-flex align-items-center btn btn-info btn-sm"
                         to="#"
                         onClick={() => {
                           handleShow();
@@ -247,7 +252,7 @@ const BookRentsList = () => {
                       >
                         <div>Return</div>
                         <div>
-                          <IoReceipt size={13} />
+                          {/* <IoReceipt size={13} /> */}
                         </div>
                       </button>
                     </div>

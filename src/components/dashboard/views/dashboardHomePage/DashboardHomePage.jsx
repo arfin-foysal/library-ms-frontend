@@ -57,7 +57,7 @@ const AdminPage = () => {
           color="green"
           icon={<BiMoney color="green" size={25} />}
           item={data?.data?.totalVendorPayment}
-          des="In this month"
+          des="&#2547; In this month"
         />
       </div>
 

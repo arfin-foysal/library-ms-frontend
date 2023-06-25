@@ -43,26 +43,29 @@ const BookItemList = () => {
                 alt=""
 
               ></img>
+              <br/>
+              {row?.title}
             </>
           ) : (
-            <img
-              className="img-fluid rounded-circle shadow"
-              style={{ width: "40px", height: "40px" }}
-              src={avatar}
-              alt=""
-            ></img>
+            <>
+              <img
+                className="img-fluid rounded-circle shadow"
+                style={{ width: "40px", height: "40px" }}
+                src={avatar}
+                alt=""
+              ></img>
+              {row?.title}
+            </>
           ),
 
         id: "Photo",
-        header: "Photo",
-        size: 10,
+        header: "BooK",
+     
+
+        
       },
 
-      {
-        accessorKey: "title", //access nested data with dot notation
-        header: "Title",
-        size: 10,
-      },
+
       {
         accessorKey: "barcode_or_rfid", //access nested data with dot notation
         header: "Barcode Or Rfid",
@@ -84,10 +87,6 @@ const BookItemList = () => {
         header: "Price",
         size: 10,
 
-      }, {
-        accessorKey: "is_free", //normal accessorKey
-        header: "Is Free",
-        
       },
 
       {
@@ -95,27 +94,7 @@ const BookItemList = () => {
         header: "Edition",
         size: 10,
       },
-      {
-        accessorKey: "number_of_page", //normal accessorKey
-        header: "Number Of Page",
-        size: 10,
-      },
 
-
-      {
-        //accessorFn function that combines multiple data together
-        accessorFn: (row) =>
-          row?.publish_status === 'published' ? (
-            <>
-              <span className="badge bg-info">Publish</span>
-            </>
-          ) : (
-            <span className="badge bg-danger">Unpublished</span>
-          ),
-
-        id: "Publish Status",
-        header: "Publish Status",
-      },
       {
         //accessorFn function that combines multiple data together
         accessorFn: (row) =>

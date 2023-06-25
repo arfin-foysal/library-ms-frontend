@@ -37,18 +37,22 @@ const ItemQtyList = () => {
                 alt=""
 
               ></img>
+              {row?.title}
             </>
           ) : (
+              <>
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
+                ></img>
+                {row?.title}
+              </>
           ),
 
-        id: "Photo",
-        header: "Photo",
+        id: "Book",
+        header: "Book ",
         size: 10,
       },
 
@@ -57,11 +61,7 @@ const ItemQtyList = () => {
         header: "Isbn",
         size: 10,
       },
-      {
-        accessorKey: "title", //access nested data with dot notation
-        header: "Name",
-        size: 10,
-      },
+
       {
         accessorKey: "edition", //access nested data with dot notation
         header: "Edition",

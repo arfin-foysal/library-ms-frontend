@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import MaterialReactTable from "material-react-table";
 import Loader from "../../common/Loader";
 import { Link } from 'react-router-dom';
+import { TbCurrencyTaka } from "react-icons/tb";
 
 
 
@@ -46,21 +47,38 @@ const OrderItemTable = ({ orderItem,
         header: "Qty",
         size: 10,
       },
+
       {
-        accessorKey: "amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.amount && (
+            <><TbCurrencyTaka />{row.amount}</>
+          ),
+
+        id: "amount",
         header: "Amount",
         size: 10,
       },
       {
-        accessorKey: "discount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.discount && (
+            <><TbCurrencyTaka />{row.discount}</>
+          ),
+
+        id: "discount",
         header: "Discount",
         size: 10,
       },
       {
-        accessorKey: "total", //normal accessorKey
+        accessorFn: (row) =>
+          row?.total && (
+            <><TbCurrencyTaka />{row.total}</>
+          ),
+
+        id: "total",
         header: "Total",
-        size: 0,
+        size: 10,
       },
+
 
 
       {
@@ -87,18 +105,18 @@ const OrderItemTable = ({ orderItem,
       {isFetching && <Loader />}
 
 
- 
-          <MaterialReactTable
-            columns={columns}
-            data={isSuccess && orderItem}
-            // enableBottomToolbar={false}
+
+      <MaterialReactTable
+        columns={columns}
+        data={isSuccess && orderItem}
+        // enableBottomToolbar={false}
 
 
-            muiTopToolbarProps={{
-              style: {
-                backgroundColor: "#3f4d67",
-              },
-            }}
+        muiTopToolbarProps={{
+          style: {
+            backgroundColor: "#3f4d67",
+          },
+        }}
         // enablePagination="true"
         muiTablePaginationProps={{
           style: {
@@ -126,10 +144,10 @@ const OrderItemTable = ({ orderItem,
 
           )
 
-        }} 
+        }}
 
-          />
-      
+      />
+
     </>
   );
 };

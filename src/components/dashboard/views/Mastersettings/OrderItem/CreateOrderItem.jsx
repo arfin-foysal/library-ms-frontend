@@ -6,6 +6,7 @@ import Select from "react-select";
 import { useGetVendorListQuery } from "../../../../../services/vendorApi";
 import { useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
 import { useItemOrderMutation } from "../../../../../services/itemOrder";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const CreateOrderItem = ({ handleClose }) => {
   const [itemOrder, res] = useItemOrderMutation();
@@ -257,8 +258,8 @@ const CreateOrderItem = ({ handleClose }) => {
                       <tr key={i}>
                         <td>{item.itemName}</td>
                         <td>{item.item_qty}</td>
-                        <td>{item.item_price}</td>
-                        <td>{item.amount}</td>
+                        <td><TbCurrencyTaka /> {item.item_price} TK</td>
+                        <td><TbCurrencyTaka /> {item.amount} TK</td>
                         <td>
                           <button
                             onClick={() => deleteItem(item)}
@@ -295,7 +296,7 @@ const CreateOrderItem = ({ handleClose }) => {
                   <thead>
                     <tr>
                       <th scope="col">Sub Total Amount :</th>
-                      <th scope="col">{subTotal}</th>
+                      <th scope="col"><TbCurrencyTaka />{subTotal} TK</th>
                     </tr>
                     <tr>
                       <th scope="col">Discount:</th>
@@ -311,9 +312,9 @@ const CreateOrderItem = ({ handleClose }) => {
                       </th>
                     </tr>
                     <tr>
-                      <th scope="col">Total Amount :</th>
-                      <th scope="col">
-                        {totalAmount ? totalAmount : subTotal}
+                      <th scope="col">Total Amount : </th>
+                      <th scope="col"><TbCurrencyTaka />
+                        {totalAmount ? totalAmount : subTotal} TK
                       </th>
                     </tr>
                   </thead>

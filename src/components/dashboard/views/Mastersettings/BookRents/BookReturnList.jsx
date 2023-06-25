@@ -37,16 +37,35 @@ const BookReturnList = () => {
 
   const columns = useMemo(
     () => [
+    
+
       {
-        accessorKey: "rental_no", //access nested data with dot notation
-        header: "Rental No",
+        accessorFn: (row) =>
+          row && (
+            <>
+              {row?.rental_no}
+              <br/>
+              {row?.return_no}
+
+            </>
+          ) ,
+
+        id: "rental_no & return_no",
+        header: "Rental No  Return No",
         size: 10,
       },
-      {
-        accessorKey: "return_no", //access nested data with dot notation
-        header: "Return No",
-        size: 10,
-      },
+    
+    
+      // {
+      //   accessorKey: "rental_no", //access nested data with dot notation
+      //   header: "Rental No",
+      //   size: 10,
+      // },
+      // {
+      //   accessorKey: "return_no", //access nested data with dot notation
+      //   header: "Return No",
+      //   size: 10,
+      // },
       {
         accessorFn: (row) =>
           row?.item_photo ? (
@@ -58,25 +77,29 @@ const BookReturnList = () => {
                 alt=""
 
               ></img>
+              {row?.item_name}
             </>
           ) : (
+              <>
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
+                ></img>
+                 {row?.item_name}
+              </>
           ),
 
         id: "Book Photo",
         header: "Book Photo",
         size: 10,
       },
-      {
-        accessorKey: "item_name", //access nested data with dot notation
-        header: "Book name",
-        size: 10,
-      },
+      // {
+      //   accessorKey: "item_name", //access nested data with dot notation
+      //   header: "Book name",
+      //   size: 10,
+      // },
       {
         accessorKey: "isbn", //normal accessorKey
         header: "ISBN",
@@ -93,26 +116,30 @@ const BookReturnList = () => {
                 alt=""
 
               ></img>
+              {row?.user_name}
             </>
           ) : (
+              <>
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
+                ></img>
+                {row?.user_name}
+              </>
           ),
 
         id: "user_photo",
-        header: "Borrower Photo",
+        header: "Borrower",
         size: 10,
       },
    
-      {
-        accessorKey: "user_name", //access nested data with dot notation
-        header: "Borrower name",
-        size: 10,
-      },
+      // {
+      //   accessorKey: "user_name", //access nested data with dot notation
+      //   header: "Borrower name",
+      //   size: 10,
+      // },
 
     
       {
@@ -121,30 +148,26 @@ const BookReturnList = () => {
         size: 10,
       },
 
+  
+
       {
         accessorFn: (row) =>
-          row?.rental_date && (
+          row && (
             <>
               {moment(row.rental_date).format("MMMM Do YYYY")}
-            </>
-          ) ,
-
-        id: "rental_date",
-        header: "Rental Date",
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.rental_date && (
-            <>
+              <br/>
               {moment(row.return_date).format("MMMM Do YYYY")}
             </>
           ) ,
 
-        id: "return_date",
-        header: "Return Date",
+        id: "rental_date & return_date",
+        header: "Rental Date & Return Date",
         size: 10,
       },
+
+
+
+    
  
 
 

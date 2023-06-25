@@ -28,37 +28,6 @@ export const navItem = [
     ],
   },
   {
-    title: "Book Rents",
-    role: "admin",
-    icon: <BiBookContent />,
-    children: [
-      {
-        title: "Book Rents",
-        link: "rent-list",
-        role: "admin",
-        icon: <BiBookAdd />,
-      },
-      {
-        title: "Book Return List",
-        link: "return-list",
-        role: "admin",
-        icon: <BiBookBookmark />,
-      },
-      {
-        title: "Return Date Expired",
-        link: "return-date-expired-list",
-        role: "admin",
-        icon: <BiBookBookmark />,
-      },
-      {
-        title: "Damage Book",
-        link: "book-damage-list",
-        role: "admin",
-        icon: <BiBook />,
-      },
-    ],
-  },
-  {
     title: "Item Order",
     role: "admin",
     icon: <CiViewList />,
@@ -96,6 +65,39 @@ export const navItem = [
       },
     ],
   },
+  {
+    title: "Book Rents",
+    role: "admin",
+    icon: <BiBookContent />,
+    children: [
+      {
+        title: "Book Rents",
+        link: "rent-list",
+        role: "admin",
+        icon: <BiBookAdd />,
+      },
+      {
+        title: "Book Return List",
+        link: "return-list",
+        role: "admin",
+        icon: <BiBookBookmark />,
+      },
+      {
+        title: "Return Date Expired",
+        link: "return-date-expired-list",
+        role: "admin",
+        icon: <BiBookBookmark />,
+      },
+      {
+        title: "Damage Book",
+        link: "book-damage-list",
+        role: "admin",
+        icon: <BiBook />,
+      },
+    ],
+  },
+
+  
 
   {
     title: "Master Settings",

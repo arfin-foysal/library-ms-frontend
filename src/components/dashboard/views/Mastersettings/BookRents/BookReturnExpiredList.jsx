@@ -50,25 +50,26 @@ const BookReturnExpiredList = () => {
                 src={`${import.meta.env.VITE_FILE_URL}${row?.item_photo}`}
                 alt=""
               ></img>
+              {row.item_name}
             </>
           ) : (
+              <>
+            
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
-          ),
+                ></img>
+                  {row.item_name}
+              </>
+          ), 
 
-        id: "Book Photo",
-        header: "Book Photo",
+        id: "Book",
+        header: "Book ",
         size: 10,
       },
-      {
-        accessorKey: "item_name", //access nested data with dot notation
-        header: "Book name",
-        size: 10,
-      },
+
       {
         accessorFn: (row) =>
           row?.user_photo ? (
@@ -79,18 +80,22 @@ const BookReturnExpiredList = () => {
                 src={`${import.meta.env.VITE_FILE_URL}${row?.user_photo}`}
                 alt=""
               ></img>
+              {row.user_name}
             </>
           ) : (
+              <>
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
+                ></img>
+                {row.user_name}
+              </>
           ),
 
         id: "user_photo",
-        header: "Borrower Photo",
+        header: "Borrower ",
         size: 10,
       },
       {
@@ -98,11 +103,7 @@ const BookReturnExpiredList = () => {
         header: "ISBN",
         size: 10,
       },
-      {
-        accessorKey: "user_name", //access nested data with dot notation
-        header: "Borrower name",
-        size: 10,
-      },
+
 
       {
         accessorKey: "rental_no", //access nested data with dot notation

@@ -4,6 +4,7 @@ import { Form, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 import { useVendorPaymentUpdateMutation } from "../../../../../services/vendorApi";
+import { TbCurrencyTaka } from "react-icons/tb";
 const EditVendorePayment = ({ handleClose, param }) => {
 
   const [vendorPaymentUpdate, res] = useVendorPaymentUpdateMutation();
@@ -167,7 +168,7 @@ const EditVendorePayment = ({ handleClose, param }) => {
                   <thead>
                     <tr>
                       <th scope="col">PayableAmount:</th>
-                      <th scope="col">{formik.values.payable_amount}</th>
+                      <th scope="col"><TbCurrencyTaka />{formik.values.payable_amount} TK</th>
                     </tr>
                     <tr>
                       <th scope="col">Paid Amount:</th>
@@ -184,7 +185,7 @@ const EditVendorePayment = ({ handleClose, param }) => {
                     </tr>
                     <tr>
                       <th scope="col">Due Amount :</th>
-                      <th scope="col">{formik.values.due_amount}</th>
+                      <th scope="col"><TbCurrencyTaka />{formik.values.due_amount} TK</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>

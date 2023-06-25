@@ -8,6 +8,7 @@ import { FcUnlock } from 'react-icons/fc';
 import avatar from "./../../../../assets/images/profile-picture.png";
 import { useGetSingleUserQuery, useProfileUpdateMutation } from "../../../../services/clientSiteApi";
 import { Link } from "react-router-dom";
+import ClientPageHeader from "../common/ClientPageHeader";
 
 const PersonalInfo = () => {
   const profileRes = useGetSingleUserQuery();
@@ -60,6 +61,7 @@ const PersonalInfo = () => {
   });
   return (
     <div>
+      <ClientPageHeader title="Personal Information"/>
       <div className=" d-flex justify-content-between">
         <div>
           <h4>Personal Information</h4>

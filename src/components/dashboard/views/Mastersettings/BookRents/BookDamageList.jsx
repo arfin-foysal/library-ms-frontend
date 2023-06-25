@@ -13,6 +13,7 @@ import {
 
 } from "../../../../../services/itemRentApi";
 import moment from "moment";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 
 const BookDamageList = () => {
@@ -51,25 +52,25 @@ const BookDamageList = () => {
                 alt=""
 
               ></img>
+              {row?.item_name}
             </>
           ) : (
+              <>
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
+                ></img>
+                {row?.item_name}
+              </>
           ),
 
         id: "Book Photo",
-        header: "Book Photo",
+        header: "Book ",
         size: 10,
       },
-      {
-        accessorKey: "item_name", //access nested data with dot notation
-        header: "Book name",
-        size: 10,
-      },
+
       {
         accessorKey: "isbn", //normal accessorKey
         header: "ISBN",
@@ -86,33 +87,48 @@ const BookDamageList = () => {
                 alt=""
 
               ></img>
+              {
+                row?.user_name
+              }
             </>
           ) : (
+              <>
+             
             <img
               className="img-fluid rounded-circle shadow"
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-            ></img>
+                ></img>
+                {
+                  row?.user_name
+                }
+              </>
           ),
 
         id: "user_photo",
-        header: "Borrower Photo",
+        header: "Borrower ",
         size: 10,
       },
    
-      {
-        accessorKey: "user_name", //access nested data with dot notation
-        header: "Borrower name",
-        size: 10,
-      },
 
     
+  
+
       {
-        accessorKey: "item_amount_of_penalty", //access nested data with dot notation
+        accessorFn: (row) =>
+          row?.item_amount_of_penalty && (
+            <>
+              <TbCurrencyTaka />{row.item_amount_of_penalty}
+            </>
+          ) ,
+
+        id: "item_amount_of_penalty",
         header: "Penalty Amount",
         size: 10,
       },
+
+
 
       {
         accessorFn: (row) =>
@@ -126,6 +142,7 @@ const BookDamageList = () => {
         header: "Rental Date",
         size: 10,
       },
+
       {
         accessorFn: (row) =>
           row?.rental_date && (

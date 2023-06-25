@@ -19,7 +19,7 @@ import Star from "./common/Star";
 
 
 
-  const BookDetails = () => {
+const BookDetails = () => {
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const authToken = useSelector((state) => state.clientAuth.clientToken);
   const [modalShow, setModalShow] = React.useState(false);
@@ -27,8 +27,8 @@ import Star from "./common/Star";
   const { id } = useParams();
   const bookDetailsRes = useGetItemByIdQuery(id);
   const book = bookDetailsRes?.data?.data;
-    const dispatch = useDispatch();
-    
+  const dispatch = useDispatch();
+
 
 
 
@@ -149,23 +149,22 @@ import Star from "./common/Star";
 
                 </div>
                 <div className="col-md-8 col-12">
-                  <h5 className="text-capitalize">{book?.title} </h5>
+                  <h3 className="text-capitalize">{book?.title} </h3>
                   <p>
-                    by
-                    <span className="text-primary">
+                    Author by <span className="text-primary">
                       {book?.authors[0]?.name}
                     </span>
                   </p>
                   <p>
-                    <b>Category: </b>
+                    Category:
                     <span className="text-primary">{book?.category_name}</span>
                   </p>
                   <p>
-                    <b>Book Type: </b>
+                    Book Type:
                     <span className="text-primary">{book?.item_type}</span>
                   </p>
                   <p>
-                    <b>Originally Published: </b>
+                    Originally Published:
 
                     <span className="text-primary">
                       {moment(book?.publish_date).format("MMMM Do YYYY")}
@@ -177,41 +176,41 @@ import Star from "./common/Star";
                     <hr />
                     <div className="my-2">
                       <p>
-                        <b>ISBN:</b> {book?.isbn}
+                        ISBN: {book?.isbn}
                       </p>
                       <p>
-                        <b>Edition:</b> {book?.edition}
+                        Edition: {book?.edition}
                       </p>
                       <p>
-                        <b>Country:</b> {book?.country_name}
+                        Country: {book?.country_name}
                       </p>
                       <p>
-                        <b>Publisher:</b> {book?.publisher_name}
+                        Publisher: {book?.publisher_name}
                       </p>
                       <p>
-                        <b>Summery:</b> {book?.summary}
+                        Summery: {book?.summary}
                       </p>
                     </div>
-
+                    <hr />
                     <div className="col">
                       <p>
-                        <b>Page Length</b>
+                        Page Length
                       </p>
-                      <HiOutlineDocumentDuplicate size={37} />
+                      <HiOutlineDocumentDuplicate size={20} />
                       <p>{book?.number_of_page}</p>
                     </div>
                     <div className="col">
                       <p>
-                        <b>Language</b>
+                        Language
                       </p>
-                      <MdLanguage size={35} />
+                      <MdLanguage size={20} />
                       <p>{book?.language_name}</p>
                     </div>
                     <div className="col">
                       <p>
-                        <b>Publish date</b>
+                        Publish Date
                       </p>
-                      <BsCalendar2Date size={30} />
+                      <BsCalendar2Date size={20} />
 
                       <p>{moment(book?.publish_date).format("MMMM Do YYYY")}</p>
                     </div>
@@ -241,7 +240,7 @@ import Star from "./common/Star";
                         <Link to={`/authordetails/${author?.id}`} className=" text-primary">
                           <b className="ms-2 ">{author?.name}</b>
                         </Link>
-                     
+
                         <br />
                         {/* <p className="my-2">
                           <b>Biography:</b> {author?.author_bio}
@@ -255,7 +254,7 @@ import Star from "./common/Star";
           </div>
           <div className="col-md-4 col-12">
             <div>
-              <h5 className="my-3"> Related Products</h5>
+              <h5 className="my-3"> Related Items</h5>
               <div className="d-flex flex-wrap justify-content-between mb-5">
                 {book?.related_items?.map((book, i) => (
                   <RelatedBookCard key={i} book={book} />
@@ -263,17 +262,20 @@ import Star from "./common/Star";
               </div>
             </div>
             <div className="d-flex justify-content-center">
-              <ReactPlayer
-                className="react-player
+              {book?.video_url && (
+                <ReactPlayer
+                  className="react-player
                 react-player__shadow
                  border border-2 border-primary
                   rounded
                 "
-                url={book?.video_url}
-                controls
-                width="420px"
-                height="220px"
-              />
+                  url={book?.video_url}
+                  controls
+                  width="420px"
+                  height="220px"
+                />
+              )}
+
             </div>
           </div>
         </div>

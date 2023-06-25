@@ -14,6 +14,8 @@ import {
   useDeleteItemOrderMutation,
 } from "../../../../../services/itemOrder";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const ItemRecevedList = () => {
   const res = useAllItemRecevedListQuery();
@@ -83,22 +85,47 @@ const ItemRecevedList = () => {
         size: 10,
       },
       {
-        accessorKey: "payable_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.payable_amount && (
+            <><TbCurrencyTaka />{row.payable_amount}</>
+          ),
+
+        id: "payable_amount",
         header: "Payable Amount",
         size: 10,
       },
       {
-        accessorKey: "paid_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.paid_amount && (
+            <><TbCurrencyTaka />{row.paid_amount}</>
+          ),
+
+        id: "paid_amount",
         header: "Paid Amount",
         size: 10,
       },
       {
-        accessorKey: "due_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.due_amount && (
+            <><TbCurrencyTaka />{row.due_amount}</>
+          ),
+
+        id: "due_amount",
         header: "Due Amount",
         size: 10,
       },
+
+
+
+
+
       {
-        accessorKey: "received_date", //normal accessorKey
+        accessorFn: (row) =>
+          row?.received_date && (
+            <>{moment(row.received_date).format("MMMM Do YYYY")}</>
+          ),
+
+        id: "received_date",
         header: "Received Date",
         size: 10,
       },
@@ -106,19 +133,19 @@ const ItemRecevedList = () => {
       {
         //accessorFn function that combines multiple data together
         accessorFn: (row) =>
-        (row?.payment_status === "unpaid" && (
-          <span className="badge bg-danger">Unpaid</span>
-        )) ||
-        (row?.payment_status === "paid" && (
-          <span className="badge bg-success">Paid</span>
-        )) ||
-        (row?.payment_status === "due" && (
-          <span className="badge bg-secondary">Due</span>
-        )),
+          (row?.payment_status === "unpaid" && (
+            <span className="badge bg-danger">Unpaid</span>
+          )) ||
+          (row?.payment_status === "paid" && (
+            <span className="badge bg-success">Paid</span>
+          )) ||
+          (row?.payment_status === "due" && (
+            <span className="badge bg-secondary">Due</span>
+          )),
 
-      id: "Payment Status",
-      header: "Payment Status",
-    },
+        id: "Payment Status",
+        header: "Payment Status",
+      },
       // {
       //   //accessorFn function that combines multiple data together
       //   accessorFn: (row) =>
@@ -150,7 +177,7 @@ const ItemRecevedList = () => {
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
           <div>Item Received List</div>
-  
+
         </div>
 
         <div class="card-body p-0 ">

@@ -8,6 +8,7 @@ import avatar from "../../../../../assets/images/profile-picture.png";
 import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
 import { IoReceipt } from "react-icons/io5";
+import { TbCurrencyTaka } from "react-icons/tb"
 
 import {
   useAllItemOrderQuery,
@@ -48,7 +49,9 @@ const OrderItemList = () => {
       //           className="img-fluid rounded-circle shadow"
       //           style={{ width: "40px", height: "40px" }}
       //           src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
-      //           alt=""
+      //           alt=""import { TbCurrencyTaka } from 'react-icons/ti';
+
+
 
       //         ></img>
       //       </>
@@ -82,34 +85,68 @@ const OrderItemList = () => {
         header: "Qty",
         size: 10,
       },
+
+
       {
-        accessorKey: "amount", //normal accessorKey
-        header: "Amount",
+        accessorFn: (row) =>
+          row?.amount && (
+            <><TbCurrencyTaka />{
+              row?.amount
+
+            }
+            </>
+          ),
+
+        id: "amount",
+        header: `Amount`,
         size: 10,
       },
       {
-        accessorKey: "discount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.discount && (
+            <><TbCurrencyTaka />{
+              row?.discount
+
+            }
+            </>
+          ),
+
+        id: "discount",
         header: "Discount",
         size: 10,
       },
       {
-        accessorKey: "total", //normal accessorKey
+        accessorFn: (row) =>
+          row?.total && (
+            <><TbCurrencyTaka />{
+              row?.total
+
+            }
+            </>
+          ),
+
+        id: "total",
         header: "Total",
         size: 10,
       },
 
 
+
+
+
+
+
       {
         accessorFn: (row) =>
-            row?.tentative_date && (
-                <>{moment(row.tentative_date).format("MMMM Do YYYY")}</>
-            ),
+          row?.tentative_date && (
+            <>{moment(row.tentative_date).format("MMMM Do YYYY")}</>
+          ),
 
         id: "tentative_date",
         header: "Tentative Date",
         size: 10,
       },
-    
+
 
       {
         //accessorFn function that combines multiple data together
@@ -213,7 +250,7 @@ const OrderItemList = () => {
                       >
                         <div> Delete</div>
                         <div>
-                          <FaTrash size={13} />
+                          {/* <FaTrash size={13} /> */}
                         </div>
                       </button>
 
@@ -223,7 +260,7 @@ const OrderItemList = () => {
                       >
                         <div>Received</div>
                         <div>
-                          <IoReceipt size={13} />
+                          {/* <IoReceipt size={13} /> */}
                         </div>
                       </Link>
                     </>

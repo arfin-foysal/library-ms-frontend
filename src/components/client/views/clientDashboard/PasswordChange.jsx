@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { usePasswordChangeMutation } from "../../../../services/clientAuthApi";
 import * as Yup from "yup";
+import ClientPageHeader from "../common/ClientPageHeader";
 
 const PasswordChange = ({ handleClose, show, paramId }) => {
   const [passwordChange, res] = usePasswordChangeMutation();
@@ -50,6 +51,7 @@ const PasswordChange = ({ handleClose, show, paramId }) => {
 
   return (
     <>
+      <ClientPageHeader title="Change Password" />
       <h4>Change Password</h4>
       <div>
         <form onSubmit={formik.handleSubmit}>

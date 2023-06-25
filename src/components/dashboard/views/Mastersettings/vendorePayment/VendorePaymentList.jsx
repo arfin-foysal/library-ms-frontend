@@ -13,6 +13,7 @@ import {
   useGetBookItemListQuery,
 } from "../../../../../services/bookItemApi";
 import { useGetVendorPaymentListQuery } from "../../../../../services/vendorApi";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const VendorePaymentList = () => {
   const res = useGetVendorPaymentListQuery();
@@ -52,20 +53,36 @@ const VendorePaymentList = () => {
         size: 10,
       },
       {
-        accessorKey: "payable_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.payable_amount && (
+            <><TbCurrencyTaka />{row.payable_amount}</>
+          ),
+
+        id: "payable_amount",
         header: "Payable Amount",
         size: 10,
       },
       {
-        accessorKey: "paid_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.paid_amount && (
+            <><TbCurrencyTaka />{row.paid_amount}</>
+          ),
+
+        id: "paid_amount",
         header: "Paid Amount",
         size: 10,
       },
       {
-        accessorKey: "due_amount", //normal accessorKey
+        accessorFn: (row) =>
+          row?.due_amount && (
+            <><TbCurrencyTaka />{row.due_amount}</>
+          ),
+
+        id: "due_amount",
         header: "Due Amount",
         size: 10,
       },
+
       
       {
         accessorKey: "comments", //normal accessorKey

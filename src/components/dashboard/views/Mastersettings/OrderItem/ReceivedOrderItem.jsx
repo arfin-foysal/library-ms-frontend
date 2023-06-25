@@ -12,6 +12,7 @@ import {
 } from "../../../../../services/itemOrder";
 import PageTopHeader from "../../../common/PageTopHeader";
 import { useNavigate, useParams } from "react-router-dom";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const ReceivedOrderItem = ({ handleClose }) => {
   const navigate = useNavigate();
@@ -245,8 +246,8 @@ const ReceivedOrderItem = ({ handleClose }) => {
                                   }}
                                 />
                               </td>
-                              <td>{item.item_price}</td>
-                              <td>{item.total_price}</td>
+                              <td><TbCurrencyTaka />{item.item_price} TK</td>
+                              <td><TbCurrencyTaka />{item.total_price} TK</td>
 
                               <td>
                                 <button
@@ -282,7 +283,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                         <thead>
                           <tr>
                             <th scope="col">Sub Total Amount :</th>
-                            <th scope="col">{subTotal}</th>
+                            <th scope="col"><TbCurrencyTaka />{subTotal} TK</th>
                           </tr>
                           <tr>
                             <th scope="col">Discount:</th>
@@ -303,7 +304,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                           </tr>
                           <tr>
                             <th scope="col">Total Amount :</th>
-                            <th scope="col">{totalAmount}</th>
+                            <th scope="col"><TbCurrencyTaka />{totalAmount} TK</th>
                           </tr>
                         </thead>
                       </table>
