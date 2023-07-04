@@ -2,6 +2,9 @@ import moment from "moment";
 import React from "react";
 
 const BookRentDetails = ({ handleClose, values }) => {
+
+console.log(values)
+
   return (
     <div>
       <div className="row">
@@ -92,7 +95,7 @@ const BookRentDetails = ({ handleClose, values }) => {
                   <td>{item.status}</td>
                   <td>{item.item_qty}</td>
 
-                  <th>{moment(values?.return_date).format("MMMM Do YYYY")}</th>
+                  <th>{moment(item?.return_date).format("MMMM Do YYYY")}</th>
                 </tr>
               ))}
             </tbody>

@@ -65,16 +65,16 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavLink className="text-white mx-2" to="/">
+              <NavLink className="text-white mx-2 c-link" to="/">
                 Home
               </NavLink>
-              <NavLink className=" text-white mx-2" to="/allbook">
+              <NavLink className="text-white mx-2 c-link" to="/allbook">
                 All Books
               </NavLink>
-              <NavLink className=" text-white mx-2" to="/author">
+              <NavLink className="text-white mx-2 c-link" to="/author">
                 Author
               </NavLink>
-              <NavLink className=" text-white mx-2" to="/contact">
+              <NavLink className="text-white mx-2 c-link" to="/contact">
                 Contact
               </NavLink>
             </Nav>

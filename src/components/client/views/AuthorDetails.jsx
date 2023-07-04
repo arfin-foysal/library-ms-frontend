@@ -64,15 +64,15 @@ const AuthorDetails = () => {
               <h5>
                 <b>Name:</b> {authorDetails?.name}
               </h5>
-              <p>
-                <b>Biography:</b> {authorDetails?.bio}
-              </p>
+          
               <p>
                 {" "}
                 <b>Published:</b> {authorDetails?.items?.length} Books
               </p>
               <p>
                 <b>Email:</b> {authorDetails?.email}
+              </p>    <p>
+                <b>Biography:</b> {authorDetails?.bio}
               </p>
             </div>
           </div>

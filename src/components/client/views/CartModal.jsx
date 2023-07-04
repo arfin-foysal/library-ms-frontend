@@ -1,27 +1,30 @@
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { clearBorrow, removeItem } from "../../../features/borrowSlice";
+import { clearBorrow, removeItem, returnDate } from "../../../features/borrowSlice";
 import { toast } from "react-toastify";
 import { useItemRentCreateClientMutation } from "../../../services/clientSiteApi";
+import { useNavigate } from "react-router-dom";
 
 
 function CartModal({ show, handleClose }) {
+  const navigate = useNavigate();
   const borrow = useSelector((state) => state.borrow);
   const authUser = useSelector((state) => state.clientAuth.clientUser);
   const dispatch = useDispatch();
   const [itemRentCreateClient, res] = useItemRentCreateClientMutation();
+
 
   const totalQty = borrow?.borrow?.reduce(
     (total, book) => total + book?.item_qty,
     0
   );
 
-   //return date today after 7days
+  //return date today after 7days
 
-   const returnDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
-   .toISOString()
-   .slice(0, 10);
+  const returnAfterDate = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .slice(0, 10);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -30,13 +33,18 @@ function CartModal({ show, handleClose }) {
     } else {
       if (!authUser) {
         toast.error("Please login first");
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000);
+
       } else {
         const data = {
-          qty:totalQty,
+          qty: totalQty,
           user_id: authUser.id,
           items: borrow?.borrow,
           note: "ClientSite user borrow book",
-          return_date: returnDate,
+          return_date: returnAfterDate,
         };
 
 
@@ -52,7 +60,7 @@ function CartModal({ show, handleClose }) {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Book Borrow Cart</Modal.Title>
         </Modal.Header>
@@ -65,6 +73,7 @@ function CartModal({ show, handleClose }) {
                     <tr>
                       <th scope="col"></th>
                       <th scope="col">Product</th>
+                      <th scope="col">Return Date</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
@@ -73,9 +82,8 @@ function CartModal({ show, handleClose }) {
                       <tr key={i}>
                         <td className="w-25">
                           <img
-                            src={`${import.meta.env.VITE_FILE_URL}/${
-                              book?.photo
-                            }`}
+                            src={`${import.meta.env.VITE_FILE_URL}/${book?.photo
+                              }`}
                             className="img-fluid img-thumbnail "
                             alt="Sheep"
                             style={{
@@ -85,6 +93,21 @@ function CartModal({ show, handleClose }) {
                           />
                         </td>
                         <td className="pt-4">{book?.title}</td>
+                        <td className="pt-4">
+                          <input
+                            className="form-control"
+                            type="date"
+                            name="return_date"
+                            onChange={
+                              (e) => dispatch(returnDate({ id: book?.id, return_date: e.target.value }))
+                            }
+                            defaultValue={
+                              returnAfterDate
+                            }
+
+                          />
+                        </td>
+
 
                         <td className="pt-4">
                           <button
@@ -100,18 +123,8 @@ function CartModal({ show, handleClose }) {
                   </tbody>
                 </table>
                 <div className="d-flex justify-content-end  ">
-                  {/* <div>
-                  <p>Return Date</p>
-                  <input
-                    className="form-control"
-                    type="date"
-                    name="return_date"
-                    id=""
-                    
-                  />
-                </div> */}
                   <h5 className="mt-5">
-                    Total Book:{" "}
+                    Total Book:
                     <span className="price text-success">{totalQty}</span>
                   </h5>
                 </div>
@@ -123,7 +136,7 @@ function CartModal({ show, handleClose }) {
                 <button
                   type="submit"
                   className="btn btn-success"
-                  // onClick={submitHandler}
+                // onClick={submitHandler}
                 >
                   Borrow Now
                 </button>

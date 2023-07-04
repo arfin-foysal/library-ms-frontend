@@ -17,8 +17,8 @@ const HomeSlider = ({ book,
       <Swiper
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, A11y]}
-              spaceBetween={10}
-              slidesPerView={4}
+              spaceBetween={25}
+              slidesPerView={6}
               navigation={{
                 clickable: true,
               }}

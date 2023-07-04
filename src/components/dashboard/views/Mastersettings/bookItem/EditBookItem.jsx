@@ -49,6 +49,9 @@ const EditBookItem = ({ handleClose, param }) => {
     }
   };
 
+
+
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -238,7 +241,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="video_url"
                     onChange={formik.handleChange}
                     value={formik.values.video_url}
-                    
+
                   />
                 </div>
               </div>
@@ -341,9 +344,8 @@ const EditBookItem = ({ handleClose, param }) => {
                     src={
                       formik.values.photo === null
                         ? avater
-                        : `${import.meta.env.VITE_FILE_URL}${
-                            formik.values.photo
-                          }`
+                        : `${import.meta.env.VITE_FILE_URL}${formik.values.photo
+                        }`
                     }
                     width="80px"
                     height="80px"
@@ -360,12 +362,13 @@ const EditBookItem = ({ handleClose, param }) => {
                 <input
                   type="date"
                   name="publish_date"
-                  id=""
                   className="form-control"
                   onChange={formik.handleChange}
-                  value={formik.values.publish_date}
-                  defaultValue={param?.publish_date}
+                  // value={formik.values.publish_date}
+                  defaultValue={param?.publish_date.slice(0, 10)}
                 />
+    
+
               </div>
               <div className="col-12">
                 <label className="col-12 col-form-label">Author</label>
@@ -543,18 +546,18 @@ const EditBookItem = ({ handleClose, param }) => {
         </div>
 
         <Modal.Footer>
-        <div className=" d-flex">
+          <div className=" d-flex">
 
-<button className="btn btn-dark me-1" onClick={handleClose}>
-  Close
-</button>
+            <button className="btn btn-dark me-1" onClick={handleClose}>
+              Close
+            </button>
 
 
-<button type="submit" className="btn btn-success " data-dismiss="modal">
-  Submit
-</button>
+            <button type="submit" className="btn btn-success " data-dismiss="modal">
+              Submit
+            </button>
 
-</div>
+          </div>
         </Modal.Footer>
       </form>
     </div>

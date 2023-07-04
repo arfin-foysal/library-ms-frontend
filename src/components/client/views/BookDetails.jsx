@@ -101,7 +101,7 @@ const BookDetails = () => {
                                   title: book?.title,
                                   photo: book?.photo,
                                   item_qty: 1,
-                                  return_date: returnDate,
+                                  return_date: returnDate ,
                                 })
                               )
                             }
@@ -151,22 +151,18 @@ const BookDetails = () => {
                 <div className="col-md-8 col-12">
                   <h3 className="text-capitalize">{book?.title} </h3>
                   <p>
-                    Author by <span className="text-primary">
+                    Author by <span >
                       {book?.authors[0]?.name}
                     </span>
                   </p>
                   <p>
-                    Category:
-                    <span className="text-primary">{book?.category_name}</span>
+                    Category: <span >{book?.category_name}</span>
                   </p>
                   <p>
-                    Book Type:
-                    <span className="text-primary">{book?.item_type}</span>
+                    Book Type: <span >{book?.item_type}</span>
                   </p>
                   <p>
-                    Originally Published:
-
-                    <span className="text-primary">
+                    Originally Published:  <span >
                       {moment(book?.publish_date).format("MMMM Do YYYY")}
                     </span>
                   </p>
@@ -194,7 +190,7 @@ const BookDetails = () => {
                     <hr />
                     <div className="col">
                       <p>
-                        Page Length
+                        Pages
                       </p>
                       <HiOutlineDocumentDuplicate size={20} />
                       <p>{book?.number_of_page}</p>
@@ -210,7 +206,7 @@ const BookDetails = () => {
                       <p>
                         Publish Date
                       </p>
-                      <BsCalendar2Date size={20} />
+                      <BsCalendar2Date />
 
                       <p>{moment(book?.publish_date).format("MMMM Do YYYY")}</p>
                     </div>

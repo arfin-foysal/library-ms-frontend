@@ -30,6 +30,21 @@ export const borrowSlice = createSlice({
       state.borrow = removeBorrow;
     },
 
+    returnDate: (state, action) => {
+      const returnDate = state.borrow.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            return_date: action.payload.return_date,
+          };
+        }
+        return item;
+      });
+      state.borrow = returnDate;
+     
+    },
+    
+
     //clear borrow
     clearBorrow: (state) => {
       state.borrow = [];
@@ -37,5 +52,7 @@ export const borrowSlice = createSlice({
   },
 });
 
-export const { addBorrow, removeItem, clearBorrow } = borrowSlice.actions;
+export const { addBorrow, removeItem, clearBorrow,
+  returnDate
+} = borrowSlice.actions;
 export default borrowSlice.reducer;

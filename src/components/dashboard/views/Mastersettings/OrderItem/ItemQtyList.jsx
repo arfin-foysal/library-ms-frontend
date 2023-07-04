@@ -36,8 +36,7 @@ const ItemQtyList = () => {
                 src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
                 alt=""
 
-              ></img>
-              {row?.title}
+              ></img>  {row?.title}
             </>
           ) : (
               <>
@@ -46,8 +45,7 @@ const ItemQtyList = () => {
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-                ></img>
-                {row?.title}
+                ></img>  {row?.title}
               </>
           ),
 
@@ -78,12 +76,25 @@ const ItemQtyList = () => {
         size: 10,
       },
 
-      {
-        accessorKey: "qty", //normal accessorKey
-        header: "Qty",
-        size: 10,
-      },
       
+        {
+          accessorFn: (row) =>
+            row?.qty ? (
+              <>
+                <span className="badge bg-info">{row?.qty}</span>
+              </>
+
+            ) : (
+                <span className="badge bg-danger">0</span>
+
+            ),
+          id: "Available Qty",
+          header: "Available Qty",
+          size: 10,
+
+      },
+
+
     
    
       // {

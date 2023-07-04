@@ -193,9 +193,8 @@ const ReturnBook = ({ handleClose, param }) => {
                                 alt="img"
                                 style={{ width: "40px", height: "40px" }}
                                 className="img-fluid rounded-circle shadow"
-                                src={`${import.meta.env.VITE_FILE_URL}${
-                                  item.item_photo
-                                }`}
+                                src={`${import.meta.env.VITE_FILE_URL}${item.item_photo
+                                  }`}
                               />
                             </td>
 
@@ -215,7 +214,8 @@ const ReturnBook = ({ handleClose, param }) => {
                                   });
                                   setShow(
                                     e.target.value === "overdue" ||
-                                      e.target.value === "damaged"
+                                      e.target.value === "damaged" ||
+                                      e.target.value === "buy"
                                       ? true
                                       : false
                                   );
@@ -225,6 +225,7 @@ const ReturnBook = ({ handleClose, param }) => {
                                 <option value="rental" className=" fw-bold  text-warning">Not Return</option>
                                 <option value="overdue" className=" fw-bold text-info">Overdue</option>
                                 <option value="damaged" className=" fw-bold  text-danger">Damaged</option>
+                                <option value="buy" className=" fw-bold text-secondary">Buy</option>
                               </select>
                             </td>
                             <td>
@@ -232,7 +233,8 @@ const ReturnBook = ({ handleClose, param }) => {
                                 type="number"
                                 className={
                                   item.status === "overdue" ||
-                                  item.status === "damaged"
+                                    item.status === "damaged" ||
+                                    item.status === "buy"
                                     ? "d-block form-control"
                                     : "d-none"
                                 }
