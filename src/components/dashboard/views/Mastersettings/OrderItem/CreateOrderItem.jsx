@@ -18,20 +18,20 @@ const CreateOrderItem = ({ handleClose }) => {
   const [discount, setDiscount] = useState(0);
   const [allItem, setAllItem] = useState([]);
   const [item, setItem] = useState();
-  const [item_qty, setitem_qty] = useState();
+  const [item_qty, setItem_qty] = useState();
   // const [item_price, setItem_price] = useState();
 
 
 
 
-  const qtyHandeler = (e) => {
-    setitem_qty(e.target.value);
+  const qtyHandler = (e) => {
+    setItem_qty(e.target.value);
   };
   // const priceHandeler = (e) => {
   //   setItem_price(e.target.value);
   // };
 
-  const itemHandeler = (e) => {
+  const itemHandler = (e) => {
 
 
     const items = {
@@ -54,7 +54,7 @@ const CreateOrderItem = ({ handleClose }) => {
     }
 
     setItem("");
-    setitem_qty("");
+    setItem_qty("");
     // setItem_price("");
   };
 
@@ -212,7 +212,7 @@ const CreateOrderItem = ({ handleClose }) => {
                     type="number"
                     className="form-control"
                     name="item_qty"
-                    onChange={(e) => qtyHandeler(e)}
+                    onChange={(e) => qtyHandler(e)}
                     value={item_qty}
                     ref={qtyRef}
 
@@ -237,7 +237,7 @@ const CreateOrderItem = ({ handleClose }) => {
 
               <div className="col-3 " style={{ marginTop: "37px" }}>
                 <button
-                  onClick={itemHandeler}
+                  onClick={itemHandler}
                   className="btn btn-primary d-block w-100"
                 >
                   Add
