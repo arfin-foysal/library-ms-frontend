@@ -151,18 +151,18 @@ const BookDetails = () => {
                 <div className="col-md-8 col-12">
                   <h3 className="text-capitalize">{book?.title} </h3>
                   <p>
-                    Author by <span >
+                    Author by <span className="text-primary" >
                       {book?.authors[0]?.name}
                     </span>
                   </p>
                   <p>
-                    Category: <span >{book?.category_name}</span>
+                    Category: <span className="text-primary">{book?.category_name}</span>
                   </p>
                   <p>
-                    Book Type: <span >{book?.item_type}</span>
+                    Book Type: <span className="text-primary">{book?.item_type}</span>
                   </p>
                   <p>
-                    Originally Published:  <span >
+                    Originally Published:  <span className="text-primary">
                       {moment(book?.publish_date).format("MMMM Do YYYY")}
                     </span>
                   </p>

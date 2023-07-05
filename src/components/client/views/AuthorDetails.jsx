@@ -66,7 +66,7 @@ const AuthorDetails = () => {
               </h5>
           
               <p>
-                {" "}
+               
                 <b>Published:</b> {authorDetails?.items?.length} Books
               </p>
               <p>

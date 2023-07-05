@@ -11,6 +11,7 @@ export default defineConfig({
       include: ["./src/**/*.js", "./src/**/*.jsx"],
       exclude: ["node_modules/**", "**/node_modules/**"],
     }),
+     //<-----------------------pwa config start manual setup-------------------->
     VitePWA({
       registerType: "autoUpdate",
       devOptions: {
@@ -23,6 +24,7 @@ export default defineConfig({
         "apple-touch-icon.png",
       ],
 
+     
       manifest: {
         name: "Library Management System",
         short_name: "LMS",
@@ -84,5 +86,6 @@ export default defineConfig({
         ],
       },
     }),
+     //<-----------------------pwa config end manual setup-------------------->
   ],
 });

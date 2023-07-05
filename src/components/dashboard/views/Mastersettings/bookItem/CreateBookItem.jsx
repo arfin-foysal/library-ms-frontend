@@ -158,7 +158,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="barcode_or_rfid"
                     onChange={formik.handleChange}
                     value={formik.values.barcode_or_rfid}
-                    required
+                   
                   />
                 </div>
               </div>
@@ -172,7 +172,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="isbn"
                     onChange={formik.handleChange}
                     value={formik.values.isbn}
-                    required
+                
                   />
                 </div>
               </div>
@@ -202,7 +202,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="edition"
                     onChange={formik.handleChange}
                     value={formik.values.edition}
-                    required
+                
                   />
                 </div>
               </div>
@@ -214,7 +214,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="is_free"
                     onChange={formik.handleChange}
                     value={formik.values.is_free}
-                    required
+                 
                   >
                     <option>--Select--</option>
                     <option value="yes">Yes</option>
@@ -232,7 +232,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="number_of_page"
                     onChange={formik.handleChange}
                     value={formik.values.number_of_page}
-                    required
+             
                   />
                 </div>
               </div>
@@ -330,7 +330,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="summary"
                     onChange={formik.handleChange}
                     value={formik.values.summary}
-                    required
+              
                   />
                 </div>
               </div>
@@ -394,7 +394,7 @@ const CreateBookItem = ({ handleClose }) => {
                   className="form-control"
                   onChange={formik.handleChange}
                   value={formik.values.publish_date}
-                  required
+            
                 />
               </div>
               <div className="col-12">
@@ -411,7 +411,6 @@ const CreateBookItem = ({ handleClose }) => {
               </div>
               <div className="col-12">
                 <label className="col-12 col-form-label">Publisher</label>
-
                 <select
                   className="form-select form-control"
                   aria-label="Default select example"
@@ -440,7 +439,7 @@ const CreateBookItem = ({ handleClose }) => {
                   name="language_id"
                   onChange={formik.handleChange}
                   value={formik.values.language_id}
-                  required
+              
                 >
                   <option selected>Select Language</option>
 
@@ -462,7 +461,7 @@ const CreateBookItem = ({ handleClose }) => {
                   name="country_id"
                   onChange={formik.handleChange}
                   value={formik.values.country_id}
-                  required
+            
                 >
                   <option selected>Select Country</option>
 
@@ -486,7 +485,7 @@ const CreateBookItem = ({ handleClose }) => {
                     focusOne(e.target.value, e.target.name);
                   }}
                   value={formik.values.category_id}
-                  required
+             
                 >
                   <option selected> --select-- </option>
 
@@ -510,7 +509,7 @@ const CreateBookItem = ({ handleClose }) => {
                     setSubCategoryId(e.target.value);
                   }}
                   value={formik.values.sub_category_id}
-                  required
+           
                 >
                   <option selected>--select--</option>
 
@@ -536,7 +535,7 @@ const CreateBookItem = ({ handleClose }) => {
                     formik.handleChange(e);
                   }}
                   value={formik.values.third_category_id}
-                  required
+          
                 >
                   <option selected>--select--</option>
 
@@ -560,7 +559,7 @@ const CreateBookItem = ({ handleClose }) => {
                     formik.handleChange(e);
                   }}
                   value={formik.values.publish_status}
-                  required
+                  
                 >
                   <option selected> --select-- </option>
                   <option value="published">Published</option>

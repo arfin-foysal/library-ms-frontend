@@ -10,7 +10,6 @@ export const borrowSlice = createSlice({
   initialState,
   reducers: {
     // add borrow
-
     addBorrow: (state, action) => {
       const itemInCart = state.borrow.find(
         (item) => item.id === action.payload.id
@@ -19,7 +18,7 @@ export const borrowSlice = createSlice({
         toast.error("This book is already in your borrow list");
       } else {
         state.borrow.push({ ...action.payload, item_qty: 1 });
-        toast("Book added to borrow list 🛒");
+        toast.success("Book added to borrow list 🛒");
       }
     },
     removeItem: (state, action) => {

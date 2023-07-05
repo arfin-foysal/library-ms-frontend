@@ -6,7 +6,7 @@ import Select from "react-select";
 import { useGetVendorListQuery } from "../../../../../services/vendorApi";
 import { useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
 import { useItemOrderMutation } from "../../../../../services/itemOrder";
-import { TbCurrencyTaka } from "react-icons/tb";
+
 
 const CreateOrderItem = ({ handleClose }) => {
   const [itemOrder, res] = useItemOrderMutation();
@@ -19,27 +19,31 @@ const CreateOrderItem = ({ handleClose }) => {
   const [allItem, setAllItem] = useState([]);
   const [item, setItem] = useState();
   const [item_qty, setitem_qty] = useState();
-  const [item_price, setItem_price] = useState();
+  // const [item_price, setItem_price] = useState();
 
- 
+
+
+
   const qtyHandeler = (e) => {
     setitem_qty(e.target.value);
   };
-  const priceHandeler = (e) => {
-    setItem_price(e.target.value);
-  };
+  // const priceHandeler = (e) => {
+  //   setItem_price(e.target.value);
+  // };
 
   const itemHandeler = (e) => {
 
+
     const items = {
       item_qty: Number(item_qty),
-      item_price: Number(item_price),
-      amount: item_qty * item_price,
+      photo: item.photo,
+      // item_price: Number(item_price),
+      // amount: item_qty * item_price,
       item: item.id,
       itemName: item.title,
     };
 
-    if (item_qty === "" || item_price === "" || item === "") {
+    if (item_qty === "" || item === "") {
       toast.warn("Please fill all the field");
     } else {
       if (allItem.find((itemss) => itemss.item === item.id)) {
@@ -51,7 +55,7 @@ const CreateOrderItem = ({ handleClose }) => {
 
     setItem("");
     setitem_qty("");
-    setItem_price("");
+    // setItem_price("");
   };
 
   const qtyRef = React.useRef();
@@ -92,7 +96,7 @@ const CreateOrderItem = ({ handleClose }) => {
         tentative_date: values.tentative_date,
         note: values.note,
         is_active: values.is_active,
-        qty:totalQty,
+        qty: totalQty,
         total: Number(totalAmount),
         discount: Number(discount),
         amount: Number(subTotal),
@@ -179,7 +183,7 @@ const CreateOrderItem = ({ handleClose }) => {
                 </div>
               </div>
 
-              <div className="col-4">
+              <div className="col-6">
                 <label className="col-12 col-form-label">Item</label>
                 <Select
                   // isMulti
@@ -197,8 +201,6 @@ const CreateOrderItem = ({ handleClose }) => {
                       qtyRef.current.focus();
                     }
                   }}
-    
-                 
                 />
               </div>
 
@@ -213,13 +215,13 @@ const CreateOrderItem = ({ handleClose }) => {
                     onChange={(e) => qtyHandeler(e)}
                     value={item_qty}
                     ref={qtyRef}
-                
+
 
                   />
                 </div>
               </div>
 
-              <div className="col-3">
+              {/* <div className="col-3">
                 <label className="col-12 col-form-label">Price</label>
                 <div className="col-12">
                   <input
@@ -231,35 +233,44 @@ const CreateOrderItem = ({ handleClose }) => {
                     value={item_price}
                   />
                 </div>
-              </div>
+              </div> */}
 
-              <div className="col-2 " style={{ marginTop: "37px" }}>
-                <buttton
+              <div className="col-3 " style={{ marginTop: "37px" }}>
+                <button
                   onClick={itemHandeler}
-                  className="btn btn-primary d-block"
+                  className="btn btn-primary d-block w-100"
                 >
                   Add
-                </buttton>
+                </button>
               </div>
 
               <div className="py-2 pb-3 my-4 border border-4">
                 <table class="table">
                   <thead>
                     <tr>
+                      <th scope="col">Photo</th>
                       <th scope="col">Name</th>
                       <th scope="col">Qty</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Total Price</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
+
                     {allItem.map((item, i) => (
                       <tr key={i}>
+                        <td className="col-2">
+                          {" "}
+                          <img
+                            width={40}
+                            height={40}
+                            src={`${import.meta.env.VITE_FILE_URL}${item?.photo
+                              }`}
+                            alt=""
+                          />
+                        </td>
                         <td>{item.itemName}</td>
                         <td>{item.item_qty}</td>
-                        <td><TbCurrencyTaka /> {item.item_price} TK</td>
-                        <td><TbCurrencyTaka /> {item.amount} TK</td>
+
                         <td>
                           <button
                             onClick={() => deleteItem(item)}
@@ -274,13 +285,13 @@ const CreateOrderItem = ({ handleClose }) => {
                 </table>
               </div>
 
-              <div className="col-6">
+              <div className="col-12">
                 <label className="col-12 col-form-label">Note</label>
                 <div className="col-12">
                   <textarea
                     maxLength={200}
-                    
-                    rows={4}
+
+                    rows={1}
                     placeholder="Enter Note"
                     type="text"
                     className="form-control"
@@ -291,52 +302,24 @@ const CreateOrderItem = ({ handleClose }) => {
                   />
                 </div>
               </div>
-              <div className="col-6 border ">
-                <table class="table table-white table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Sub Total Amount :</th>
-                      <th scope="col"><TbCurrencyTaka />{subTotal} TK</th>
-                    </tr>
-                    <tr>
-                      <th scope="col">Discount:</th>
-                      <th scope="col">
-                        {" "}
-                        <input
-                          className="form-control"
-                          type="number"
-                          max={subTotal}
-                          min={0}
-                          onChange={(e) => setDiscount(e.target.value)}
-                        />
-                      </th>
-                    </tr>
-                    <tr>
-                      <th scope="col">Total Amount : </th>
-                      <th scope="col"><TbCurrencyTaka />
-                        {totalAmount ? totalAmount : subTotal} TK
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
+
             </div>
           </div>
         </div>
 
-      
+
         <Modal.Footer>
           <div className=" d-flex">
-            
-              <button className="btn btn-dark me-1" onClick={handleClose}>
-                Close
-              </button>
-           
-          
-              <button type="submit" className="btn btn-success ">
-                Submit
-              </button>
-         
+
+            <button className="btn btn-dark me-1" onClick={handleClose}>
+              Close
+            </button>
+
+
+            <button type="submit" className="btn btn-success ">
+              Submit
+            </button>
+
           </div>
         </Modal.Footer>
       </form>
