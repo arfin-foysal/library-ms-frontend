@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { TbCurrencyTaka } from "react-icons/tb";
 
@@ -20,25 +21,16 @@ const OrderDetails = ({ handleClose, values }) => {
                 <th>{values?.vendor_name}</th>
               </tr>
               <tr>
-                <th>Receved Date:</th>
-                <th>{values?.tentative_date}</th>
+                <th>Received Date:</th>
+                <th>{moment(values?.tentative_date).format("MMMM Do YYYY")}</th>
+                
               </tr>
               <tr>
                 <th>Qty:</th>
                 <th>{values?.qty}</th>
               </tr>
-              <tr>
-                <th>Price:</th>
-                <th> <TbCurrencyTaka />{values?.amount}</th>
-              </tr>
-              <tr>
-                <th>Discount:</th>
-                <th><TbCurrencyTaka />{values?.Discount}</th>
-              </tr>
-              <tr>
-                <th>Total Price:</th>
-                <th><TbCurrencyTaka />{values?.total}</th>
-              </tr>
+        
+
               <tr>
                 <th>Order Status:</th>
                 <th>{values?.order_status}</th>
@@ -58,9 +50,9 @@ const OrderDetails = ({ handleClose, values }) => {
               <tr>
                 <th scope="col">Item Photo</th>
                 <th scope="col">Item Name</th>
-                <th scope="col">Item Price</th>
+       
                 <th scope="col">Item Qty</th>
-                <th scope="col">Item Total Price</th>
+          
               </tr>
             </thead>
             <tbody>
@@ -76,9 +68,9 @@ const OrderDetails = ({ handleClose, values }) => {
                     />
                   </th>
                   <td>{item.item_name}</td>
-                  <td>{item.item_price}</td>
+        
                   <td>{item.item_qty}</td>
-                  <td>{item.total_price}</td>
+         
                 </tr>
               ))}
             </tbody>

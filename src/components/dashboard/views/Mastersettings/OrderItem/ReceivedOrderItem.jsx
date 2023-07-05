@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import React, { useState, useEffect } from "react";
-import {  Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { useGetVendorListQuery } from "../../../../../services/vendorApi";
@@ -25,12 +25,15 @@ const ReceivedOrderItem = ({ handleClose }) => {
   const vendorRes = useGetVendorListQuery();
   const [discount, setDiscount] = useState(0);
   const [allItem, setAllItem] = useState([]);
+  const [item, setItem] = useState();
+
 
 
 
 
   const unrecevedOrder = () => {
     let data = [];
+
     unrecevedOrderRes?.data?.data.items?.map((item) => {
       data.push({
         id: item.id,
@@ -41,6 +44,8 @@ const ReceivedOrderItem = ({ handleClose }) => {
         total_price: item.total_price,
         item_id: item.item_id,
         item_order_id: item.item_order_id,
+        isbn: item.isbn,
+        edition: item.edition,
       });
     });
     setAllItem(data);
@@ -49,6 +54,44 @@ const ReceivedOrderItem = ({ handleClose }) => {
   useEffect(() => {
     unrecevedOrder();
   }, [unrecevedOrderRes]);
+
+
+  const itemHandler = (e) => {
+    e.preventDefault();
+    let data = [];
+    data.push({
+      id: item.id,
+      item_photo: item.photo,
+      item_name: item.title,
+      item_qty: 0,
+      item_price: 0,
+      total_price: 0,
+      isbn: item.isbn,
+      edition: item.edition,
+      item_id: item.id,
+      item_order_id: unrecevedOrderRes?.data?.data?.id,
+    });
+
+    //same item not add
+
+    let isExist = allItem.find((item) => item.id == data[0].id);
+    if (isExist) {
+      toast.warn("Item already added");
+      return;
+    }
+
+
+    setAllItem([...allItem, ...data]);
+
+
+
+
+  };
+
+
+
+
+
 
   const deleteItem = (item) => {
     let newData = allItem.filter((data) => {
@@ -74,6 +117,39 @@ const ReceivedOrderItem = ({ handleClose }) => {
     );
     setAllItem(newData);
   };
+
+  const isbnHandler = (e) => {
+    let isbn = e.target.value;
+    let id = e.target.id;
+
+    let newData = allItem.map((item) => {
+      if (item.id == id) {
+        item.isbn = isbn;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    setAllItem(newData);
+  };
+
+  const editionHandler = (e) => {
+    let edition = e.target.value;
+    let id = e.target.id;
+
+    let newData = allItem.map((item) => {
+      if (item.id == id) {
+        item.edition = edition;
+        return item;
+      } else {
+        return item;
+      }
+    });
+    setAllItem(newData);
+  };
+
+
+
 
   const qtyHandelar = (e) => {
     let qty = e.target.value;
@@ -140,6 +216,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
       try {
         const result = await itemOrderReceved(data).unwrap();
         toast.success(result.message);
+        console.log(data)
         resetForm();
       } catch (error) {
         toast.warn(error.data.message);
@@ -227,72 +304,47 @@ const ReceivedOrderItem = ({ handleClose }) => {
                       </div>
                     </div>
 
-                    
-
-                    <div className="col-3">
-                      <label className="col-12 col-form-label">Item</label>
-                      <Select
-                        // isMulti
-                        name="item_id"
-                        placeholder="Select item"
-                        classNamePrefix="select"
-                        // onChange={(e) => setItem(e)}
-                        getOptionValue={(option) => `${option["id"]}`}
-                        getOptionLabel={(option) => `${option["title"]} ( ${option["barcode_or_rfid"]} )`}
-                        options={bookItemRes.isSuccess && bookItemRes.data?.data}
-                        isLoading={bookItemRes.isLoading}
-                        enter to next field after select
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter") {
-                            // qtyRef.current.focus();
-                          }
-                        }}
-                      />
-                    </div>
-
-                    <div className="col-3">
-                      <label className="col-12 col-form-label">Quantity</label>
-                      <div className="col-12">
-                        <input
-                          placeholder="Quantity"
-                          type="number"
-                          className="form-control"
-                          name="item_qty"
-                        // onChange={(e) => qtyHandeler(e)}
-                        // value={item_qty}
-                        // ref={qtyRef}
 
 
+
+                    <div className="row pt-5">
+                      <div className="col"></div>
+                      <div className="col">
+
+
+                        <Select
+
+                          name="item_id"
+                          placeholder="Select item"
+                          classNamePrefix="select"
+                          onChange={(e) => setItem(e)}
+                          getOptionValue={(option) => `${option["id"]}`}
+                          getOptionLabel={(option) => `${option["title"]} ( ${option["barcode_or_rfid"]} )`}
+                          options={bookItemRes.isSuccess && bookItemRes.data?.data}
+                          isLoading={bookItemRes.isLoading}
+                          enter to next field after select
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              // qtyRef.current.focus();
+                            }
+                          }}
                         />
                       </div>
-                    </div>
-                    <div className="col-3">
-                      <label className="col-12 col-form-label">Item Price</label>
-                      <div className="col-12">
-                        <input
-                          placeholder="Item Price"
-                          type="number"
-                          className="form-control"
-                          name="item_qty"
-                        // onChange={(e) => qtyHandeler(e)}
-                        // value={item_qty}
-                        // ref={qtyRef}
-
-
-                        />
+                      <div className="col">
+                        <button
+                          onClick={itemHandler}
+                          className="btn btn-primary  "
+                        >
+                          Add Item
+                        </button>
                       </div>
+
+
+
                     </div>
 
 
 
-                    <div className="col-3 " style={{ marginTop: "37px" }}>
-                      <button
-                        // onClick={itemHandeler}
-                        className="btn btn-primary d-block w-100"
-                      >
-                        Add
-                      </button>
-                    </div>
 
                     <div className="py-2 pb-3 my-4 ">
                       <table className="table">
@@ -300,6 +352,8 @@ const ReceivedOrderItem = ({ handleClose }) => {
                           <tr>
                             <th scope="col">Photo</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Isbn</th>
+                            <th scope="col">edition</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Item Price</th>
                             <th scope="col">Total Price</th>
@@ -310,7 +364,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                         <tbody>
                           {allItem?.map((item, i) => (
                             <tr key={i}>
-                              <td className="col-2">
+                              <td className="col">
                                 {" "}
                                 <img
                                   width={40}
@@ -320,10 +374,36 @@ const ReceivedOrderItem = ({ handleClose }) => {
                                   alt=""
                                 />
                               </td>
-                              <td>{item.item_name}</td>
-                              {/* {item.item_qty} */}
-
+                              <td className="col-3">{item.item_name.substring(0, 20)}</td>
+                              
                               <td className="col-2">
+                                <input
+                                  placeholder="Enter Isbn"
+                                  type="text"
+                                  className="form-control"
+                                  id={item.id}
+                                  name="item_isbn"
+                                  onChange={(e) => isbnHandler(e)}
+                                  value={item.item_isbn}
+                                />
+
+
+                              </td>
+                              <td className="col-2">
+                                <input
+                                  placeholder="Enter Edition"
+                                  type="text"
+                                  className="form-control"
+                                  id={item.id}
+                                  name="item_edition"
+                                onChange={(e) => editionHandler(e)}
+                                  value={item.item_edition}
+                                />
+                              </td>
+                                
+
+
+                              <td className="col-1">
                                 <input
                                   type="number"
                                   id={item.id}
@@ -334,7 +414,8 @@ const ReceivedOrderItem = ({ handleClose }) => {
                                   }}
                                 />
                               </td>
-                              <td className="col-2"> <input
+                              <td className="col-2">
+                                <input
                                 placeholder="Price"
                                 type="number"
                                 className="form-control"
@@ -349,7 +430,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                               </td>
                               <td className="col-2 pt-3 "><TbCurrencyTaka />{item.total_price} TK</td>
 
-                              <td className="col-2 pt-3">
+                              <td className="col-1 pt-2">
                                 <button
                                   onClick={() => deleteItem(item)}
                                   className="btn btn-danger btn-sm"

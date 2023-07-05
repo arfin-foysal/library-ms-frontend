@@ -41,33 +41,7 @@ const OrderItemList = () => {
 
   const columns = useMemo(
     () => [
-      // {
-      //   accessorFn: (row) =>
-      //     row?.photo ? (
-      //       <>
-      //         <img
-      //           className="img-fluid rounded-circle shadow"
-      //           style={{ width: "40px", height: "40px" }}
-      //           src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
-      //           alt=""import { TbCurrencyTaka } from 'react-icons/ti';
 
-
-
-      //         ></img>
-      //       </>
-      //     ) : (
-      //       <img
-      //         className="img-fluid rounded-circle shadow"
-      //         style={{ width: "40px", height: "40px" }}
-      //         src={avatar}
-      //         alt=""
-      //       ></img>
-      //     ),
-
-      //   id: "Photo",
-      //   header: "Photo",
-      //   size: 10,
-      // },
 
       {
         accessorKey: "order_no", //access nested data with dot notation
@@ -85,55 +59,6 @@ const OrderItemList = () => {
         header: "Qty",
         size: 10,
       },
-
-
-      {
-        accessorFn: (row) =>
-          row?.amount && (
-            <><TbCurrencyTaka />{
-              row?.amount
-
-            }
-            </>
-          ),
-
-        id: "amount",
-        header: `Amount`,
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.discount && (
-            <><TbCurrencyTaka />{
-              row?.discount
-
-            }
-            </>
-          ),
-
-        id: "discount",
-        header: "Discount",
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.total && (
-            <><TbCurrencyTaka />{
-              row?.total
-
-            }
-            </>
-          ),
-
-        id: "total",
-        header: "Total",
-        size: 10,
-      },
-
-
-
-
-
 
 
       {

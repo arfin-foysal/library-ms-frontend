@@ -1,4 +1,5 @@
 import React from "react";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const OrderRecevedDetails = ({ handleClose, values }) => {
 
@@ -33,16 +34,30 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
                 <th>{values?.qty}</th>
               </tr>
               <tr>
+                <th>
+                  Discount Before Amount: 
+                </th>
+                <th><TbCurrencyTaka />{values?.sub_total_amount} Tk</th>
+              </tr>
+              <tr>
+                <th>
+                  Discount: 
+                </th>
+                <th><TbCurrencyTaka />{values?.discount} Tk</th>
+              </tr>
+
+
+              <tr>
                 <th>Payable Amount:</th>
-                <th>{values?.payable_amount}</th>
+                <th><TbCurrencyTaka />{values?.payable_amount} Tk</th>
               </tr>
               <tr>
                 <th>Paid Amount:</th>
-                <th>{values?.paid_amount}</th>
+                <th><TbCurrencyTaka />{values?.paid_amount} Tk</th>
               </tr>
               <tr>
                 <th>Due Amount:</th>
-                <th>{values?.due_amount}</th>
+                <th><TbCurrencyTaka />{values?.due_amount} Tk</th>
               </tr>
               <tr>
                 <th>Order Status:</th>
@@ -82,9 +97,9 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
                     />
                   </th>
                   <td>{item.item_name}</td>
-                  <td>{item.item_price}</td>
+                  <td><TbCurrencyTaka />{item.item_price} Tk</td>
                   <td>{item.item_qty}</td>
-                  <td>{item.total_price}</td>
+                  <td><TbCurrencyTaka />{item.total_price} Tk</td>
                 </tr>
               ))}
             </tbody>

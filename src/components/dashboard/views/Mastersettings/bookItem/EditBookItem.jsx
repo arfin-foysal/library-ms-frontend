@@ -152,7 +152,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="title"
                     onChange={formik.handleChange}
                     value={formik.values.title}
-                   
+
                   />
                 </div>
               </div>
@@ -166,7 +166,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="isbn"
                     onChange={formik.handleChange}
                     value={formik.values.isbn}
-                  
+
                   />
                 </div>
               </div>
@@ -180,7 +180,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="edition"
                     onChange={formik.handleChange}
                     value={formik.values.edition}
-                    
+
                   />
                 </div>
               </div>
@@ -192,7 +192,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="item_type"
                     onChange={formik.handleChange}
                     value={formik.values.item_type}
-                
+
                   >
                     <option>--Select--</option>
                     <option value="physical">Physical</option>
@@ -208,7 +208,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="is_free"
                     onChange={formik.handleChange}
                     value={formik.values.is_free}
-                  
+
                   >
                     <option>--Select--</option>
                     <option value="yes">Yes</option>
@@ -226,7 +226,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="number_of_page"
                     onChange={formik.handleChange}
                     value={formik.values.number_of_page}
-                 
+
                   />
                 </div>
               </div>
@@ -255,7 +255,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="summary"
                     onChange={formik.handleChange}
                     value={formik.values.summary}
-                   
+
                   />
                 </div>
               </div>
@@ -392,7 +392,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   name="publisher_id"
                   onChange={formik.handleChange}
                   value={formik.values.publisher_id}
-              
+
                 >
                   <option selected>Select Publisher</option>
 
@@ -436,7 +436,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   name="country_id"
                   onChange={formik.handleChange}
                   value={formik.values.country_id}
-              
+
                 >
                   <option selected>Select Country</option>
 
@@ -460,7 +460,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     focusOne(e.target.value, e.target.name);
                   }}
                   value={formik.values.category_id}
-             
+
                 >
                   <option selected> --select-- </option>
 
@@ -484,7 +484,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     focusTwo(e.target.value, e.target.name);
                   }}
                   value={formik.values.sub_category_id}
-               
+
                 >
                   <option selected>--select--</option>
 
@@ -534,7 +534,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     formik.handleChange(e);
                   }}
                   value={formik.values.publish_status}
-                 
+
                 >
                   <option selected> --select-- </option>
                   <option value="published">Published</option>

@@ -11,6 +11,7 @@ import { useItemOrderMutation } from "../../../../../services/itemOrder";
 const CreateOrderItem = ({ handleClose }) => {
   const [itemOrder, res] = useItemOrderMutation();
 
+  console.log(res)
 
 
   const vendorRes = useGetVendorListQuery();
