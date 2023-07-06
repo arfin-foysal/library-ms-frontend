@@ -130,20 +130,7 @@ const CreateBookRents = ({ handleClose }) => {
         <div className="row">
           <div className="col-12 border border-2">
             <div className="row py-2">
-              {/* <div className="col-6">
-                <label className="col-12 col-form-label">Rental Date</label>
-                <div className="col-12">
-                  <input
-                    placeholder="Enter Rental Date"
-                    type="date"
-                    className="form-control"
-                    name="rental_date"
-                    onChange={formik.handleChange}
-                    value={formik.values.rental_date}
-                    required
-                  />
-                </div>
-              </div> */}
+
 
               <div className="col-4">
                 <label className="col-12 col-form-label">Item</label>
@@ -252,12 +239,14 @@ const CreateBookRents = ({ handleClose }) => {
                 </table>
               </div>
               <div className="col-8">
-                <label className="col-12 col-form-label">User</label>
+                <label className="col-12 col-form-label">
+                  Borrower
+                </label>
                 <div className="col-12">
                   <Select
                     // isMulti
                     name="user_id"
-                    placeholder="Select User"
+                    placeholder="Select Borrower"
                     classNamePrefix="select"
                     onChange={(e) => {
                       formik.setFieldValue("user_id", e.id);

@@ -40,36 +40,9 @@ const ItemReceivedTable = ({
         header: "Qty",
         size: 10,
       },
-      {
-        accessorFn: (row) =>
-          row?.payable_amount && (
-            <><TbCurrencyTaka />{row.payable_amount}</>
-          ),
 
-        id: "payable_amount",
-        header: "Payable Amount",
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.paid_amount && (
-            <><TbCurrencyTaka />{row.paid_amount}</>
-          ),
 
-        id: "paid_amount",
-        header: "Paid Amount",
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.due_amount && (
-            <><TbCurrencyTaka />{row.due_amount}</>
-          ),
 
-        id: "due_amount",
-        header: "Due Amount",
-        size: 10,
-      },
       {
         accessorFn: (row) =>
           row?.received_date && (

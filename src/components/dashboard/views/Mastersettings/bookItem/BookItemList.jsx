@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
-import AuthorModal from "./BookItemModal";
+import BookItemModal from "./BookItemModal";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { confirmHandel } from '../../../../../utils/Alert';
 import avatar from "../../../../../assets/images/profile-picture.png";
@@ -43,8 +43,8 @@ const BookItemList = () => {
                 alt=""
 
               ></img>
-              <br/>
-              {row?.title}
+              <br />
+
             </>
           ) : (
             <>
@@ -54,18 +54,23 @@ const BookItemList = () => {
                 src={avatar}
                 alt=""
               ></img>
-              {row?.title}
+
             </>
           ),
 
         id: "Photo",
-        header: "BooK",
-     
+        header: "Photo",
 
-        
+
+
       },
 
 
+      {
+        accessorKey: "title", //access nested data with dot notation
+        header: "Name",
+        size: 10,
+      },
       {
         accessorKey: "barcode_or_rfid", //access nested data with dot notation
         header: "Barcode Or Rfid",
@@ -82,12 +87,7 @@ const BookItemList = () => {
         header: "Item Type",
         size: 10,
       },
-      {
-        accessorKey: "price", //normal accessorKey
-        header: "Price",
-        size: 10,
 
-      },
 
       {
         accessorKey: "edition", //normal accessorKey
@@ -116,7 +116,7 @@ const BookItemList = () => {
   return (
     <>
       {isFetching && <Loader />}
-      <AuthorModal
+      <BookItemModal
         show={show}
         handleClose={handleClose}
         clickValue={clickValue}

@@ -122,7 +122,7 @@ export const navItem = [ {
     ],
   },
   {
-    title: "Vendor Payment",
+    title: "Payment",
     role: "admin",
     icon: <BsDashSquare size={13} />,
     children: [
@@ -135,12 +135,12 @@ export const navItem = [ {
     ],
   },
   {
-    title: "Book Rents",
+    title: "Borrowing",
     role: "admin",
     icon: <BiBookContent />,
     children: [
       {
-        title: "Book Rents",
+        title: "Book Borrow List",
         link: "rent-list",
         role: "admin",
         icon: <BiBookAdd />,

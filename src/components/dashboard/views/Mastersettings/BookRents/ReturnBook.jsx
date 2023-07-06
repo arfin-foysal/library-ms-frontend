@@ -116,7 +116,7 @@ const ReturnBook = ({ handleClose, param }) => {
   return (
     <div className="card border shadow-lg">
       <div className="card-header d-flex justify-content-between ">
-        <div>Item Rents List</div>
+        <div>Item Borrow List</div>
       </div>
       <div className="card-body ">
         <div>
@@ -157,7 +157,7 @@ const ReturnBook = ({ handleClose, param }) => {
 
                   <div className="py-1  my-2 ">
                     <div className="alert alert-dark text-center" role="alert">
-                      Book Rents List
+                      Book Borrow List
                     </div>
 
                     <table className="table">

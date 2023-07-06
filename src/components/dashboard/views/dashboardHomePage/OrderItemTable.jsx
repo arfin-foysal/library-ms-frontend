@@ -48,36 +48,8 @@ const OrderItemTable = ({ orderItem,
         size: 10,
       },
 
-      {
-        accessorFn: (row) =>
-          row?.amount && (
-            <><TbCurrencyTaka />{row.amount}</>
-          ),
 
-        id: "amount",
-        header: "Amount",
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.discount && (
-            <><TbCurrencyTaka />{row.discount}</>
-          ),
 
-        id: "discount",
-        header: "Discount",
-        size: 10,
-      },
-      {
-        accessorFn: (row) =>
-          row?.total && (
-            <><TbCurrencyTaka />{row.total}</>
-          ),
-
-        id: "total",
-        header: "Total",
-        size: 10,
-      },
 
 
 

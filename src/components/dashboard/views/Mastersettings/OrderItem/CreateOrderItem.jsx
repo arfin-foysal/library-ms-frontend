@@ -1,26 +1,33 @@
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Select from "react-select";
 import { useGetVendorListQuery } from "../../../../../services/vendorApi";
 import { useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
 import { useItemOrderMutation } from "../../../../../services/itemOrder";
+import BookItemModal from "../bookItem/BookItemModal";
 
 
-const CreateOrderItem = ({ handleClose }) => {
+const CreateOrderItem = ( {handleClose}) => {
   const [itemOrder, res] = useItemOrderMutation();
-
-  console.log(res)
-
-
   const vendorRes = useGetVendorListQuery();
   const bookItemRes = useGetItemForSelectFieldQuery();
   const [discount, setDiscount] = useState(0);
   const [allItem, setAllItem] = useState([]);
   const [item, setItem] = useState();
   const [item_qty, setItem_qty] = useState();
-  // const [item_price, setItem_price] = useState();
+
+  const [clickValue, setClickValue] = useState(null);
+  const [paramId, setParamId] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const handleClose2 = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handelClickValue = useCallback((value) => {
+    setClickValue(value);
+  }, []);
 
 
 
@@ -28,9 +35,6 @@ const CreateOrderItem = ({ handleClose }) => {
   const qtyHandler = (e) => {
     setItem_qty(e.target.value);
   };
-  // const priceHandeler = (e) => {
-  //   setItem_price(e.target.value);
-  // };
 
   const itemHandler = (e) => {
 
@@ -38,8 +42,8 @@ const CreateOrderItem = ({ handleClose }) => {
     const items = {
       item_qty: Number(item_qty),
       photo: item.photo,
-      // item_price: Number(item_price),
-      // amount: item_qty * item_price,
+      isbn: item.isbn,
+      edition: item.edition,
       item: item.id,
       itemName: item.title,
     };
@@ -120,7 +124,13 @@ const CreateOrderItem = ({ handleClose }) => {
   }
 
   return (
-    <div>
+    <>
+          <BookItemModal
+        show={show}
+        handleClose={handleClose2}
+        clickValue={clickValue}
+        paramId={paramId}
+      />
       <form
         className="form-sample"
         onSubmit={formik.handleSubmit}
@@ -184,6 +194,22 @@ const CreateOrderItem = ({ handleClose }) => {
                 </div>
               </div>
 
+              <div>
+                <div className="col-12">
+                  <button
+                    type="button"
+                    className="btn btn-primary mt-2 btn-sm"
+                    onClick={() => {
+                      handleShow();
+                      handelClickValue("Add New Book");
+                    }}
+             
+                  >
+                    Add Item
+                  </button>
+                </div>
+              </div>
+
               <div className="col-6">
                 <label className="col-12 col-form-label">Item</label>
                 <Select
@@ -222,19 +248,6 @@ const CreateOrderItem = ({ handleClose }) => {
                 </div>
               </div>
 
-              {/* <div className="col-3">
-                <label className="col-12 col-form-label">Price</label>
-                <div className="col-12">
-                  <input
-                    placeholder="Price"
-                    type="number"
-                    className="form-control"
-                    name="item_price"
-                    onChange={(e) => priceHandeler(e)}
-                    value={item_price}
-                  />
-                </div>
-              </div> */}
 
               <div className="col-3 " style={{ marginTop: "37px" }}>
                 <button
@@ -251,7 +264,7 @@ const CreateOrderItem = ({ handleClose }) => {
                     <tr>
                       <th scope="col">Photo</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Qty</th>
+                      <th scope="col">Quantity</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -324,7 +337,7 @@ const CreateOrderItem = ({ handleClose }) => {
           </div>
         </Modal.Footer>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import React from "react";
 
 const BookRentDetails = ({ handleClose, values }) => {
 
-console.log(values)
+
 
   return (
     <div>
@@ -36,11 +36,11 @@ console.log(values)
 
                 <th>{moment(values?.rental_date).format("MMMM Do YYYY")}</th>
               </tr>
-              <tr>
+              {/* <tr>
                 <th>Return Date:</th>
 
                 <th>{moment(values?.return_date).format("MMMM Do YYYY")}</th>
-              </tr>
+              </tr> */}
               <tr>
                 <th>Qty:</th>
                 <th>{values?.qty}</th>

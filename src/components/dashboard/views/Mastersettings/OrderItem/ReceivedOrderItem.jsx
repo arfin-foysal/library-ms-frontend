@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import Select from "react-select";
@@ -14,8 +14,10 @@ import {
 import PageTopHeader from "../../../common/PageTopHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
+import BookItemModal from "../bookItem/BookItemModal";
+import { BiCartAdd } from "react-icons/bi";
 
-const ReceivedOrderItem = ({ handleClose }) => {
+const ReceivedOrderItem = () => {
   const bookItemRes = useGetItemForSelectFieldQuery();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -28,6 +30,17 @@ const ReceivedOrderItem = ({ handleClose }) => {
   const [item, setItem] = useState();
 
 
+  const [clickValue, setClickValue] = useState(null);
+  const [paramId, setParamId] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handelClickValue = useCallback((value) => {
+    setClickValue(value);
+  }, []);
+
 
 
 
@@ -35,6 +48,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
     let data = [];
 
     unrecevedOrderRes?.data?.data.items?.map((item) => {
+
       data.push({
         id: item.id,
         item_photo: item.item_photo,
@@ -58,7 +72,10 @@ const ReceivedOrderItem = ({ handleClose }) => {
 
   const itemHandler = (e) => {
     e.preventDefault();
+
     let data = [];
+
+
     data.push({
       id: item.id,
       item_photo: item.photo,
@@ -74,17 +91,12 @@ const ReceivedOrderItem = ({ handleClose }) => {
 
     //same item not add
 
-    let isExist = allItem.find((item) => item.id == data[0].id);
+    let isExist = allItem.find((item) => item.item_id == data[0].id);
     if (isExist) {
       toast.warn("Item already added");
       return;
     }
-
-
     setAllItem([...allItem, ...data]);
-
-
-
 
   };
 
@@ -100,7 +112,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
     setAllItem(newData);
   };
 
-  const priceHandeler = (e) => {
+  const priceHandler = (e) => {
 
     let price = e.target.value;
     let id = e.target.id;
@@ -176,6 +188,8 @@ const ReceivedOrderItem = ({ handleClose }) => {
     return acc + Number(item.item_qty);
   }, 0);
 
+
+
   let totalAmount = subTotal;
 
   if (discount > 0) {
@@ -191,13 +205,28 @@ const ReceivedOrderItem = ({ handleClose }) => {
     enableReinitialize: true,
     initialValues: {
       vendor_id: unrecevedOrderRes?.data?.data?.vendor_id,
-      // tentative_date: unrecevedOrderRes?.data?.data?.tentative_date,
       comments: "",
       invoice_no: "",
     },
 
     onSubmit: async (values, { resetForm }) => {
-      // let formData = new FormData();
+
+      // quantity and price validation
+      let isQtyValid = allItem.find((item) => item.item_qty == 0);
+      if (isQtyValid) {
+        toast.warn("Quantity can't be zero");
+        return;
+      }
+
+      let isPriceValid = allItem.find((item) => item.item_price == 0);
+      if (isPriceValid) {
+        toast.warn("Price can't be zero");
+        return;
+      }
+
+
+
+
 
       const data = {
         vendor_id: Number(values.vendor_id),
@@ -216,7 +245,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
       try {
         const result = await itemOrderReceved(data).unwrap();
         toast.success(result.message);
-        console.log(data)
+
         resetForm();
       } catch (error) {
         toast.warn(error.data.message);
@@ -233,6 +262,12 @@ const ReceivedOrderItem = ({ handleClose }) => {
 
   return (
     <>
+      <BookItemModal
+        show={show}
+        handleClose={handleClose}
+        clickValue={clickValue}
+        paramId={paramId}
+      />
       <PageTopHeader title="Received Order" />
       <div className="card border shadow-lg">
         <div className="card-header d-flex justify-content-between ">
@@ -308,52 +343,71 @@ const ReceivedOrderItem = ({ handleClose }) => {
 
 
                     <div className="row pt-5">
-                      <div className="col"></div>
                       <div className="col">
 
+                        <button className="btn btn-primary btn-sm"
 
-                        <Select
-
-                          name="item_id"
-                          placeholder="Select item"
-                          classNamePrefix="select"
-                          onChange={(e) => setItem(e)}
-                          getOptionValue={(option) => `${option["id"]}`}
-                          getOptionLabel={(option) => `${option["title"]} ( ${option["barcode_or_rfid"]} )`}
-                          options={bookItemRes.isSuccess && bookItemRes.data?.data}
-                          isLoading={bookItemRes.isLoading}
-                          enter to next field after select
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              // qtyRef.current.focus();
-                            }
+                          onClick={() => {
+                            handleShow();
+                            handelClickValue("Add New Book");
                           }}
-                        />
+                        >
+                          Create New Item
+                        </button>
+
+
                       </div>
                       <div className="col">
-                        <button
-                          onClick={itemHandler}
-                          className="btn btn-primary  "
-                        >
-                          Add Item
-                        </button>
                       </div>
+                      <div className="col">
+
+                        <div className="row">
+                          <div className="col-10">
+                            <Select
+
+                              name="item_id"
+                              placeholder="Select item"
+                              classNamePrefix="select"
+                              onChange={(e) => setItem(e)}
+                              getOptionValue={(option) => `${option["id"]}`}
+                              getOptionLabel={(option) => `${option["title"]} ( ${option["barcode_or_rfid"]} )`}
+                              options={bookItemRes.isSuccess && bookItemRes.data?.data}
+                              isLoading={bookItemRes.isLoading}
+                              enter to next field after select
+                              onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                  // qtyRef.current.focus();
+                                }
+                              }}
+                            />
+                          
+                          </div>
+                          <div className="col-2">
+                          <div className=" text-end">
+                              <button
+                                onClick={itemHandler}
+                                className="btn btn-primary mt-2 btn-sm "
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </div>
+
+                        </div>
 
 
 
+                      </div>
                     </div>
 
-
-
-
                     <div className="py-2 pb-3 my-4 ">
-                      <table className="table">
+                      <table className="table border border-3 ">
                         <thead>
                           <tr>
                             <th scope="col">Photo</th>
                             <th scope="col">Name</th>
                             <th scope="col">Isbn</th>
-                            <th scope="col">edition</th>
+                            <th scope="col">Edition</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Item Price</th>
                             <th scope="col">Total Price</th>
@@ -363,9 +417,10 @@ const ReceivedOrderItem = ({ handleClose }) => {
 
                         <tbody>
                           {allItem?.map((item, i) => (
+
                             <tr key={i}>
                               <td className="col">
-                                {" "}
+
                                 <img
                                   width={40}
                                   height={40}
@@ -374,33 +429,39 @@ const ReceivedOrderItem = ({ handleClose }) => {
                                   alt=""
                                 />
                               </td>
+
                               <td className="col-3">{item.item_name.substring(0, 20)}</td>
-                              
+
                               <td className="col-2">
                                 <input
                                   placeholder="Enter Isbn"
                                   type="text"
                                   className="form-control"
                                   id={item.id}
-                                  name="item_isbn"
+                                  name="isbn"
                                   onChange={(e) => isbnHandler(e)}
-                                  value={item.item_isbn}
+                                  value={item?.isbn}
+
                                 />
 
 
                               </td>
+
+
                               <td className="col-2">
                                 <input
                                   placeholder="Enter Edition"
                                   type="text"
                                   className="form-control"
                                   id={item.id}
-                                  name="item_edition"
-                                onChange={(e) => editionHandler(e)}
-                                  value={item.item_edition}
+                                  name="edition"
+                                  onChange={(e) => editionHandler(e)}
+                                  value={item?.edition}
+
+
                                 />
                               </td>
-                                
+
 
 
                               <td className="col-1">
@@ -414,21 +475,24 @@ const ReceivedOrderItem = ({ handleClose }) => {
                                   }}
                                 />
                               </td>
+
                               <td className="col-2">
                                 <input
-                                placeholder="Price"
-                                type="number"
-                                className="form-control"
-                                id={item.id}
-                                name="item_price"
-                                onChange={(e) => priceHandeler(e)}
-                                value={item.item_price}
-                              />
+                                  placeholder="Price"
+                                  type="number"
+                                  className="form-control"
+                                  id={item.id}
+                                  name="item_price"
+                                  onChange={(e) => priceHandler(e)}
+                                  value={item.item_price}
+                                />
+
+
 
 
 
                               </td>
-                              <td className="col-2 pt-3 "><TbCurrencyTaka />{item.total_price} TK</td>
+                              <td className="col-2 pt-3 "><TbCurrencyTaka />{item.total_price} Tk</td>
 
                               <td className="col-1 pt-2">
                                 <button
@@ -463,8 +527,12 @@ const ReceivedOrderItem = ({ handleClose }) => {
                       <table className="table table-white table-striped">
                         <thead>
                           <tr>
+                            <th scope="col">Total Quantity :</th>
+                            <th scope="col">{totalQty} Item</th>
+                          </tr>
+                          <tr>
                             <th scope="col">Sub Total Amount :</th>
-                            <th scope="col"><TbCurrencyTaka />{subTotal} TK</th>
+                            <th scope="col"><TbCurrencyTaka />{subTotal} Tk</th>
                           </tr>
                           <tr>
                             <th scope="col">Discount:</th>
@@ -485,7 +553,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
                           </tr>
                           <tr>
                             <th scope="col">Total Amount :</th>
-                            <th scope="col"><TbCurrencyTaka />{totalAmount} TK</th>
+                            <th scope="col"><TbCurrencyTaka />{totalAmount} Tk</th>
                           </tr>
                         </thead>
                       </table>
@@ -498,7 +566,7 @@ const ReceivedOrderItem = ({ handleClose }) => {
               <Modal.Footer>
                 <div className=" d-flex">
 
-                  <button className="btn btn-dark me-1" onClick={handleClose}>
+                  <button className="btn btn-dark me-1" >
                     Close
                   </button>
 

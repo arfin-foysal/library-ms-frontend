@@ -2,12 +2,10 @@ import React, { useCallback, useMemo, useState } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
 import BookRentsModal from "./BookRentsModal";
-import { FaEdit, FaTrash } from "react-icons/fa";
 import { confirmHandel } from "../../../../../utils/Alert";
-import avatar from "../../../../../assets/images/profile-picture.png";
 import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
-import { IoReceipt } from "react-icons/io5";
+
 
 import { Link } from "react-router-dom";
 import {
@@ -41,31 +39,7 @@ const BookRentsList = () => {
 
   const columns = useMemo(
     () => [
-      // {
-      //   accessorFn: (row) =>
-      //     row?.photo ? (
-      //       <>
-      //         <img
-      //           className="img-fluid rounded-circle shadow"
-      //           style={{ width: "40px", height: "40px" }}
-      //           src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
-      //           alt=""
 
-      //         ></img>
-      //       </>
-      //     ) : (
-      //       <img
-      //         className="img-fluid rounded-circle shadow"
-      //         style={{ width: "40px", height: "40px" }}
-      //         src={avatar}
-      //         alt=""
-      //       ></img>
-      //     ),
-
-      //   id: "Photo",
-      //   header: "Photo",
-      //   size: 10,
-      // },
 
       {
         accessorKey: "rental_no", //access nested data with dot notation
@@ -89,14 +63,13 @@ const BookRentsList = () => {
           row && (
             <>
               {moment(row.rental_date).format("MMMM Do YYYY")}
-              <br/>
-              {moment(row.return_date).format("MMMM Do YYYY")}
+    
               
             </>
           ),
 
-        id: "rental_date & return_date ",
-        header: "Rental & Return Date",
+        id: "rental_date ",
+        header: "Rental Date",
         size: 10,
       },
       // {
@@ -151,19 +124,19 @@ const BookRentsList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Rents List" />
+      <PageTopHeader title="Borrow List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Book Rent List</div>
+          <div>Book Borrow List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Book Rent");
+                handelClickValue("Book Borrow");
               }}
             >
-              Add Book Rent
+              Add Book Borrow
             </button>
           </div>
         </div>
@@ -190,7 +163,7 @@ const BookRentsList = () => {
                       className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Book Rent Information");
+                        handelClickValue("Book Borrow Information");
                         setParamId(row?.row?.original);
                       }}
                     >

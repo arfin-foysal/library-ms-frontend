@@ -106,6 +106,17 @@ const CreateBookItem = ({ handleClose }) => {
         formData.append("author_id", authorArr);
       }
 
+      //author id not null validation
+      if (authorId.length <= 0) {
+        toast.error("Please select Author");
+        return;
+      }
+
+     
+
+      
+
+
       resetForm();
       setPreviewImage(null);
       setAuthorId([]);
@@ -115,8 +126,10 @@ const CreateBookItem = ({ handleClose }) => {
       try {
         const result = await bookItemCreateOrUpdate(formData).unwrap();
         toast.success(result.message);
+       
       } catch (error) {
-        toast.warn(error.data.message);
+        toast.warn(error?.data?.message[0]);
+        toast.warn(error?.data?.message?.title[0]);
       }
     },
   });
