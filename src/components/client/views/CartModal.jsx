@@ -5,9 +5,12 @@ import { clearBorrow, removeItem, returnDate } from "../../../features/borrowSli
 import { toast } from "react-toastify";
 import { useItemRentCreateClientMutation } from "../../../services/clientSiteApi";
 import { useNavigate } from "react-router-dom";
+import { TbCurrencyTaka } from "react-icons/tb";
+import { useState } from "react";
 
 
 function CartModal({ show, handleClose }) {
+  const [borrowOrBuy, setBorrowOrBuy] = useState("borrow");
   const navigate = useNavigate();
   const borrow = useSelector((state) => state.borrow);
   const authUser = useSelector((state) => state.clientAuth.clientUser);
@@ -15,8 +18,14 @@ function CartModal({ show, handleClose }) {
   const [itemRentCreateClient, res] = useItemRentCreateClientMutation();
 
 
+
   const totalQty = borrow?.borrow?.reduce(
     (total, book) => total + book?.item_qty,
+    0
+  );
+
+  const totalPrice = borrow?.borrow?.reduce(
+    (total, book) => total + book?.price,
     0
   );
 
@@ -41,15 +50,19 @@ function CartModal({ show, handleClose }) {
       } else {
         const data = {
           qty: totalQty,
+          amount_of_buy: totalPrice,
           user_id: authUser.id,
           items: borrow?.borrow,
           note: "ClientSite user borrow book",
           return_date: returnAfterDate,
+          borrow_or_buy: borrowOrBuy,
         };
 
 
 
         const result = await itemRentCreateClient(data).unwrap();
+
+        setBorrowOrBuy("borrow");
 
         handleClose();
         dispatch(clearBorrow());
@@ -63,6 +76,28 @@ function CartModal({ show, handleClose }) {
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Book Borrow Cart</Modal.Title>
+    
+          <div className="form-check ms-5 ">
+            <input className="form-check-input"   type="radio" name="borrowOrBuy" value="borrow" 
+              onChange={(e) => setBorrowOrBuy(e.target.value)}
+          defaultChecked
+
+            />
+            <label className="form-check-label" >
+              Borrow
+            </label>
+          </div>
+          <div className="form-check ms-5">
+            <input   className="form-check-input"  type="radio" name="borrowOrBuy"  value="buy"
+              onChange={(e) => setBorrowOrBuy(e.target.value)}
+            />
+            <label className="form-check-label" >
+             Buy
+            </label>
+          </div>
+          
+        
+         
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={submitHandler}>
@@ -73,7 +108,12 @@ function CartModal({ show, handleClose }) {
                     <tr>
                       <th scope="col"></th>
                       <th scope="col">Product</th>
-                      <th scope="col">Return Date</th>
+                      <th scope="col"
+                      className={borrowOrBuy === "buy" ? "d-none" : ""}
+                      >Return Date</th>
+                      <th scope="col"
+                      className={borrowOrBuy === "buy" ? "" : "d-none"}
+                      >Price</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
@@ -93,7 +133,9 @@ function CartModal({ show, handleClose }) {
                           />
                         </td>
                         <td className="pt-4">{book?.title}</td>
-                        <td className="pt-4">
+                        <td
+                          className={borrowOrBuy === "buy" ? "d-none" : "pt-4"}
+                        >
                           <input
                             className="form-control"
                             type="date"
@@ -106,6 +148,13 @@ function CartModal({ show, handleClose }) {
                             }
 
                           />
+                        </td>
+                        <td
+                          className={borrowOrBuy === "buy" ? "" : "d-none"}
+                        >
+                          <span className="price text-success">
+                           <TbCurrencyTaka/> {book?.price} Tk
+                          </span>
                         </td>
 
 
@@ -122,12 +171,36 @@ function CartModal({ show, handleClose }) {
                     ))}
                   </tbody>
                 </table>
-                <div className="d-flex justify-content-end  ">
-                  <h5 className="mt-5">
-                    Total Book:
-                    <span className="price text-success">{totalQty}</span>
-                  </h5>
+                <div className=" d-flex justify-content-end" >
+
+
+
+                  <div className="col-6 border  ">
+                      <table className="table table-white table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">Total item :</th>
+                            <th scope="col">{totalQty}</th>
+                          </tr>
+                   
+                   
+                        <tr className={
+                          borrowOrBuy === "buy" ? "" : "d-none"
+                          }>
+                            <th scope="col">Total Amount :</th>
+                            <th scope="col"><TbCurrencyTaka />{totalPrice} Tk</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+
+
+
+
+
+
                 </div>
+
               </div>
               <div className="modal-footer border-top-0 ">
                 <Button variant="dark" onClick={handleClose}>
@@ -135,10 +208,17 @@ function CartModal({ show, handleClose }) {
                 </Button>
                 <button
                   type="submit"
-                  className="btn btn-success"
-                // onClick={submitHandler}
+                  className={borrowOrBuy === "borrow" ? "btn btn-success" : "d-none"}
+                onClick={submitHandler}
                 >
                   Borrow Now
+                </button>
+                <button
+        
+                  className={borrowOrBuy === "buy" ? "btn btn-success" : "d-none"}
+                // onClick={submitHandler}
+                >
+                  Buy Now
                 </button>
               </div>
             </div>

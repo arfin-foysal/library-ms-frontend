@@ -100,6 +100,7 @@ const BookDetails = () => {
                                   item_id: book?.id,
                                   title: book?.title,
                                   photo: book?.photo,
+                                  price: book?.price,
                                   item_qty: 1,
                                   return_date: returnDate ,
                                 })

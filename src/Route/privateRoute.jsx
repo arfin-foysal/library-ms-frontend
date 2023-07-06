@@ -24,6 +24,7 @@ import BookReturnExpiredList from "../components/dashboard/views/Mastersettings/
 import BookDamageList from "../components/dashboard/views/Mastersettings/BookRents/BookDamageList";
 import BookReturnList from "../components/dashboard/views/Mastersettings/BookRents/BookReturnList";
 import ReceivedOrderItem from "../components/dashboard/views/Mastersettings/OrderItem/ReceivedOrderItem";
+import BookBuyList from "../components/dashboard/views/Mastersettings/buyBook/BookBuyList";
 
 
 export const privateRoute = [
@@ -142,6 +143,11 @@ export const privateRoute = [
   {
     path: "Item-qty-list",
     element: <ItemQtyList/>,
+    role: "admin",
+  },
+  {
+    path: "buy-item-list",
+    element: <BookBuyList/>,
     role: "admin",
   },
 

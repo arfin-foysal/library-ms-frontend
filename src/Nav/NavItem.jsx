@@ -12,7 +12,7 @@ import { MdOutlinePublishedWithChanges, MdPayments, } from "react-icons/md";
 import { LuBookX } from "react-icons/lu";
 import { FiBook } from "react-icons/fi";
 
-import { BsBasket, BsDashSquare, BsFilterSquare, BsMinecartLoaded, BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
+import { BsBasket, BsDashSquare, BsFilterSquare, BsListTask, BsMinecartLoaded, BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
 
 
 
@@ -166,6 +166,13 @@ export const navItem = [ {
       },
     ],
   },
+  {
+    title: "Buy Item List",
+    link: "buy-item-list",
+    role: "admin",
+    icon: <BsListTask />,
+  
+  }
 
 
 

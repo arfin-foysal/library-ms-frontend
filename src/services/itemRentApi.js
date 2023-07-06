@@ -48,6 +48,14 @@ export const itemRentApi = apiSliceAdmin.injectEndpoints({
       }),
       providesTags: ["Rent"],
     }),
+    itemBuyList: builder.query({
+      query: () => ({
+        url: "admin/item-buy-list",
+        method: "GET",
+        headers,
+      }),
+      providesTags: ["Rent"],
+    }),
 
 
 
@@ -113,5 +121,6 @@ export const {
   useBookRentActiveMutation,
   useUserListforBookIssueQuery,
   useItemDamageListQuery,
-  useItemReturnListQuery
+  useItemReturnListQuery,
+  useItemBuyListQuery
 } = itemRentApi;

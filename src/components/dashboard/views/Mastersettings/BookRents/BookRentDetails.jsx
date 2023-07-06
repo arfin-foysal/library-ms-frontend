@@ -57,6 +57,8 @@ const BookRentDetails = ({ handleClose, values }) => {
             </thead>
           </table>
 
+          {values?.rent_type==="borrow" && (
+<>
           {values?.item_rents_Detail?.length === 0 && (
             <div className="alert alert-success text-center" role="alert">
               <>All Item Already Return</>
@@ -66,8 +68,8 @@ const BookRentDetails = ({ handleClose, values }) => {
             <div className="alert alert-warning text-center" role="alert">
               <> All items are not returned</>
             </div>
+          )}</>
           )}
-
           <table className="table table-bordered">
             <thead>
               <tr>
