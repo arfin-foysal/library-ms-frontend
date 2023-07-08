@@ -44,6 +44,7 @@ const CreateBookItem = ({ handleClose }) => {
       title: "",
       isbn: "",
       photo: "",
+      price: "",
       edition: "",
       number_of_page: "",
       summary: "",
@@ -60,8 +61,8 @@ const CreateBookItem = ({ handleClose }) => {
       author_id: [],
       item_type: "",
       is_free: "no",
-      is_show: false,
-      is_active: false,
+      is_show: true,
+      is_active: true,
       publish_date: "",
       virtual_book: null,
       barcode_or_rfid: "",
@@ -71,6 +72,7 @@ const CreateBookItem = ({ handleClose }) => {
       let formData = new FormData();
       formData.append("title", values.title);
       formData.append("isbn", values.isbn);
+      formData.append("price", values.price);
       formData.append("photo", values.photo);
       formData.append("item_type", values.item_type);
       formData.append("edition", values.edition);
@@ -112,9 +114,9 @@ const CreateBookItem = ({ handleClose }) => {
         return;
       }
 
-     
 
-      
+
+
 
 
       resetForm();
@@ -126,7 +128,7 @@ const CreateBookItem = ({ handleClose }) => {
       try {
         const result = await bookItemCreateOrUpdate(formData).unwrap();
         toast.success(result.message);
-       
+
       } catch (error) {
         toast.warn(error?.data?.message[0]);
         toast.warn(error?.data?.message?.title[0]);
@@ -148,7 +150,7 @@ const CreateBookItem = ({ handleClose }) => {
           <div className="col-8 border border-2">
             <div className="row">
               <div className="col-12">
-                <label className="col-12 col-form-label">Title </label>
+                <label className="col-12 col-form-label">Title <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <input
                     placeholder="Enter Title"
@@ -161,7 +163,7 @@ const CreateBookItem = ({ handleClose }) => {
                   />
                 </div>
               </div>
-              <div className="col-12">
+              <div className="col-6">
                 <label className="col-12 col-form-label">Barcode Or Rfid</label>
                 <div className="col-12">
                   <input
@@ -171,12 +173,26 @@ const CreateBookItem = ({ handleClose }) => {
                     name="barcode_or_rfid"
                     onChange={formik.handleChange}
                     value={formik.values.barcode_or_rfid}
-                   
+
                   />
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Isbn </label>
+                <label className="col-12 col-form-label">Price</label>
+                <div className="col-12">
+                  <input
+                    placeholder="Enter Item Price"
+                    type="text"
+                    className="form-control"
+                    name="price"
+                    onChange={formik.handleChange}
+                    value={formik.values.price}
+
+                  />
+                </div>
+              </div>
+              <div className="col-6">
+                <label className="col-12 col-form-label">Isbn</label>
                 <div className="col-12">
                   <input
                     placeholder="Enter Isbn"
@@ -185,12 +201,12 @@ const CreateBookItem = ({ handleClose }) => {
                     name="isbn"
                     onChange={formik.handleChange}
                     value={formik.values.isbn}
-                
+
                   />
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Item Type </label>
+                <label className="col-12 col-form-label">Item Type <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <select
                     className="form-control"
@@ -198,8 +214,9 @@ const CreateBookItem = ({ handleClose }) => {
                     onChange={formik.handleChange}
                     value={formik.values.item_type}
                     required
+
                   >
-                    <option value="" > --Select-- </option>
+                    <option value="" disabled selected hidden>--Select--</option>
                     <option value="physical">Physical</option>
                     <option value="virtual">Virtual</option>
                   </select>
@@ -215,7 +232,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="edition"
                     onChange={formik.handleChange}
                     value={formik.values.edition}
-                
+
                   />
                 </div>
               </div>
@@ -227,9 +244,9 @@ const CreateBookItem = ({ handleClose }) => {
                     name="is_free"
                     onChange={formik.handleChange}
                     value={formik.values.is_free}
-                 
+
                   >
-                    <option>--Select--</option>
+                    <option value="" disabled selected hidden> --Select-- </option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
@@ -245,7 +262,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="number_of_page"
                     onChange={formik.handleChange}
                     value={formik.values.number_of_page}
-             
+
                   />
                 </div>
               </div>
@@ -317,7 +334,7 @@ const CreateBookItem = ({ handleClose }) => {
               </div>
 
               <div className="col">
-                <label className="col-12 col-form-label">Photo</label>
+                <label className="col-12 col-form-label">Image <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <input
                     className="form-control"
@@ -343,7 +360,7 @@ const CreateBookItem = ({ handleClose }) => {
                     name="summary"
                     onChange={formik.handleChange}
                     value={formik.values.summary}
-              
+
                   />
                 </div>
               </div>
@@ -407,11 +424,11 @@ const CreateBookItem = ({ handleClose }) => {
                   className="form-control"
                   onChange={formik.handleChange}
                   value={formik.values.publish_date}
-            
+
                 />
               </div>
               <div className="col-12">
-                <label className="col-12 col-form-label">Author</label>
+                <label className="col-12 col-form-label">Author <span className=" text-danger">*</span></label>
                 <Select
                   isMulti
                   placeholder="Select Author"
@@ -430,9 +447,9 @@ const CreateBookItem = ({ handleClose }) => {
                   name="publisher_id"
                   onChange={formik.handleChange}
                   value={formik.values.publisher_id}
-                  required
+
                 >
-                  <option selected>Select Publisher</option>
+                  <option value="" disabled selected hidden> --Select-- </option>
 
                   {publisharRes?.data?.data?.map((cate, i) => {
                     return (
@@ -452,9 +469,9 @@ const CreateBookItem = ({ handleClose }) => {
                   name="language_id"
                   onChange={formik.handleChange}
                   value={formik.values.language_id}
-              
+
                 >
-                  <option selected>Select Language</option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {langRes?.data?.data?.map((cate, i) => {
                     return (
@@ -474,9 +491,9 @@ const CreateBookItem = ({ handleClose }) => {
                   name="country_id"
                   onChange={formik.handleChange}
                   value={formik.values.country_id}
-            
+
                 >
-                  <option selected>Select Country</option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {countryRes?.data?.data?.map((cate, i) => {
                     return (
@@ -498,9 +515,9 @@ const CreateBookItem = ({ handleClose }) => {
                     focusOne(e.target.value, e.target.name);
                   }}
                   value={formik.values.category_id}
-             
+
                 >
-                  <option selected> --select-- </option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {categoryRes?.data?.data?.map((cate, i) => {
                     return (
@@ -522,9 +539,9 @@ const CreateBookItem = ({ handleClose }) => {
                     setSubCategoryId(e.target.value);
                   }}
                   value={formik.values.sub_category_id}
-           
+
                 >
-                  <option selected>--select--</option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {subcategoryRes?.data?.data?.map((cate, i) => {
                     return (
@@ -548,9 +565,9 @@ const CreateBookItem = ({ handleClose }) => {
                     formik.handleChange(e);
                   }}
                   value={formik.values.third_category_id}
-          
+
                 >
-                  <option selected>--select--</option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {thirdSubCateRes?.data?.data?.map((cate, i) => {
                     return (
@@ -572,9 +589,9 @@ const CreateBookItem = ({ handleClose }) => {
                     formik.handleChange(e);
                   }}
                   value={formik.values.publish_status}
-                  
+
                 >
-                  <option selected> --select-- </option>
+                  <option value="" disabled selected hidden>--Select--</option>
                   <option value="published">Published</option>
                   <option value="unpublished">Unpublished</option>
                 </select>

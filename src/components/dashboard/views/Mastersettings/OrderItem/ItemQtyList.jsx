@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, {  useMemo } from "react";
 import PageTopHeader from "../../../common/PageTopHeader";
 import MaterialReactTable from "material-react-table";
 
@@ -27,6 +27,11 @@ const ItemQtyList = () => {
   const columns = useMemo(
     () => [
       {
+        accessorKey: "title", //access nested data with dot notation
+        header: "Title",
+        size: 10,
+      },
+      {
         accessorFn: (row) =>
           row?.photo ? (
             <>
@@ -36,7 +41,7 @@ const ItemQtyList = () => {
                 src={`${import.meta.env.VITE_FILE_URL}${row?.photo}`}
                 alt=""
 
-              ></img>  {row?.title}
+              ></img> 
             </>
           ) : (
               <>
@@ -45,7 +50,7 @@ const ItemQtyList = () => {
               style={{ width: "40px", height: "40px" }}
               src={avatar}
               alt=""
-                ></img>  {row?.title}
+                ></img>  
               </>
           ),
 
@@ -56,7 +61,7 @@ const ItemQtyList = () => {
 
       {
         accessorKey: "isbn", //access nested data with dot notation
-        header: "Isbn",
+        header: "ISBN",
         size: 10,
       },
 
@@ -70,26 +75,22 @@ const ItemQtyList = () => {
         header: "Language Name",
         size: 10,
       },
-      {
-        accessorKey: "country_name", //access nested data with dot notation
-        header: "Country Name",
-        size: 10,
-      },
+
 
       
         {
           accessorFn: (row) =>
             row?.qty ? (
               <>
-                <span className="badge bg-info">{row?.qty}</span>
+                <span className="text-success fw-bold">{row?.qty}</span>
               </>
 
             ) : (
-                <span className="badge bg-danger">0</span>
+                <span className="Text-info fw-bold">0</span>
 
             ),
           id: "Available Qty",
-          header: "Available Qty",
+          header: "Quantity",
           size: 10,
 
       },
@@ -97,20 +98,7 @@ const ItemQtyList = () => {
 
     
    
-      // {
-      //   //accessorFn function that combines multiple data together
-      //   accessorFn: (row) =>
-      //     row?.is_active === true ? (
-      //       <>
-      //         <span className="badge bg-info">Active</span>
-      //       </>
-      //     ) : (
-      //       <span className="badge bg-danger">Inactive</span>
-      //     ),
 
-      //   id: "Status",
-      //   header: "Status",
-      // },
     ],
     []
   );
@@ -119,10 +107,10 @@ const ItemQtyList = () => {
     <>
       {isFetching && <Loader />}
 
-      <PageTopHeader title="Item Quantity List" />
+      <PageTopHeader title="Stock List" />
       <div className="card border shadow-lg">
         <div className="card-header d-flex justify-content-between ">
-          <div>Item Quantity List</div>
+          <div>Stock List</div>
           <div>
 
           </div>

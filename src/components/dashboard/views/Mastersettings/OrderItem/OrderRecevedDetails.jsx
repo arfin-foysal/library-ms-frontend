@@ -1,4 +1,5 @@
 import React from "react";
+import { FaBars } from "react-icons/fa";
 import { TbCurrencyTaka } from "react-icons/tb";
 
 const OrderRecevedDetails = ({ handleClose, values }) => {
@@ -9,12 +10,12 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
     <div>
       <div className="row">
 
-              <div >
-             
+        <div >
+
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th>Receved No:</th>
+                <th>Received No:</th>
                 <th>{values?.receive_no}</th>
               </tr>
               <tr>
@@ -22,33 +23,35 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
                 <th>{values?.invoice_no}</th>
               </tr>
               <tr>
-                <th>vendor Name :</th>
+                <th>vendor:</th>
                 <th>{values?.vendor_name}</th>
               </tr>
               <tr>
-                <th>Receved Date:</th>
+                <th>Received Date:</th>
                 <th>{values?.received_date}</th>
               </tr>
               <tr>
-                <th>Qty:</th>
+                <th>
+                  Total Quantity:
+                </th>
                 <th>{values?.qty}</th>
               </tr>
               <tr>
                 <th>
-                  Discount Before Amount: 
+                  Sub Total:
                 </th>
                 <th><TbCurrencyTaka />{values?.sub_total_amount} Tk</th>
               </tr>
               <tr>
                 <th>
-                  Discount: 
+                  Discount:
                 </th>
                 <th><TbCurrencyTaka />{values?.discount} Tk</th>
               </tr>
 
 
               <tr>
-                <th>Payable Amount:</th>
+                <th>Net Payable Amount:</th>
                 <th><TbCurrencyTaka />{values?.payable_amount} Tk</th>
               </tr>
               <tr>
@@ -60,27 +63,56 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
                 <th><TbCurrencyTaka />{values?.due_amount} Tk</th>
               </tr>
               <tr>
-                <th>Order Status:</th>
-                <th>{values?.payment_status}</th>
+                <th>Payment :</th>
+                <th>
+                  {
+                    values?.payment_status === "paid" && (
+                      <>
+                        <span className="badge bg-success">Paid</span>
+                      </>
+                    )
+
+                  }
+                  {
+                    values?.payment_status === "due" && (
+                      <>
+                        <span className="badge bg-secondary">Due</span>
+                      </>
+                    )
+
+                  }
+                  {
+                    values?.payment_status === "paid" && (
+                      <>
+                        <span className="badge bg-success"></span>
+                      </>
+                    )
+                  }
+
+
+
+
+
+                </th>
               </tr>
               <tr>
-                <th>Comments:</th>
+                <th>Remarks:</th>
                 <th>{values?.comments}</th>
               </tr>
-           
+
             </thead>
           </table>
-          <div className="alert alert-secondary text-center" role="alert">
-  Item Details
-</div>
+          <div className="alert alert-secondary " role="alert">
+         <FaBars className="mb-1"/> Item List
+          </div>
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th scope="col">Item Photo</th>
-                <th scope="col">Item Name</th>
-                <th scope="col">Item Price</th>
-                <th scope="col">Item Qty</th>
-                <th scope="col">Item Total Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity </th>
+                <th scope="col">Total Price</th>
               </tr>
             </thead>
             <tbody>
@@ -90,9 +122,9 @@ const OrderRecevedDetails = ({ handleClose, values }) => {
                   <th>
                     <img
                       width={50}
-                      src={`${import.meta.env.VITE_FILE_URL}${
-                        item?.item_photo
-                      }`}
+                      height={50}
+                      src={`${import.meta.env.VITE_FILE_URL}${item?.item_photo
+                        }`}
                       alt=""
                     />
                   </th>

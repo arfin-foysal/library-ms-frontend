@@ -8,6 +8,8 @@ import avatar from "../../../../../assets/images/profile-picture.png";
 import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
 
+import { FiPlusCircle } from "react-icons/fi";
+
 import { useDeleteBookItemMutation, useGetBookItemListQuery } from "../../../../../services/bookItemApi";
 
 const BookItemList = () => {
@@ -122,19 +124,20 @@ const BookItemList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Book Item" />
+      <PageTopHeader title="Item List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
-          <div> Book Item List</div>
+          <div>Item List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Add New Book");
+                handelClickValue("Add New Item");
               }}
             >
-              Add New Book
+              <FiPlusCircle size={16}
+              />  Add New Item
             </button>
           </div>
         </div>
@@ -155,23 +158,8 @@ const BookItemList = () => {
             renderRowActions={(row, index) => (
               <>
                 <div className="d-flex ">
-                  <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
-                  </div>
+
+              
 
                   <div className="mx-2">
                     <button
@@ -179,14 +167,14 @@ const BookItemList = () => {
                       className="px-2 d-flex align-items-center btn btn-primary btn-sm"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Edit Book");
+                        handelClickValue("Edit Item");
                         setParamId(row?.row?.original);
                       }}
                     >
-                      <div>
-                        <FaEdit size={16} />
-                      </div>
-                      <div> Edit</div>
+
+                      <FaEdit size={16} className="me-1" /> Edit
+
+
                     </button>
                   </div>
                   <div>
@@ -202,10 +190,9 @@ const BookItemList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                      <FaTrash size={13} className="me-1" /> Delete
+
+
                     </button>
                   </div>
                 </div>

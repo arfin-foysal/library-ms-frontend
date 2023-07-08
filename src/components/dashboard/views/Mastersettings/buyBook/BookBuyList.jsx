@@ -15,6 +15,9 @@ import {
 
 } from "../../../../../services/itemRentApi";
 import moment from "moment";
+import { BsFillEyeFill } from "react-icons/bs";
+import { FaTrash } from "react-icons/fa";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 
 const BookBuyList = () => {
   const res = useItemBuyListQuery();
@@ -44,12 +47,12 @@ const BookBuyList = () => {
 
       {
         accessorKey: "rental_no", //access nested data with dot notation
-        header: "Rental No",
+        header: "Order No",
         size: 10,
       },
       {
         accessorKey: "user_name", //access nested data with dot notation
-        header: "Borrower Name",
+        header: "Name",
         size: 10,
       },
 
@@ -73,16 +76,7 @@ const BookBuyList = () => {
         header: "Rental Date",
         size: 10,
       },
-      // {
-      //   accessorFn: (row) =>
-      //     row?.return_date && (
-      //       <>{moment(row.return_date).format("MMMM Do YYYY")}</>
-      //     ),
 
-      //   id: "return_date",
-      //   header: "Return Date",
-      //   size: 10,
-      // },
 
       {
         //accessorFn function that combines multiple data together
@@ -98,20 +92,7 @@ const BookBuyList = () => {
         id: "order Status",
         header: "Order Status",
       },
-      // {
-      //   //accessorFn function that combines multiple data together
-      //   accessorFn: (row) =>
-      //     row?.is_active === true ? (
-      //       <>
-      //         <span className="badge bg-info">Active</span>
-      //       </>
-      //     ) : (
-      //       <span className="badge bg-danger">Inactive</span>
-      //     ),
 
-      //   id: "Status",
-      //   header: "Status",
-      // },
     ],
     []
   );
@@ -125,10 +106,10 @@ const BookBuyList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Borrow List" />
+      <PageTopHeader title="Buy List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Book Borrow List</div>
+          <div>Buy List</div>
 
         </div>
 
@@ -154,11 +135,11 @@ const BookBuyList = () => {
                       className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Book Borrow Information");
+                        handelClickValue("Item Information");
                         setParamId(row?.row?.original);
                       }}
                     >
-                      <div>Details</div>
+                    <div><BsFillEyeFill color="black" size={18} /> Details</div>
                     </Link>
                   </div>
 
@@ -177,10 +158,7 @@ const BookBuyList = () => {
                           }
                           className="px-2 mx-2 d-flex align-items-center btn btn-danger btn-sm"
                         >
-                          <div> Delete</div>
-                          <div>
-                            {/* <FaTrash size={13} /> */}
-                          </div>
+                          <FaTrash size={13} className="me-1" /> Delete
                         </button>
                       </div>
 
@@ -197,8 +175,7 @@ const BookBuyList = () => {
                           }
                           className=" d-flex align-items-center btn btn-success btn-sm"
                         >
-                          <div> Active</div>
-                          <div>{/* <FaTrash size={13} /> */}</div>
+                     <IoCheckmarkDoneCircleSharp/> Active
                         </button>
                       </div>
                     </div>

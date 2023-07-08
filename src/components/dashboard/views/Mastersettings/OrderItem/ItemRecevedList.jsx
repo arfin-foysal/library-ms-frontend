@@ -46,13 +46,13 @@ const ItemRecevedList = () => {
       },
       {
         accessorKey: "vendor_name", //access nested data with dot notation
-        header: "Vendor Name",
+        header: "Vendor",
         size: 10,
       },
 
       {
         accessorKey: "qty", //normal accessorKey
-        header: "Qty",
+        header: " Quantity",
         size: 10,
       },
       {
@@ -115,7 +115,7 @@ const ItemRecevedList = () => {
           )),
 
         id: "Payment Status",
-        header: "Payment Status",
+        header: "Status",
       },
       // {
       //   //accessorFn function that combines multiple data together

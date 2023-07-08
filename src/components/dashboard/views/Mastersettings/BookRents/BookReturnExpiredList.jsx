@@ -166,10 +166,10 @@ const BookReturnExpiredList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Date Expired List" />
+      <PageTopHeader title="Expired List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Date Expired List</div>
+          <div>Expired List</div>
         </div>
 
         <div class="card-body p-0 ">

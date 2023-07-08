@@ -2,7 +2,7 @@ import moment from "moment";
 import React from "react";
 import { FaBars } from "react-icons/fa";
 
-const BookRentDetails = ({ handleClose, values }) => {
+const BookBuyDetails = ({ handleClose, values }) => {
 
 
 
@@ -33,7 +33,7 @@ const BookRentDetails = ({ handleClose, values }) => {
                 </th>
               </tr>
               <tr>
-                <th>Rent Date:</th>
+                <th>Order Date:</th>
 
                 <th>{moment(values?.rental_date).format("MMMM Do YYYY")}</th>
               </tr>
@@ -45,12 +45,17 @@ const BookRentDetails = ({ handleClose, values }) => {
 
               <tr>
                 <th>Status:</th>
-                <th>{values?.status}</th>
+                <th>
+                  {values?.status === "inactive" && (
+                    <span className="badge bg-danger">Inactive</span>
+                  )}
+                  {values?.status === "active" && (
+                    <span className="badge bg-success">Active</span>
+                  )}
+
+                </th>
               </tr>
-              <tr>
-                <th>Note:</th>
-                <th>{values?.note}</th>
-              </tr>
+
             </thead>
           </table>
 
@@ -79,9 +84,9 @@ const BookRentDetails = ({ handleClose, values }) => {
               <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Title</th>
-                <th scope="col">Status</th>
+                <th scope="col">Order Type</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Return Date</th>
+         
               </tr>
             </thead>
             <tbody>
@@ -112,7 +117,7 @@ const BookRentDetails = ({ handleClose, values }) => {
 
                   <td>{item.item_qty}</td>
 
-                  <th>{moment(item?.return_date).format("MMMM Do YYYY")}</th>
+        
                 </tr>
               ))}
             </tbody>
@@ -123,4 +128,4 @@ const BookRentDetails = ({ handleClose, values }) => {
   );
 };
 
-export default BookRentDetails;
+export default BookBuyDetails;

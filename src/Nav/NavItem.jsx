@@ -90,7 +90,7 @@ export const navItem = [ {
     icon: <BiBookAlt size={17} />,
     children: [
       {
-        title: "Book Item",
+        title: "Item List",
         link: "item-list",
         role: "admin",
         icon: <GoBook />,
@@ -109,12 +109,12 @@ export const navItem = [ {
         icon: <BsReverseLayoutTextSidebarReverse size={12} />,
       },
       {
-        title: "Item Received List",
+        title: "Received List",
         link: "item-received-list",
         role: "admin",
         icon: <BsFilterSquare size={12} />,
       }, {
-        title: "Item Quantity List",
+        title: "Stock List",
         link: "Item-qty-list",
         role: "admin",
         icon: <BsBasket size={14} />,
@@ -127,7 +127,7 @@ export const navItem = [ {
     icon: <BsDashSquare size={13} />,
     children: [
       {
-        title: "Vendor Payment",
+        title: "Payment List",
         link: "vandor-payment",
         role: "admin",
         icon: <MdPayments size={16} />,
@@ -135,30 +135,30 @@ export const navItem = [ {
     ],
   },
   {
-    title: "Borrowing",
+    title: "Borrow",
     role: "admin",
     icon: <BiBookContent />,
     children: [
       {
-        title: "Book Borrow List",
+        title: "Borrow List",
         link: "rent-list",
         role: "admin",
         icon: <BiBookAdd />,
       },
       {
-        title: "Book Return List",
+        title: "Return List",
         link: "return-list",
         role: "admin",
         icon: <BiBookBookmark />,
       },
       {
-        title: "Return Date Expired",
+        title: "Expired List",
         link: "return-date-expired-list",
         role: "admin",
         icon: <FiBook />,
       },
       {
-        title: "Damage Book",
+        title: "Damage List",
         link: "book-damage-list",
         role: "admin",
         icon: <LuBookX />,

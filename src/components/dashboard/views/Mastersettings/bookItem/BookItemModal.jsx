@@ -21,10 +21,10 @@ const BookItemModal = ({ handleClose, show, clickValue, paramId }) => {
           <Modal.Title>{clickValue}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {clickValue === "Add New Book" && (
+          {clickValue === "Add New Item" && (
             <CreateBookItem handleClose={handleClose} />
           )}
-          {clickValue === "Edit Book" && (
+          {clickValue === "Edit Item" && (
             <EditBookItem handleClose={handleClose} param={paramId} />
           )}
         </Modal.Body>

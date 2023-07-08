@@ -191,10 +191,10 @@ const BookDamageList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Damaged Book List" />
+      <PageTopHeader title="Damaged List" />
       <div className="card border shadow-lg">
         <div className="card-header d-flex justify-content-between ">
-          <div>Damaged Book List</div>
+          <div>Damaged List</div>
           {/* <div>
             <button
               className="btn btn-primary btn-sm"

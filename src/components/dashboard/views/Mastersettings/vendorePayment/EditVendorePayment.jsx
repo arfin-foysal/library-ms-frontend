@@ -185,7 +185,15 @@ const EditVendorePayment = ({ handleClose, param }) => {
                     </tr>
                     <tr>
                       <th scope="col">Due Amount :</th>
-                      <th scope="col"><TbCurrencyTaka />{formik.values.due_amount} TK</th>
+                      <th scope="col">
+
+
+                        
+                        <TbCurrencyTaka />
+
+                  
+                        
+                        {formik.values.due_amount} TK</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>

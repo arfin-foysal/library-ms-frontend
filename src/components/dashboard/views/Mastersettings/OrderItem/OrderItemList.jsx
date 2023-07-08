@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
 import { IoReceipt } from "react-icons/io5";
 import { TbCurrencyTaka } from "react-icons/tb"
+import { PiKeyReturnFill } from "react-icons/pi"
 
 import {
   useAllItemOrderQuery,
@@ -16,6 +17,8 @@ import {
 } from "../../../../../services/itemOrder";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { FiPlusCircle } from "react-icons/fi";
+import { BsFillEyeFill } from "react-icons/bs";
 
 const OrderItemList = () => {
   const res = useAllItemOrderQuery();
@@ -50,13 +53,13 @@ const OrderItemList = () => {
       },
       {
         accessorKey: "vendor_name", //access nested data with dot notation
-        header: "Vendor Name",
+        header: "Vendor",
         size: 10,
       },
 
       {
         accessorKey: "qty", //normal accessorKey
-        header: "Qty",
+        header: "Quantity",
         size: 10,
       },
 
@@ -78,29 +81,15 @@ const OrderItemList = () => {
         accessorFn: (row) =>
           row?.order_status === "received" ? (
             <>
-              <span className="badge bg-info">received</span>
+              <span className="badge bg-info">Received</span>
             </>
           ) : (
-            <span className="badge bg-danger">unreceived</span>
+            <span className="badge bg-danger">Unreceived</span>
           ),
 
         id: "order Status",
-        header: "Order Status",
+        header: "Status",
       },
-      // {
-      //   //accessorFn function that combines multiple data together
-      //   accessorFn: (row) =>
-      //     row?.is_active === true ? (
-      //       <>
-      //         <span className="badge bg-info">Active</span>
-      //       </>
-      //     ) : (
-      //       <span className="badge bg-danger">Inactive</span>
-      //     ),
-
-      //   id: "Status",
-      //   header: "Status",
-      // },
     ],
     []
   );
@@ -114,10 +103,10 @@ const OrderItemList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Item Order" />
+      <PageTopHeader title="Order List" />
       <div className="card border shadow-lg">
         <div className="card-header d-flex justify-content-between ">
-          <div>Item Order List</div>
+          <div>Order List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"
@@ -126,7 +115,7 @@ const OrderItemList = () => {
                 handelClickValue("Item Order");
               }}
             >
-              Add Item Order
+              <FiPlusCircle size={16} /> Make New Order
             </button>
           </div>
         </div>
@@ -156,8 +145,7 @@ const OrderItemList = () => {
                       setParamId(row?.row?.original);
                     }}
                   >
-                    {/* <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div> */}
-                    <div>Details</div>
+                    <BsFillEyeFill color="black" size={18} /> Details
                   </button>
                   {row?.row?.original?.order_status === "unreceived" && (
                     <>
@@ -173,20 +161,18 @@ const OrderItemList = () => {
                         }
                         className="px-2 mx-2 d-flex align-items-center btn btn-danger btn-sm "
                       >
-                        <div> Delete</div>
-                        <div>
-                          {/* <FaTrash size={13} /> */}
-                        </div>
+                        <FaTrash size={13} className="me-1" /> Delete
+
+
+
                       </button>
 
                       <Link
                         to={`/dashboard/receved-order-list/${row?.row?.original?.id}`}
                         className="px-2 d-flex align-items-center btn btn-info btn-sm"
-                      >
-                        <div>Received</div>
-                        <div>
-                          {/* <IoReceipt size={13} /> */}
-                        </div>
+                      ><PiKeyReturnFill size={18} />
+                      Received
+                       
                       </Link>
                     </>
                   )}

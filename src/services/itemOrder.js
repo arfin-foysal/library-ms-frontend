@@ -43,7 +43,7 @@ export const itemOrder = apiSliceAdmin.injectEndpoints({
 
     unrecevedItemByOrderId: builder.query({
       query: (id) => ({
-        url: `admin/unreceved-item-by-order-id/${id}`,
+        url: `admin/unreceived-item-by-order-id/${id}`,
         method: "GET",
         headers,
       }),

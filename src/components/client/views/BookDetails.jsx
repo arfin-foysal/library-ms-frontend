@@ -107,7 +107,7 @@ const BookDetails = () => {
                               )
                             }
                           >
-                            Borrow Now
+                            Add To Cart
                           </button>
                         ) : (
                           <p className="text-danger">Out of Stock</p>

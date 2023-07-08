@@ -14,6 +14,11 @@ import {
   useItemRentsListQuery,
 } from "../../../../../services/itemRentApi";
 import moment from "moment";
+import { FaTrash } from "react-icons/fa";
+import { FiPlusCircle } from "react-icons/fi";
+import { BsFillEyeFill } from "react-icons/bs";
+import { PiKeyReturnFill } from "react-icons/pi";
+import { IoCheckmarkDoneCircleSharp } from "react-icons/io5";
 
 const BookRentsList = () => {
   const res = useItemRentsListQuery();
@@ -48,13 +53,13 @@ const BookRentsList = () => {
       },
       {
         accessorKey: "user_name", //access nested data with dot notation
-        header: "Borrower Name",
+        header: "Borrower",
         size: 10,
       },
 
       {
         accessorKey: "qty", //normal accessorKey
-        header: "Qty",
+        header: "Quantity",
         size: 10,
       },
 
@@ -95,7 +100,7 @@ const BookRentsList = () => {
           ),
 
         id: "order Status",
-        header: "Order Status",
+        header: "Status",
       },
       // {
       //   //accessorFn function that combines multiple data together
@@ -127,16 +132,16 @@ const BookRentsList = () => {
       <PageTopHeader title="Borrow List" />
       <div class="card border shadow-lg">
         <div class="card-header d-flex justify-content-between ">
-          <div>Book Borrow List</div>
+          <div>Borrow List</div>
           <div>
             <button
               className="btn btn-primary btn-sm"
               onClick={() => {
                 handleShow();
-                handelClickValue("Book Borrow");
+                handelClickValue("Borrow Item");
               }}
             >
-              Add Book Borrow
+              <FiPlusCircle size={16} /> Add New Borrow
             </button>
           </div>
         </div>
@@ -163,11 +168,11 @@ const BookRentsList = () => {
                       className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Book Borrow Information");
+                        handelClickValue("Item Information");
                         setParamId(row?.row?.original);
                       }}
                     >
-                      <div>Details</div>
+                      <div><BsFillEyeFill color="black" size={18} /> Details</div>
                     </Link>
                   </div>
 
@@ -186,10 +191,9 @@ const BookRentsList = () => {
                           }
                           className="px-2 mx-2 d-flex align-items-center btn btn-danger btn-sm"
                         >
-                          <div> Delete</div>
-                          <div>
-                            {/* <FaTrash size={13} /> */}
-                          </div>
+                          <FaTrash size={13} className="me-1" /> Delete
+                  
+                       
                         </button>
                       </div>
 
@@ -206,8 +210,8 @@ const BookRentsList = () => {
                           }
                           className=" d-flex align-items-center btn btn-success btn-sm"
                         >
-                          <div> Active</div>
-                          <div>{/* <FaTrash size={13} /> */}</div>
+                     <IoCheckmarkDoneCircleSharp/> Active
+               
                         </button>
                       </div>
                     </div>
@@ -219,14 +223,14 @@ const BookRentsList = () => {
                         to="#"
                         onClick={() => {
                           handleShow();
-                          handelClickValue("Return Book");
+                          handelClickValue("Return Item");
                           setParamId(row?.row?.original);
                         }}
                       >
-                        <div>Return</div>
-                        <div>
-                          {/* <IoReceipt size={13} /> */}
-                        </div>
+                            <PiKeyReturnFill size={18} /> Return
+                      
+                  
+                      
                       </button>
                     </div>
                   )}

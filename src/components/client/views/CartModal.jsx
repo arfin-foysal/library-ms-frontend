@@ -106,8 +106,8 @@ function CartModal({ show, handleClose }) {
                 <table className="table table-image">
                   <thead>
                     <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Product</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Item</th>
                       <th scope="col"
                       className={borrowOrBuy === "buy" ? "d-none" : ""}
                       >Return Date</th>
@@ -152,7 +152,7 @@ function CartModal({ show, handleClose }) {
                         <td
                           className={borrowOrBuy === "buy" ? "" : "d-none"}
                         >
-                          <span className="price text-success">
+                          <span className="price text-success ">
                            <TbCurrencyTaka/> {book?.price} Tk
                           </span>
                         </td>

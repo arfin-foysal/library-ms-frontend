@@ -1,5 +1,6 @@
 import moment from "moment";
 import React from "react";
+import { FaBars } from "react-icons/fa";
 import { TbCurrencyTaka } from "react-icons/tb";
 
 const OrderDetails = ({ handleClose, values }) => {
@@ -17,7 +18,7 @@ const OrderDetails = ({ handleClose, values }) => {
                 <th>{values?.order_no}</th>
               </tr>
               <tr>
-                <th>vendor Name :</th>
+                <th>vendor :</th>
                 <th>{values?.vendor_name}</th>
               </tr>
               <tr>
@@ -26,14 +27,26 @@ const OrderDetails = ({ handleClose, values }) => {
                 
               </tr>
               <tr>
-                <th>Qty:</th>
+                <th>Total Quantity:</th>
                 <th>{values?.qty}</th>
               </tr>
         
 
               <tr>
-                <th>Order Status:</th>
-                <th>{values?.order_status}</th>
+                <th>Status:</th>
+                
+                <th>
+               {values?.order_status === "received" ? (
+                    <>
+                      <span className="badge bg-info">Received</span>
+                    </>
+                  ) : (
+                    <span className="badge bg-danger">Unreceived</span>
+                  )} 
+                    
+             
+                
+                </th>
               </tr>
               <tr>
                 <th>Note:</th>
@@ -42,16 +55,16 @@ const OrderDetails = ({ handleClose, values }) => {
 
             </thead>
           </table>
-          <div className="alert alert-secondary text-center" role="alert">
-            Item Details
+          <div className="alert alert-secondary " role="alert">
+           <FaBars className="mb-1"/> Item List
           </div>
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th scope="col">Item Photo</th>
-                <th scope="col">Item Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
        
-                <th scope="col">Item Qty</th>
+                <th scope="col">Quantity</th>
           
               </tr>
             </thead>
@@ -62,6 +75,7 @@ const OrderDetails = ({ handleClose, values }) => {
                   <th>
                     <img
                       width={50}
+                      height={50}
                       src={`${import.meta.env.VITE_FILE_URL}${item?.item_photo
                         }`}
                       alt=""

@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import CreateBookRents from "./CreateBookRents";
 import ReturnBook from "./ReturnBook";
 import BookRentDetails from "./BookRentDetails";
+import BookBuyDetails from "../buyBook/BookBuyDetails";
 
 
 const BookRentsModal
@@ -24,18 +25,21 @@ const BookRentsModal
           <Modal.Title>{clickValue}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {clickValue === "Book Borrow" && (
+          {clickValue === "Borrow Item" && (
             <CreateBookRents handleClose={handleClose} />
           )}
-          {clickValue === "Return Book" && (
+          {clickValue === "Return Item" && (
             <ReturnBook handleClose={handleClose} param={paramId} />
           )}
-          {clickValue === "Book Borrow Information" && (
+          {clickValue === "Borrow Information" && (
             <BookRentDetails handleClose={handleClose} values={paramId} />
+          )}
+          {clickValue === "Item Information" && (
+            <BookBuyDetails handleClose={handleClose} values={paramId} />
           )}
         </Modal.Body>
       </Modal>
-    </>
+    </> 
   );
 };
 

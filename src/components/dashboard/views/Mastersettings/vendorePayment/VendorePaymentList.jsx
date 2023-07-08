@@ -106,7 +106,7 @@ const VendorePaymentList = () => {
           )),
 
         id: "Publish Status",
-        header: "Publish Status",
+        header: "Status",
       },
 
     ],
@@ -125,7 +125,7 @@ const VendorePaymentList = () => {
       <PageTopHeader title="Vendor Payment" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
-          <div>Vendor Payment List</div>
+          <div>Payment List</div>
 
         </div>
 

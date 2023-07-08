@@ -184,10 +184,10 @@ const BookReturnList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Book Return List" />
+      <PageTopHeader title="Return List" />
       <div className="card border shadow-lg">
         <div className="card-header d-flex justify-content-between ">
-          <div>Book Return List</div>
+          <div>Return List</div>
           {/* <div>
             <button
               className="btn btn-primary btn-sm"

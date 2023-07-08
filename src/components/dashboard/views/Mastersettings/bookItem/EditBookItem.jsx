@@ -57,6 +57,7 @@ const EditBookItem = ({ handleClose, param }) => {
     initialValues: {
       title: param?.title,
       isbn: param?.isbn,
+      price: param?.price,
       photo: param?.photo && param?.photo,
       edition: param?.edition,
       number_of_page: param?.number_of_page,
@@ -80,8 +81,9 @@ const EditBookItem = ({ handleClose, param }) => {
     onSubmit: async (values, { resetForm }) => {
       let formData = new FormData();
       formData.append("id", param?.id);
-      formData.append("title", values.title ? values.title : null);
+      formData.append("title", values.title);
       formData.append("isbn", values.isbn);
+      formData.append("price", values.price);
       formData.append("photo", values.photo);
       formData.append("edition", values.edition);
       formData.append("number_of_page", values.number_of_page);
@@ -143,7 +145,7 @@ const EditBookItem = ({ handleClose, param }) => {
           <div className="col-8 border border-2">
             <div className="row">
               <div className="col-12">
-                <label className="col-12 col-form-label">Title </label>
+                <label className="col-12 col-form-label">Title <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <input
                     placeholder="Enter Title"
@@ -152,6 +154,20 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="title"
                     onChange={formik.handleChange}
                     value={formik.values.title}
+
+                  />
+                </div>
+              </div>
+              <div className="col-12">
+                <label className="col-12 col-form-label">Price </label>
+                <div className="col-12">
+                  <input
+                    placeholder="Enter item price"
+                    type="number"
+                    className="form-control"
+                    name="price"
+                    onChange={formik.handleChange}
+                    value={formik.values.price}
 
                   />
                 </div>
@@ -185,7 +201,7 @@ const EditBookItem = ({ handleClose, param }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Item Type </label>
+                <label className="col-12 col-form-label">Item Type <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <select
                     className="form-control"
@@ -194,7 +210,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     value={formik.values.item_type}
 
                   >
-                    <option>--Select--</option>
+                 <option value="" disabled selected hidden>--Select--</option>
                     <option value="physical">Physical</option>
                     <option value="virtual">Virtual</option>
                   </select>
@@ -210,7 +226,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     value={formik.values.is_free}
 
                   >
-                    <option>--Select--</option>
+                  <option value="" disabled selected hidden>--Select--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </select>
@@ -277,7 +293,7 @@ const EditBookItem = ({ handleClose, param }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Photo</label>
+                <label className="col-12 col-form-label">Image <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <input
                     className="form-control"
@@ -371,7 +387,7 @@ const EditBookItem = ({ handleClose, param }) => {
 
               </div>
               <div className="col-12">
-                <label className="col-12 col-form-label">Author</label>
+                <label className="col-12 col-form-label">Author <span className=" text-danger">*</span></label>
                 <Select
                   defaultValue={param?.authors}
                   isMulti
@@ -394,7 +410,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.publisher_id}
 
                 >
-                  <option selected>Select Publisher</option>
+                <option value="" disabled selected hidden>--Select--</option>
 
                   {publisharRes?.data?.data?.map((cate, i) => {
                     return (
@@ -416,7 +432,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.language_id}
                   required
                 >
-                  <option selected>Select Language</option>
+             <option value="" disabled selected hidden>--Select--</option>
 
                   {langRes?.data?.data?.map((cate, i) => {
                     return (
@@ -438,7 +454,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.country_id}
 
                 >
-                  <option selected>Select Country</option>
+                <option value="" disabled selected hidden>--Select--</option>
 
                   {countryRes?.data?.data?.map((cate, i) => {
                     return (
@@ -462,7 +478,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.category_id}
 
                 >
-                  <option selected> --select-- </option>
+                 <option value="" disabled selected hidden>--Select--</option>
 
                   {categoryRes?.data?.data?.map((cate, i) => {
                     return (
@@ -486,7 +502,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.sub_category_id}
 
                 >
-                  <option selected>--select--</option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {subcategoryRes?.data?.data?.map((cate, i) => {
                     return (
@@ -512,7 +528,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.third_category_id}
                   required
                 >
-                  <option selected>--select--</option>
+                  <option value="" disabled selected hidden>--Select--</option>
 
                   {thirdSubCateRes?.data?.data?.map((cate, i) => {
                     return (
@@ -536,7 +552,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   value={formik.values.publish_status}
 
                 >
-                  <option selected> --select-- </option>
+                  <option value="" disabled selected hidden>--Select--</option>
                   <option value="published">Published</option>
                   <option value="unpublished">Unpublished</option>
                 </select>
