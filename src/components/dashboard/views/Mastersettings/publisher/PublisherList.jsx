@@ -10,6 +10,7 @@ import Loader from "../../../common/Loader";
 
 import { useDeletePublisharMutation, useGetPublisharListQuery } from "../../../../../services/publisherApi";
 import { BsFillEyeFill } from "react-icons/bs";
+import { FiPlusCircle } from "react-icons/fi";
 
 const PublisherList = () => {
   const res = useGetPublisharListQuery();
@@ -113,7 +114,7 @@ const PublisherList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Publisher" />
+      <PageTopHeader title="Publisher List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div> Publisher List</div>
@@ -125,7 +126,7 @@ const PublisherList = () => {
                 handelClickValue("Add New Publisher");
               }}
             >
-              Add New Publisher
+              <FiPlusCircle size={16} /> Add New Publisher
             </button>
           </div>
         </div>
@@ -192,10 +193,9 @@ const PublisherList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                    <FaTrash size={13} /> Delete
+                       
+                   
                     </button>
                   </div>
                 </div>

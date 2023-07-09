@@ -15,7 +15,7 @@ export const borrowSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       if (itemInCart) {
-        toast.error("This book is already in your borrow list");
+        toast.error("This book is already in your Cart list");
       } else {
         state.borrow.push({ ...action.payload, item_qty: 1 });
         toast.success("Book added to Cart list 🛒");

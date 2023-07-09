@@ -10,6 +10,7 @@ import PageTopHeader from "../../../common/PageTopHeader";
 
 import { useDeleteLanguageMutation, useGetLanguageListQuery } from "../../../../../services/commonApi";
 import LanguageModal from "./LanguageModal";
+import { FiPlusCircle } from "react-icons/fi";
 
 const LanguageList = () => {
   const res = useGetLanguageListQuery();
@@ -84,7 +85,7 @@ const LanguageList = () => {
                 handelClickValue("Add New Language");
               }}
             >
-              Add New Language
+              <FiPlusCircle size={16} /> Add New Language
             </button>
           </div>
         </div>
@@ -136,11 +137,11 @@ const LanguageList = () => {
                         )
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
-                    >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                    ><FaTrash size={13} />
+                       Delete
+                 
+                        
+                      
                     </button>
                   </div>
                 </div>

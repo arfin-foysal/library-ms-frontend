@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { useItemReturnMutation } from "../../../../../services/itemRentApi";
+import { FaBars } from "react-icons/fa";
 const ReturnBook = ({ handleClose, param }) => {
   const [itemReturn, res] = useItemReturnMutation();
   const [item, setItem] = useState();
@@ -115,9 +116,7 @@ const ReturnBook = ({ handleClose, param }) => {
 
   return (
     <div className="card border shadow-lg">
-      <div className="card-header d-flex justify-content-between ">
-        <div>Item Borrow List</div>
-      </div>
+
       <div className="card-body ">
         <div>
           <form
@@ -156,8 +155,8 @@ const ReturnBook = ({ handleClose, param }) => {
                   </div>
 
                   <div className="py-1  my-2 ">
-                    <div className="alert alert-dark text-center" role="alert">
-                      Book Borrow List
+                    <div className="alert alert-dark" role="alert">
+                   <FaBars/>  Item List
                     </div>
 
                     <table className="table">
@@ -256,11 +255,11 @@ const ReturnBook = ({ handleClose, param }) => {
                   </div>
 
                   <div className="col-12">
-                    <label className="col-12 col-form-label">Comment</label>
+                    <label className="col-12 col-form-label">Remarks</label>
                     <div className="col-12">
                       <textarea
                         rows={4}
-                        placeholder="Enter Comments"
+                        placeholder="Enter Remarks"
                         type="text"
                         className="form-control"
                         name="comments"

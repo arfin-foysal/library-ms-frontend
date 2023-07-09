@@ -9,6 +9,7 @@ import PageTopHeader from "../../../common/PageTopHeader";
 import { useDeleteSubCategoryMutation, useGetSubCategoryListQuery } from "../../../../../services/categoryApi";
 
 import SubCategoryModal from "./SubCategoryModal";
+import { FiPlusCircle } from "react-icons/fi";
 
 const SubCategoryList = () => {
   const res = useGetSubCategoryListQuery();
@@ -101,7 +102,7 @@ const SubCategoryList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Sub Category" />
+      <PageTopHeader title="Sub Category List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div> Sub Category List</div>
@@ -113,7 +114,7 @@ const SubCategoryList = () => {
                 handelClickValue("Add New Sub Category");
               }}
             >
-              Add New Sub Category
+              <FiPlusCircle size={16} /> Add New Sub Category
             </button>
           </div>
         </div>
@@ -135,21 +136,7 @@ const SubCategoryList = () => {
               <>
                 <div className="d-flex ">
                   <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
+
                   </div>
 
                   <div className="mx-2">
@@ -181,10 +168,7 @@ const SubCategoryList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                      <FaTrash size={13} /> Delete
                     </button>
                   </div>
                 </div>

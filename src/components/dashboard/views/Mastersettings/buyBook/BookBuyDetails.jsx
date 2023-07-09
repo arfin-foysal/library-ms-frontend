@@ -1,10 +1,11 @@
 import moment from "moment";
 import React from "react";
 import { FaBars } from "react-icons/fa";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const BookBuyDetails = ({ handleClose, values }) => {
 
-
+console.log(values)
 
   return (
     <div>
@@ -13,15 +14,15 @@ const BookBuyDetails = ({ handleClose, values }) => {
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th>Rental No:</th>
+                <th>Order  No:</th>
                 <th>{values?.rental_no}</th>
               </tr>
               <tr>
-                <th>Borrower :</th>
+                <th>Name :</th>
                 <th>{values?.user_name}</th>
               </tr>
               <tr>
-                <th>Borrower Photo :</th>
+                <th>Image :</th>
                 <th>
                   <img
                     width={40}
@@ -41,6 +42,11 @@ const BookBuyDetails = ({ handleClose, values }) => {
               <tr>
                 <th> Quantity :</th>
                 <th>{values?.qty}</th>
+              </tr>
+              <tr>
+                <th> Total Price :</th>
+                <th><TbCurrencyTaka/> {values?.amount_of_buy
+} Tk</th>
               </tr>
 
               <tr>
@@ -86,6 +92,7 @@ const BookBuyDetails = ({ handleClose, values }) => {
                 <th scope="col">Title</th>
                 <th scope="col">Order Type</th>
                 <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
          
               </tr>
             </thead>
@@ -116,6 +123,7 @@ const BookBuyDetails = ({ handleClose, values }) => {
                     </td>
 
                   <td>{item.item_qty}</td>
+                  <td><TbCurrencyTaka/> {item.item_amount_of_buy} Tk</td>
 
         
                 </tr>

@@ -45,7 +45,15 @@ const BookRentDetails = ({ handleClose, values }) => {
 
               <tr>
                 <th>Status:</th>
-                <th>{values?.status}</th>
+                <th >
+                  
+                  {values?.status === "inactive" && (
+                    <span className="badge bg-danger">Inactive</span>
+                  )}
+                  {values?.status === "active" && (
+                    <span className="badge bg-success">Active</span>
+                  )}
+                </th>
               </tr>
               <tr>
                 <th>Note:</th>

@@ -571,12 +571,12 @@ const ReceivedOrderItem = () => {
                                 </td>
                                 <td className="col-2 pt-3 "><TbCurrencyTaka />{item.total_price} Tk</td>
 
-                                <td className="col-1 pt-2 ">
+                                <td className="col-1 pt-3 ">
                                   <button
                                     onClick={() => deleteItem(item)}
                                     className="btn btn-danger btn-sm d-flex"
                                   >
-                                     <FaTrash size={13} className="mt-1 me-1" /> Delete
+                                     <FaTrash size={13}  /> 
                                   </button>
                                 </td>
                               </tr>

@@ -38,7 +38,7 @@ const VendorePaymentList = () => {
 
       {
         accessorKey: "vendor_payment_no", //access nested data with dot notation
-        header: "Vendor Payment No",
+        header: "Payment No",
         size: 10,
       },
 

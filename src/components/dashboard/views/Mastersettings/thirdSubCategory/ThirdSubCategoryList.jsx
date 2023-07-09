@@ -6,15 +6,16 @@ import avatar from "../../../../../assets/images/profile-picture.png";
 import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
 import PageTopHeader from "../../../common/PageTopHeader";
-import {  useDeleteThirdSubCategoryMutation, useGetThirdSubCategoryListQuery } from "../../../../../services/categoryApi";
+import { useDeleteThirdSubCategoryMutation, useGetThirdSubCategoryListQuery } from "../../../../../services/categoryApi";
 
 import SubCategoryModal from "./ThirdSubCategoryModal";
+import { FiPlusCircle } from "react-icons/fi";
 
 const ThirdSubCategoryList = () => {
   const res = useGetThirdSubCategoryListQuery();
   const [deleteThirdSubCategory] = useDeleteThirdSubCategoryMutation();
   const { data, isSuccess, isFetching, isError, error } = res;
-  
+
   const [clickValue, setClickValue] = useState(null);
   const [paramId, setParamId] = useState(null);
   const [show, setShow] = useState(false);
@@ -102,7 +103,7 @@ const ThirdSubCategoryList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Sub Category" />
+      <PageTopHeader title="Third Sub Category List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div>Third Sub Category List</div>
@@ -114,7 +115,8 @@ const ThirdSubCategoryList = () => {
                 handelClickValue("Add New Sub Category");
               }}
             >
-              Add New Third Sub Category
+
+              <FiPlusCircle size={16} /> Add New
             </button>
           </div>
         </div>
@@ -136,21 +138,7 @@ const ThirdSubCategoryList = () => {
               <>
                 <div className="d-flex ">
                   <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
+
                   </div>
 
                   <div className="mx-2">
@@ -182,10 +170,7 @@ const ThirdSubCategoryList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                      <FaTrash size={13} /> Delete
                     </button>
                   </div>
                 </div>

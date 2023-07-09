@@ -168,7 +168,7 @@ const BookRentsList = () => {
                       className="btn btn-secondary btn-sm d-flex align-items-center"
                       onClick={() => {
                         handleShow();
-                        handelClickValue("Item Information");
+                        handelClickValue("Borrow Information");
                         setParamId(row?.row?.original);
                       }}
                     >

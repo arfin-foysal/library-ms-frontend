@@ -13,12 +13,13 @@ import PageTopHeader from "../../../common/PageTopHeader";
 
 import { useDeleteCategoryMutation, useGetCategoryListQuery } from "../../../../../services/categoryApi";
 import CategoryModal from "./CategoryModal";
+import { FiPlusCircle } from "react-icons/fi";
 
 const CategoryList = () => {
   const res = useGetCategoryListQuery();
 
   const [deleteCategory] = useDeleteCategoryMutation();
-  
+
   const { data, isSuccess, isFetching, isError, error } = res;
   const [clickValue, setClickValue] = useState(null);
   const [paramId, setParamId] = useState(null);
@@ -102,7 +103,7 @@ const CategoryList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Category" />
+      <PageTopHeader title="Category List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div> Category List</div>
@@ -114,7 +115,7 @@ const CategoryList = () => {
                 handelClickValue("Add New Category");
               }}
             >
-              Add New Category
+              <FiPlusCircle size={16} /> Add New Category
             </button>
           </div>
         </div>
@@ -136,21 +137,7 @@ const CategoryList = () => {
               <>
                 <div className="d-flex ">
                   <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
+
                   </div>
 
                   <div className="mx-2">
@@ -182,10 +169,11 @@ const CategoryList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                      <FaTrash size={13} />
+                      Delete
+
+
+
                     </button>
                   </div>
                 </div>

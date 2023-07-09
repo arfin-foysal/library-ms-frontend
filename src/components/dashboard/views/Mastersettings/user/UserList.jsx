@@ -17,6 +17,7 @@ import {
   useGetUserListQuery,
 } from "../../../../../services/userApi";
 import PasswordUpdateModal from "./PasswordUpdateModal";
+import { FiPlusCircle } from "react-icons/fi";
 
 const UserList = () => {
   const res = useGetUserListQuery();
@@ -128,7 +129,7 @@ const UserList = () => {
 
 
       />
-      <PageTopHeader title="User" />
+      <PageTopHeader title="User List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div> User List</div>
@@ -140,7 +141,7 @@ const UserList = () => {
                 handelClickValue("Add New User");
               }}
             >
-              Add New User
+              <FiPlusCircle size={16} /> Add New User
             </button>
           </div>
         </div>
@@ -162,21 +163,7 @@ const UserList = () => {
               <>
                 <div className="d-flex ">
                   <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
+           
                   </div>
 
                   <div>
@@ -208,10 +195,10 @@ const UserList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                     <FaTrash size={13} /> Delete
+                    
+                        
+                     
                     </button>
                   </div>
                   <div>
@@ -222,10 +209,8 @@ const UserList = () => {
                       }}
                       className="px-2 d-flex align-items-center btn btn-warning btn-sm"
                     >
-                      <div> Reset</div>
-                      <div>
-                        <FcUnlock />
-                      </div>
+                  <FcUnlock />  Reset
+                    
                     </button>
                   </div>
                 </div>

@@ -5,11 +5,14 @@ import { toast } from "react-toastify";
 import Select from "react-select";
 import { useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
 
+
 import {
 
   useItemRentCreateMutation,
   useUserListforBookIssueQuery,
 } from "../../../../../services/itemRentApi";
+import { FaTrash } from "react-icons/fa";
+import { FiPlusCircle } from "react-icons/fi";
 
 const CreateBookRents = ({ handleClose }) => {
   const [itemRentCreate, res] = useItemRentCreateMutation();
@@ -86,7 +89,7 @@ const CreateBookRents = ({ handleClose }) => {
 
   const formik = useFormik({
     initialValues: {
-      rental_date: "",
+     
       return_date: "",
       user_id: "",
       note: "",
@@ -96,7 +99,6 @@ const CreateBookRents = ({ handleClose }) => {
       // let formData = new FormData();
 
       const data = {
-        rental_date: values.rental_date,
         return_date: values.return_date,
         qty: qty,
         note: values.note,
@@ -132,8 +134,10 @@ const CreateBookRents = ({ handleClose }) => {
             <div className="row py-2">
 
 
-              <div className="col-4">
-                <label className="col-12 col-form-label">Item</label>
+              <div className="col">
+                <label className="col-12 col-form-label">Item <span >
+                 {availableQty ?  <span className=" badge bg-success ms-1" >{availableQty} Available</span> : <span className=" badge bg-warning ms-1">{"Not available"}</span>}
+                </span></label>
                 <Select
                   // isMulti
                   name="item_id"
@@ -158,13 +162,13 @@ const CreateBookRents = ({ handleClose }) => {
                 />
               </div>
 
-              <div className="col-3">
+              {/* <div className="col-3">
                 <label className="col-12 col-form-label">Quantity</label>
                 <div className="col-12">
                   <input
               
                     disabled
-                    placeholder="Only 1 quantity allowed"
+                    placeholder="Only 1 Item allowed"
                     type="number"
                     className="form-control"
                     name="item_qty"
@@ -177,8 +181,8 @@ const CreateBookRents = ({ handleClose }) => {
                 <p className=" badge bg-danger ms-1">
                   Available:<span>{availableQty ? availableQty : " Not available "}</span>
                 </p>
-              </div>
-              <div className="col-3">
+              </div> */}
+              <div className="col">
                 <label className="col-12 col-form-label">
                   Item Return Date
                 </label>
@@ -198,13 +202,13 @@ const CreateBookRents = ({ handleClose }) => {
                 </div>
               </div>
 
-              <div className="col-2 " style={{ marginTop: "37px" }}>
-                <buttton
+              <div className="col-2" style={{ marginTop: "37px" }}>
+                <button
                   onClick={itemHandeler}
-                  className="btn btn-primary d-block"
+                  className="btn btn-primary d-block btn-sm w-100 mt-1"
                 >
-                  Add
-                </buttton>
+                  <FiPlusCircle size={16} /> Add
+                </button>
               </div>
 
               <div className="py-2 pb-3 my-4 border border-4">
@@ -212,9 +216,8 @@ const CreateBookRents = ({ handleClose }) => {
                   <thead>
                     <tr>
                       <th scope="col">Name</th>
-                      <th scope="col">Item Qty</th>
+                      <th scope="col">Quantity </th>
                       <th scope="col">Return Date</th>
-
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -230,7 +233,7 @@ const CreateBookRents = ({ handleClose }) => {
                             onClick={() => deleteItem(item)}
                             className="btn btn-sm btn-danger "
                           >
-                            Delete
+                           <FaTrash size={13}  />
                           </button>
                         </td>
                       </tr>
@@ -252,13 +255,13 @@ const CreateBookRents = ({ handleClose }) => {
                       formik.setFieldValue("user_id", e.id);
                     }}
                     getOptionValue={(option) => `${option["id"]}`}
-                    getOptionLabel={(option) => `${option["name"]}`}
+                    getOptionLabel={(option) => `${option["name"]} ( ${option["email"]} )`}
                     options={userRes.isSuccess && userRes.data?.data}
                     isLoading={userRes.isLoading}
                   />
                 </div>
               </div>
-              <div className="col-8">
+              {/* <div className="col-8">
                 <label className="col-12 col-form-label">Return Date</label>
                 <div className="col-12">
                   <input
@@ -271,7 +274,7 @@ const CreateBookRents = ({ handleClose }) => {
                     required
                   />
                 </div>
-              </div>
+              </div> */}
 
               <div className="col-8">
                 <label className="col-12 col-form-label">Note</label>
@@ -289,10 +292,10 @@ const CreateBookRents = ({ handleClose }) => {
                 </div>
               </div>
               <div className="col-4 text-center ">
-                <h6>
-                  Total Quantity:{" "}
-                  <span className="text-danger badge badge">{qty}</span>
-                </h6>
+                <div>
+                  Total Item:{" "}
+                  <p className="text-success badge fw-500 ">{qty}</p>
+                </div>
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import { useGetVendorListQuery } from "../../../../../services/vendorApi";
 import { useGetItemForSelectFieldQuery } from "../../../../../services/bookItemApi";
 import { useItemOrderMutation } from "../../../../../services/itemOrder";
 import BookItemModal from "../bookItem/BookItemModal";
+import { FaTrash } from "react-icons/fa";
 
 
 const CreateOrderItem = ( {handleClose}) => {
@@ -201,7 +202,7 @@ const CreateOrderItem = ( {handleClose}) => {
                     className="btn btn-primary mt-2 btn-sm"
                     onClick={() => {
                       handleShow();
-                      handelClickValue("Add New Book");
+                      handelClickValue("Add New Item");
                     }}
              
                   >
@@ -282,15 +283,15 @@ const CreateOrderItem = ( {handleClose}) => {
                             alt=""
                           />
                         </td>
-                        <td>{item.itemName}</td>
-                        <td>{item.item_qty}</td>
+                        <td className="mt-2">{item.itemName}</td>
+                        <td >{item.item_qty}</td>
 
                         <td>
                           <button
                             onClick={() => deleteItem(item)}
-                            className="btn btn-danger"
+                            className="btn btn-danger p-1"
                           >
-                            Delete
+                         <FaTrash size={13}  /> 
                           </button>
                         </td>
                       </tr>

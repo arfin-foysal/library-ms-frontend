@@ -7,6 +7,7 @@ import { useItemRentCreateClientMutation } from "../../../services/clientSiteApi
 import { useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useState } from "react";
+import { FaTrash } from "react-icons/fa";
 
 
 function CartModal({ show, handleClose }) {
@@ -38,7 +39,7 @@ function CartModal({ show, handleClose }) {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (borrow?.borrow?.length === 0) {
-      toast.error("Your borrow cart is empty");
+      toast.error("Your cart is empty");
     } else {
       if (!authUser) {
         toast.error("Please login first");
@@ -54,7 +55,6 @@ function CartModal({ show, handleClose }) {
           user_id: authUser.id,
           items: borrow?.borrow,
           note: "ClientSite user borrow book",
-          return_date: returnAfterDate,
           borrow_or_buy: borrowOrBuy,
         };
 
@@ -75,9 +75,10 @@ function CartModal({ show, handleClose }) {
     <>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Book Borrow Cart</Modal.Title>
+          <Modal.Title>Item Cart</Modal.Title>
+          
     
-          <div className="form-check ms-5 ">
+          <div className="form-check ms-5 ps-5" >
             <input className="form-check-input"   type="radio" name="borrowOrBuy" value="borrow" 
               onChange={(e) => setBorrowOrBuy(e.target.value)}
           defaultChecked
@@ -118,6 +119,16 @@ function CartModal({ show, handleClose }) {
                     </tr>
                   </thead>
                   <tbody>
+                    {borrow?.borrow?.length === 0 && (
+                      <tr>
+                        <td colSpan="5" className="text-center">
+                          Your cart is empty
+                        </td>
+                          
+                      </tr>
+                    )
+                    }
+
                     {borrow?.borrow?.map((book, i) => (
                       <tr key={i}>
                         <td className="w-25">
@@ -134,7 +145,7 @@ function CartModal({ show, handleClose }) {
                         </td>
                         <td className="pt-4">{book?.title}</td>
                         <td
-                          className={borrowOrBuy === "buy" ? "d-none" : "pt-4"}
+                          className={borrowOrBuy === "buy" ? "d-none" : "pt-3"}
                         >
                           <input
                             className="form-control"
@@ -150,7 +161,7 @@ function CartModal({ show, handleClose }) {
                           />
                         </td>
                         <td
-                          className={borrowOrBuy === "buy" ? "" : "d-none"}
+                          className={borrowOrBuy === "buy" ? "pt-4" : "d-none"}
                         >
                           <span className="price text-success ">
                            <TbCurrencyTaka/> {book?.price} Tk
@@ -158,13 +169,14 @@ function CartModal({ show, handleClose }) {
                         </td>
 
 
-                        <td className="pt-4">
+                        <td className="pt-3">
                           <button
                             type="button"
-                            className="btn btn-danger btn-sm"
+                            className="btn btn-danger btn-sm "
                             onClick={() => dispatch(removeItem(book?.id))}
                           >
-                            Remove
+                            <FaTrash size={13} />  
+                         
                           </button>
                         </td>
                       </tr>
@@ -175,7 +187,7 @@ function CartModal({ show, handleClose }) {
 
 
 
-                  <div className="col-6 border  ">
+                  <div className="col-6   ">
                       <table className="table table-white table-striped">
                         <thead>
                           <tr>
@@ -203,19 +215,19 @@ function CartModal({ show, handleClose }) {
 
               </div>
               <div className="modal-footer border-top-0 ">
-                <Button variant="dark" onClick={handleClose}>
+                <Button variant="dark btn-sm" onClick={handleClose}>
                   Close
                 </Button>
                 <button
                   type="submit"
-                  className={borrowOrBuy === "borrow" ? "btn btn-success" : "d-none"}
+                  className={borrowOrBuy === "borrow" ? "btn btn-success btn-sm" : "d-none"}
                 onClick={submitHandler}
                 >
                   Borrow Now
                 </button>
                 <button
         
-                  className={borrowOrBuy === "buy" ? "btn btn-success" : "d-none"}
+                  className={borrowOrBuy === "buy" ? "btn btn-success btn-sm" : "d-none"}
                 // onClick={submitHandler}
                 >
                   Buy Now

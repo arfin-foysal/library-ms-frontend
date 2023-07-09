@@ -211,7 +211,7 @@ const EditVendorePayment = ({ handleClose, param }) => {
                       value={formik.values.payment_through}
                       required
                     >
-                      <option value="">--Select--</option>
+                    <option value="" disabled selected hidden>--Select--</option>
                       <option value="Cash">Cash</option>
                       <option value="Bank">Bank</option>
                       <option value="check">Check</option>

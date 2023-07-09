@@ -10,6 +10,7 @@ import PageTopHeader from "../../../common/PageTopHeader";
 import CategoryModal from "./CountryModal";
 import {  useGetCounteryListQuery } from "../../../../../services/commonApi";
 import { useDeleteCategoryMutation } from "../../../../../services/categoryApi";
+import { FiPlusCircle } from "react-icons/fi";
 
 
 const CountryList = () => {
@@ -75,7 +76,7 @@ const CountryList = () => {
       />
       {isFetching && <Loader />}
       
-      <PageTopHeader title="Countery List" />
+      <PageTopHeader title="Country List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div>Country List</div>
@@ -87,7 +88,7 @@ const CountryList = () => {
                 handelClickValue("Add New Country");
               }}
             >
-              Add New Country
+              <FiPlusCircle size={16} /> Add New Country
             </button>
           </div>
         </div>
@@ -140,10 +141,10 @@ const CountryList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                   <FaTrash size={13} /> Delete
+                    
+                        
+                   
                     </button>
                   </div>
                 </div>

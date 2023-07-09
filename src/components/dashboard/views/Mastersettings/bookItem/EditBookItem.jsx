@@ -154,6 +154,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="title"
                     onChange={formik.handleChange}
                     value={formik.values.title}
+                    required
 
                   />
                 </div>
@@ -208,6 +209,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     name="item_type"
                     onChange={formik.handleChange}
                     value={formik.values.item_type}
+                    required
 
                   >
                  <option value="" disabled selected hidden>--Select--</option>
@@ -296,6 +298,7 @@ const EditBookItem = ({ handleClose, param }) => {
                 <label className="col-12 col-form-label">Image <span className=" text-danger">*</span></label>
                 <div className="col-12">
                   <input
+                    required
                     className="form-control"
                     name="photo"
                     type="file"
@@ -430,7 +433,7 @@ const EditBookItem = ({ handleClose, param }) => {
                   name="language_id"
                   onChange={formik.handleChange}
                   value={formik.values.language_id}
-                  required
+                 
                 >
              <option value="" disabled selected hidden>--Select--</option>
 
@@ -526,7 +529,7 @@ const EditBookItem = ({ handleClose, param }) => {
                     formik.handleChange(e);
                   }}
                   value={formik.values.third_category_id}
-                  required
+               
                 >
                   <option value="" disabled selected hidden>--Select--</option>
 

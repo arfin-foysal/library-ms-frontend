@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import Loader from "../../../common/Loader";
 import { BsFillEyeFill } from "react-icons/bs";
 import { useDeleteVendorMutation, useGetVendorListQuery } from "../../../../../services/vendorApi";
+import { FiPlusCircle } from "react-icons/fi";
 
 const VendorList = () => {
   const res = useGetVendorListQuery();
@@ -112,7 +113,7 @@ const VendorList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Publisher" />
+      <PageTopHeader title="Vendor List" />
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
           <div> Vendor List</div>
@@ -124,7 +125,7 @@ const VendorList = () => {
                 handelClickValue("Add New Vendor");
               }}
             >
-              Add New Vendor
+             <FiPlusCircle size={16} />  Add New Vendor
             </button>
           </div>
         </div>
@@ -191,10 +192,10 @@ const VendorList = () => {
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
                     >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                     <FaTrash size={13} /> Delete
+                   
+                        
+                    
                     </button>
                   </div>
                 </div>

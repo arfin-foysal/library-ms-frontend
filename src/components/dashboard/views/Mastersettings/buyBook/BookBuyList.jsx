@@ -58,7 +58,7 @@ const BookBuyList = () => {
 
       {
         accessorKey: "qty", //normal accessorKey
-        header: "Qty",
+        header: "Quantity ",
         size: 10,
       },
 
@@ -90,7 +90,7 @@ const BookBuyList = () => {
           ),
 
         id: "order Status",
-        header: "Order Status",
+        header: "Status",
       },
 
     ],

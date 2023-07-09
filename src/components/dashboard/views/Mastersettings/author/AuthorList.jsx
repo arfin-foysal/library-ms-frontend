@@ -11,6 +11,7 @@ import {
   useDeleteAuthorMutation,
   useGetAuthorListQuery,
 } from "../../../../../services/authorApi";
+import { FiPlusCircle } from "react-icons/fi";
 
 const AuthorList = () => {
   const res = useGetAuthorListQuery();
@@ -109,7 +110,7 @@ const AuthorList = () => {
         clickValue={clickValue}
         paramId={paramId}
       />
-      <PageTopHeader title="Author" />
+      <PageTopHeader title="Author List" />
 
       <div className="card border shadow-lg ">
         <div className="card-header d-flex justify-content-between ">
@@ -122,7 +123,7 @@ const AuthorList = () => {
                 handelClickValue("Add New Author");
               }}
             >
-              Add New Author
+               <FiPlusCircle size={16} /> Add New Author
             </button>
           </div>
         </div>
@@ -144,21 +145,6 @@ const AuthorList = () => {
               <>
                 <div className="d-flex ">
                   <div className="mr-1">
-                    {/* <Link
-                  to="#"
-                    className="btn btn-info btn-sm d-flex align-items-center"
-                  onClick={() => {
-                    handleShow();
-                    handelClickValue("Branch Information");
-                    setParamId(row?.row?.original);
-                  
-                  }}
-                >
-                  <div className="mr-1"><BsFillEyeFill color="black" size={18} /></div>
-                  <div>Details</div>
-                  
-                  
-                </Link> */}
                   </div>
 
                   <div className="mx-2">
@@ -189,11 +175,11 @@ const AuthorList = () => {
                         )
                       }
                       className="px-2 d-flex align-items-center btn btn-danger btn-sm"
-                    >
-                      <div> Delete</div>
-                      <div>
-                        <FaTrash size={13} />
-                      </div>
+                    > <FaTrash size={13} />
+                      Delete
+
+
+
                     </button>
                   </div>
                 </div>
