@@ -11,7 +11,7 @@ export const bookItemApi = apiSliceAdmin.injectEndpoints({
   endpoints: (builder) => ({
     getBookItemList: builder.query({
       query: () => ({
-        url: "admin/all-item-list/",
+        url: "admin/all-item-list",
         method: "GET",
         // headers,
       }),

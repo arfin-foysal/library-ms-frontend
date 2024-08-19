@@ -295,10 +295,9 @@ const EditBookItem = ({ handleClose, param }) => {
                 </div>
               </div>
               <div className="col-6">
-                <label className="col-12 col-form-label">Image <span className=" text-danger">*</span></label>
+                <label className="col-12 col-form-label">Image <span className=" text-danger"></span></label>
                 <div className="col-12">
                   <input
-                    required
                     className="form-control"
                     name="photo"
                     type="file"

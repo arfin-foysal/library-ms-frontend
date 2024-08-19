@@ -14,6 +14,7 @@ import { useDeleteBookItemMutation, useGetBookItemListQuery } from "../../../../
 
 const BookItemList = () => {
   const res = useGetBookItemListQuery();
+  
   const [deleteBookItem] = useDeleteBookItemMutation();
   const { data, isSuccess, isFetching, isError, error } = res;
   const [clickValue, setClickValue] = useState(null);
